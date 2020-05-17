@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Bottom = () => {
+const Bottoms = () => {
     return(
         <div>
-            Bottom Container
+            Bottoms Container
         </div>
     )
 }
 
-export default Bottom
+export default Bottoms

@@ -5,7 +5,6 @@ import Auth from './Auth'
 
 const StyleMe = () => {
     const [currentUser] = useContext(CurrentUserContext)
-
     return(
         <div>
             {currentUser !== '' ? <AccessStyleMe /> : <Auth />}

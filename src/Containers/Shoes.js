@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Shoe = () => {
+const Shoes = () => {
     return(
         <div>
-            Shoe Container
+            Shoes Container
         </div>
     )
 }
 
-export default Shoe
+export default Shoes
