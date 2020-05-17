@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
+import ProductCard from '../Components/ProductCard';
 
 const Tops = () => {
     const [tops, setTops] = useState('')
@@ -18,12 +19,9 @@ const Tops = () => {
         })        
     }
 
-    const renderTop = () => {
-        return(
-            <div>
-                Top Detail
-            </div>
-        )
+    const renderTop = props => {
+        const id = parseInt(props.match.params.id, 0)
+        return <ProductCard category='tops' id={id}/>
     }
 
     return(
