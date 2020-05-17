@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Top = () => {
+const Tops = () => {
     return(
         <div>
-            Top Container
+            Tops Container
         </div>
     )
 }
 
-export default Top
+export default Tops
