@@ -15,7 +15,7 @@ const ProductCard = props => {
         <div>
             ProductCard Component<br/>
             <img src={product.img_url} alt="product"/>
-            {console.log(product)}
+            {/* {console.log(product)} */}
         </div>
     )
 }
