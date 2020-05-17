@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 export const CurrentUserContext = React.createContext('')
 export const OutfitsContext = React.createContext('')
 
+
 const Store = ({children}) => {
     const [currentUser, setCurrentUser] = useState(1)
     const [outfits, setOutfits] = useState('')
