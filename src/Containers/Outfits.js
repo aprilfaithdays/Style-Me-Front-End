@@ -8,7 +8,7 @@ const Outfits = () => {
     useEffect(() => {
         fetch('http://localhost:3000/outfits')
         .then(res => res.json())
-        .then(list => setOutfits(list))
+        .then(res => setOutfits(res))
         // eslint-disable-next-line
     },[])
 

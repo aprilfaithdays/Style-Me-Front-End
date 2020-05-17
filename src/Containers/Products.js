@@ -10,8 +10,8 @@ import OutfitDetails from '../Components/OutfitDetails';
 const Products = () => {
     return(
         <div>
+            <Tops />
             <Switch>
-                <Route path='/tops' component={Tops} />
                 <Route path='/bottoms' component={Bottoms} />
                 <Route path='/shoes' component={Shoes} />
                 <Route path='/outfits/:id' component={OutfitDetails} />

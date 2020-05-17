@@ -1,9 +1,11 @@
 import React from 'react';
 
-const ProductList = () => {
+const ProductList = props => {
+    const product = props.product
     return(
         <div>
-            ProductList Component
+            <img src={product.img_url} alt="product"/>
+
         </div>
     )
 }
