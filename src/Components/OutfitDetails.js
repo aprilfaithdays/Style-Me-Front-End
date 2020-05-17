@@ -1,9 +1,11 @@
 import React from 'react';
 
-const OutfitDetails = () => {
+const OutfitDetails = props => {
+
     return(
         <div>
-            OutfitDetails Component
+            {console.log(props.match.params.id)}
+            OutfitDetails Component {props.match.params.id}
         </div>
     )
 }

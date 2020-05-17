@@ -5,6 +5,7 @@ import Bottoms from './Bottoms';
 import Shoes from './Shoes';
 import Outfits from './Outfits';
 import CreateOutfit from '../Components/CreateOutfit';
+import OutfitDetails from '../Components/OutfitDetails';
 
 const Products = () => {
     return(
@@ -13,6 +14,7 @@ const Products = () => {
                 <Route path='/tops' component={Tops} />
                 <Route path='/bottoms' component={Bottoms} />
                 <Route path='/shoes' component={Shoes} />
+                <Route path='/outfits/:id' component={OutfitDetails} />
                 <Route path='/outfits/new' component={CreateOutfit} />
                 <Route path='/outfits' component={Outfits} />
             </Switch>
