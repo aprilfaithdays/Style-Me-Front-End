@@ -1,13 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css';
+import './style.css';
+import Store from './Containers/Store';
+import StyleMe from './Containers/StyleMe';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h3>Hi Style Me</h3>
-    </div>
-  );
+    <>
+      <Router>
+        <Store>
+          <StyleMe />
+        </Store>
+      </Router>
+    </>
+  )
 }
 
 export default App;
