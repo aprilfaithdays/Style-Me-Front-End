@@ -15,7 +15,7 @@ const Tops = () => {
     const renderTops = () => {
         const list = [...tops]
         return list.map(top => {
-            return <ProductList key={top.id} product={top} />
+            return <ProductList key={top.id} category='tops' product={top}/>
         })        
     }
 
