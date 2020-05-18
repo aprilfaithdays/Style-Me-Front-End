@@ -2,11 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
 import ProductCard from '../Components/ProductCard';
-import { CurrentUserContext, MyFaveTopsContext } from './Store';
+import { CurrentUserContext, FaveTopsContext } from './Store';
 
 const Tops = () => {
+    const faveTopUrl = 'http://localhost:3000/favorite_tops'
+
     const [currentUser] = useContext(CurrentUserContext)
-    const [myFaveTops, setMyFaveTops] = useContext(MyFaveTopsContext)
+    const [faveTops, setFaveTops] = useContext(FaveTopsContext)
     const [tops, setTops] = useState('')
 
     useEffect(() => {
@@ -22,14 +24,18 @@ const Tops = () => {
     }
 
     const getFaveTops = () => {
-        fetch('http://localhost:3000/favorite_tops')
+        fetch(faveTopUrl)
         .then(res => res.json())
-        .then(res => setMyFaveTops(res))
+        .then(res => setFaveTops(res))
+    }
+
+    const myFaveTops = () => {
+        const list = [...faveTops]
+        return list.filter(fave => fave.user_id === currentUser)
     }
 
     const faveTopsId = () => {
-        const list = [...myFaveTops]
-        const myList = list.filter(fave => fave.user_id === currentUser)
+        const myList = myFaveTops()
         return myList.map(fave => fave.top_id)
     }
 
@@ -37,7 +43,13 @@ const Tops = () => {
         const list = [...tops]
         const faveTops = faveTopsId()
         return list.map(top => {
-            return <ProductList key={top.id} product={top} addFavorite={addFavorite} favorite={faveTops.includes(top.id) ? true: false}/>
+            return <ProductList 
+                key={top.id} 
+                product={top} 
+                favorite={faveTops.includes(top.id) ? true: false}
+                addFavorite={addFavorite} 
+                removeFavorite={removeFavorite}
+            />
         })        
     }
 
@@ -47,8 +59,8 @@ const Tops = () => {
     }
 
     const addFavorite = e => {
-        const id = e.target.value
-        fetch(`http://localhost:3000/favorite_tops`, {
+        const id = parseInt(e.target.value, 0)
+        fetch(faveTopUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +72,24 @@ const Tops = () => {
             })
         })
         .then(res => res.json())
-        .then(res => setMyFaveTops([...myFaveTops, res]))
+        .then(res => setFaveTops([...faveTops, res]))
+    }
+
+    const removeFavorite = e =>{
+        const id = parseInt(e.target.value, 0)
+        const myList = myFaveTops()
+        const fave = myList.find(fave => (fave.user_id === currentUser && fave.top_id === id))
+
+        fetch(`${faveTopUrl}/${fave.id}`, {
+            method: 'DELETE'
+        })
+        removedFave(fave.id)
+    }
+
+    const removedFave = id => {
+        const faveTopsList = [...faveTops]
+        const updated = faveTopsList.filter(fave => fave.id !== id )
+        setFaveTops(updated)
     }
 
     return(
