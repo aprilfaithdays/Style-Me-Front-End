@@ -2,16 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
 import ProductCard from '../Components/ProductCard';
-import { CurrentUserContext, MyFaveTopContext } from './Store';
+import { CurrentUserContext, MyFaveTopsContext } from './Store';
 
 const Tops = () => {
     const [currentUser] = useContext(CurrentUserContext)
-    const [myFaveTops, setMyFaveTops] = useContext(MyFaveTopContext)
+    const [myFaveTops, setMyFaveTops] = useContext(MyFaveTopsContext)
     const [tops, setTops] = useState('')
 
     useEffect(() => {
         getTops()
         getFaveTops()
+        // eslint-disable-next-line 
     }, [])
 
     const getTops = () => {
@@ -58,6 +59,8 @@ const Tops = () => {
                 top_id: id
             })
         })
+        .then(res => res.json())
+        .then(res => setMyFaveTops([...myFaveTops, res]))
     }
 
     return(
