@@ -3,6 +3,7 @@ import Tops from './Tops';
 import Bottoms from './Bottoms';
 import Shoes from './Shoes';
 import Outfits from './Outfits';
+import Favorites from './Favorites';
 
 const Products = () => {
     return(
@@ -11,6 +12,7 @@ const Products = () => {
             <Bottoms />
             <Shoes />
             <Outfits />
+            <Favorites />
         </div>
     )
 }
