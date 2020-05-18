@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { OutfitsContext } from './Store';
 import OutfitsCollection from '../Components/OutfitsCollection';
 import OutfitDetails from '../Components/OutfitDetails';
-import CreateOutfit from '../Components/CreateOutfit';
+import CreateOutfit from '../Containers/CreateOutfit';
 
 const Outfits = () => {
     const [, setOutfits] = useContext(OutfitsContext)

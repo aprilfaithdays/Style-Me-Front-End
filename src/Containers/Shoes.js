@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
 import ProductCard from '../Components/ProductCard';
+import { CurrentUserContext } from './Store';
 
 const Shoes = () => {
+    const [currentUser] = useContext(CurrentUserContext)
     const [shoes, setShoes] = useState('')
 
     useEffect(() => {
@@ -15,13 +17,28 @@ const Shoes = () => {
     const renderShoes = () => {
         const list = [...shoes]
         return list.map(shoe => {
-            return <ProductList key={shoe.id} category='shoes' product={shoe}/>
+            return <ProductList key={shoe.id} product={shoe} addFavorite={addFavorite}/>
         })        
     }
 
     const renderShoe = props => {
         const id = parseInt(props.match.params.id, 0)
         return <ProductCard category='shoes' id={id}/>
+    }
+
+    const addFavorite = e => {
+        const id = e.target.value
+        fetch(`http://localhost:3000/favorite_shoes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+                user_id: currentUser,
+                shoe_id: id
+            })
+        })
     }
 
     return(
