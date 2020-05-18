@@ -5,12 +5,10 @@ import ProductCard from '../Components/ProductCard';
 import { CurrentUserContext, FaveTopsContext } from './Store';
 
 const Tops = () => {
-    const faveTopUrl = 'http://localhost:3000/favorite_tops'
-
+    const faveTospUrl = 'http://localhost:3000/favorite_tops'
     const [currentUser] = useContext(CurrentUserContext)
     const [faveTops, setFaveTops] = useContext(FaveTopsContext)
     const [tops, setTops] = useState([])
-
 
     useEffect(() => {
         getTops()
@@ -25,19 +23,9 @@ const Tops = () => {
     }
 
     const getFaveTops = () => {
-        fetch(faveTopUrl)
+        fetch(faveTospUrl)
         .then(res => res.json())
         .then(res => setFaveTops(res))
-    }
-
-    const filterMyFaveTops = () => {
-        const list = [...faveTops]
-        return list.filter(fave => fave.user_id === currentUser)
-    }
-
-    const faveTopsId = () => {
-        const myList = filterMyFaveTops()
-        return myList.map(fave => fave.top_id)
     }
 
     const renderTops = () => {
@@ -59,9 +47,19 @@ const Tops = () => {
         return <ProductCard category='tops' id={id}/>
     }
 
+    const filterMyFaveTops = () => {
+        const list = [...faveTops]
+        return list.filter(fave => fave.user_id === currentUser)
+    }
+
+    const faveTopsId = () => {
+        const myList = filterMyFaveTops()
+        return myList.map(fave => fave.top_id)
+    }
+
     const addFavorite = e => {
         const id = parseInt(e.target.value, 0)
-        fetch(faveTopUrl, {
+        fetch(faveTospUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -81,7 +79,7 @@ const Tops = () => {
         const myList = filterMyFaveTops()
         const fave = myList.find(fave => (fave.user_id === currentUser && fave.top_id === id))
 
-        fetch(`${faveTopUrl}/${fave.id}`, {
+        fetch(`${faveTospUrl}/${fave.id}`, {
             method: 'DELETE'
         })
         removedFave(fave.id)

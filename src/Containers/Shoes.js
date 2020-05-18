@@ -5,6 +5,7 @@ import ProductCard from '../Components/ProductCard';
 import { CurrentUserContext, FaveShoesContext } from './Store';
 
 const Shoes = () => {
+    const faveShoesUrl = 'http://localhost:3000/favorite_shoes'
     const [currentUser] = useContext(CurrentUserContext)
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext)
     const [shoes, setShoes] = useState('')
@@ -22,22 +23,22 @@ const Shoes = () => {
     }
 
     const getFaveShoes = () => {
-        fetch('http://localhost:3000/favorite_shoes')
+        fetch(faveShoesUrl)
         .then(res => res.json())
         .then(res => setFaveShoes(res))
-    }
-
-    const faveShoesId = () => {
-        const list = [...faveShoes]
-        const myList = list.filter(fave => fave.user_id === currentUser)
-        return myList.map(fave => fave.shoe_id)
     }
 
     const renderShoes = () => {
         const list = [...shoes]
         const faveShoes = faveShoesId()
         return list.map(shoe => {
-            return <ProductList key={shoe.id} product={shoe} addFavorite={addFavorite} favorite={faveShoes.includes(shoe.id) ? true: false}/>
+            return <ProductList 
+                key={shoe.id} 
+                product={shoe} 
+                favorite={faveShoes.includes(shoe.id) ? true: false}
+                addFavorite={addFavorite} 
+                removeFavorite={removeFavorite}
+            />
         })        
     }
 
@@ -46,9 +47,19 @@ const Shoes = () => {
         return <ProductCard category='shoes' id={id}/>
     }
 
+    const filterMyFaveShoes = () => {
+        const list = [...faveShoes]
+        return list.filter(fave => fave.user_id === currentUser)
+    }
+
+    const faveShoesId = () => {
+        const myList = filterMyFaveShoes()
+        return myList.map(fave => fave.shoe_id)
+    }
+
     const addFavorite = e => {
         const id = e.target.value
-        fetch(`http://localhost:3000/favorite_shoes`, {
+        fetch(faveShoesUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,6 +72,23 @@ const Shoes = () => {
         })
         .then(res => res.json())
         .then(res => setFaveShoes([...faveShoes, res]))
+    }
+
+    const removeFavorite = e => {
+        const id = parseInt(e.target.value, 0)
+        const myList = filterMyFaveShoes()
+        const fave = myList.find(fave => (fave.user_id === currentUser && fave.shoe_id === id))
+
+        fetch(`${faveShoesUrl}/${fave.id}`, {
+            method: 'DELETE'
+        })
+        removedFave(fave.id)
+    }
+
+    const removedFave = id => {
+        const faveShoesList = [...faveShoes]
+        const updated = faveShoesList.filter(fave => fave.id !== id)
+        setFaveShoes(updated)
     }
 
     return(

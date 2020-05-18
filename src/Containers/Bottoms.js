@@ -5,7 +5,7 @@ import ProductCard from '../Components/ProductCard';
 import { CurrentUserContext, FaveBottomsContext } from './Store';
 
 const Bottoms = () => {
-    const faveBottomUrl = 'http://localhost:3000/favorite_bottoms'
+    const faveBottomsUrl = 'http://localhost:3000/favorite_bottoms'
     const [currentUser] = useContext(CurrentUserContext)
     const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext)
     const [bottoms, setBottoms] = useState('')
@@ -23,19 +23,9 @@ const Bottoms = () => {
     }
 
     const getFaveBottoms = () => {
-        fetch(faveBottomUrl)
+        fetch(faveBottomsUrl)
         .then(res => res.json())
         .then(res => setFaveBottoms(res))
-    }
-
-    const filterMyFaveBottoms = () => {
-        const list = [...faveBottoms]
-        return list.filter(fave => fave.user_id === currentUser)
-    }
-
-    const faveBottomsId = () => {
-        const myList = filterMyFaveBottoms()
-        return myList.map(fave => fave.bottom_id)
     }
 
     const renderBottoms = () => {
@@ -57,9 +47,19 @@ const Bottoms = () => {
         return <ProductCard category='bottoms' id={id} />
     }
 
+    const filterMyFaveBottoms = () => {
+        const list = [...faveBottoms]
+        return list.filter(fave => fave.user_id === currentUser)
+    }
+
+    const faveBottomsId = () => {
+        const myList = filterMyFaveBottoms()
+        return myList.map(fave => fave.bottom_id)
+    }
+
     const addFavorite = e => {
         const id = e.target.value
-        fetch(faveBottomUrl, {
+        fetch(faveBottomsUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const Bottoms = () => {
         const myList = filterMyFaveBottoms()
         const fave = myList.find(fave => (fave.user_id === currentUser && fave.bottom_id === id))
 
-        fetch(`${faveBottomUrl}/${fave.id}`, {
+        fetch(`${faveBottomsUrl}/${fave.id}`, {
             method: 'DELETE'
         })
         removedFave(fave.id)
