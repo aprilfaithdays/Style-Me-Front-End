@@ -10,6 +10,7 @@ const Navbar = () => {
             <Link to ='/bottoms'>Bottoms</Link> {' | '}
             <Link to ='/shoes'>Shoes</Link> {' | '}
             <Link to ='/outfits/new'>Create Outfit</Link> {' | '}
+            <Link to ='/myFavorites'>Favorites</Link> {' | '}
         </div>
     )
 }
