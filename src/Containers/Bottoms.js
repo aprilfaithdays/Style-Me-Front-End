@@ -5,6 +5,7 @@ import ProductCard from '../Components/ProductCard';
 import { CurrentUserContext, FaveBottomsContext } from './Store';
 
 const Bottoms = () => {
+    const faveBottomUrl = 'http://localhost:3000/favorite_bottoms'
     const [currentUser] = useContext(CurrentUserContext)
     const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext)
     const [bottoms, setBottoms] = useState('')
@@ -12,7 +13,7 @@ const Bottoms = () => {
     useEffect(() => {
         getBottoms()
         getFaveBottoms()
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
     }, [])
 
     const getBottoms = () => {
@@ -22,14 +23,18 @@ const Bottoms = () => {
     }
 
     const getFaveBottoms = () => {
-        fetch('http://localhost:3000/favorite_bottoms')
+        fetch(faveBottomUrl)
         .then(res => res.json())
         .then(res => setFaveBottoms(res))
     }
 
-    const faveBottomsId = () => {
+    const filterMyFaveBottoms = () => {
         const list = [...faveBottoms]
-        const myList = list.filter(fave => fave.user_id === currentUser)
+        return list.filter(fave => fave.user_id === currentUser)
+    }
+
+    const faveBottomsId = () => {
+        const myList = filterMyFaveBottoms()
         return myList.map(fave => fave.bottom_id)
     }
 
@@ -37,7 +42,13 @@ const Bottoms = () => {
         const list = [...bottoms]
         const faveBottoms = faveBottomsId()
         return list.map(bottom => {
-            return <ProductList key={bottom.id} product={bottom} addFavorite={addFavorite} favorite={faveBottoms.includes(bottom.id) ? true: false}/>
+            return <ProductList 
+                key={bottom.id} 
+                product={bottom} 
+                favorite={faveBottoms.includes(bottom.id) ? true: false}
+                addFavorite={addFavorite} 
+                removeFavorite={removeFavorite}
+            />
         })
     }
 
@@ -48,7 +59,7 @@ const Bottoms = () => {
 
     const addFavorite = e => {
         const id = e.target.value
-        fetch(`http://localhost:3000/favorite_bottoms`, {
+        fetch(faveBottomUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,6 +72,23 @@ const Bottoms = () => {
         })
         .then(res => res.json())
         .then(res => setFaveBottoms([...faveBottoms, res]))
+    }
+
+    const removeFavorite  = e => {
+        const id = parseInt(e.target.value, 0)
+        const myList = filterMyFaveBottoms()
+        const fave = myList.find(fave => (fave.user_id === currentUser && fave.bottom_id === id))
+
+        fetch(`${faveBottomUrl}/${fave.id}`, {
+            method: 'DELETE'
+        })
+        removedFave(fave.id)
+    }
+
+    const removedFave = id => {
+        const faveBottomsList = [...faveBottoms]
+        const updated = faveBottomsList.filter(fave => fave.id !== id)
+        setFaveBottoms(updated)
     }
 
     return(
