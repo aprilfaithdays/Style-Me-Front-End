@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
 import ProductCard from '../Components/ProductCard';
-import { CurrentUserContext, MyFaveShoesContext } from './Store';
+import { CurrentUserContext, FaveShoesContext } from './Store';
 
 const Shoes = () => {
     const [currentUser] = useContext(CurrentUserContext)
-    const [myFaveShoes, setMyFaveShoes] = useContext(MyFaveShoesContext)
+    const [faveShoes, setFaveShoes] = useContext(FaveShoesContext)
     const [shoes, setShoes] = useState('')
 
     useEffect(() => {
@@ -24,11 +24,11 @@ const Shoes = () => {
     const getFaveShoes = () => {
         fetch('http://localhost:3000/favorite_shoes')
         .then(res => res.json())
-        .then(res => setMyFaveShoes(res))
+        .then(res => setFaveShoes(res))
     }
 
     const faveShoesId = () => {
-        const list = [...myFaveShoes]
+        const list = [...faveShoes]
         const myList = list.filter(fave => fave.user_id === currentUser)
         return myList.map(fave => fave.shoe_id)
     }
@@ -60,7 +60,7 @@ const Shoes = () => {
             })
         })
         .then(res => res.json())
-        .then(res => setMyFaveShoes([...myFaveShoes, res]))
+        .then(res => setFaveShoes([...faveShoes, res]))
     }
 
     return(

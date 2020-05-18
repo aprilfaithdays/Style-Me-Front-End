@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import ProductList from '../Components/ProductList';
 import { Switch, Route } from 'react-router-dom';
 import ProductCard from '../Components/ProductCard';
-import { CurrentUserContext, MyFaveBottomsContext } from './Store';
+import { CurrentUserContext, FaveBottomsContext } from './Store';
 
 const Bottoms = () => {
     const [currentUser] = useContext(CurrentUserContext)
-    const [myFaveBottoms, setMyFaveBottoms] = useContext(MyFaveBottomsContext)
+    const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext)
     const [bottoms, setBottoms] = useState('')
 
     useEffect(() => {
@@ -24,11 +24,11 @@ const Bottoms = () => {
     const getFaveBottoms = () => {
         fetch('http://localhost:3000/favorite_bottoms')
         .then(res => res.json())
-        .then(res => setMyFaveBottoms(res))
+        .then(res => setFaveBottoms(res))
     }
 
     const faveBottomsId = () => {
-        const list = [...myFaveBottoms]
+        const list = [...faveBottoms]
         const myList = list.filter(fave => fave.user_id === currentUser)
         return myList.map(fave => fave.bottom_id)
     }
@@ -60,7 +60,7 @@ const Bottoms = () => {
             })
         })
         .then(res => res.json())
-        .then(res => setMyFaveBottoms([...myFaveBottoms, res]))
+        .then(res => setFaveBottoms([...faveBottoms, res]))
     }
 
     return(
