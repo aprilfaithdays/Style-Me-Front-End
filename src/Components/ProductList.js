@@ -9,8 +9,8 @@ const ProductList = props => {
             <Link to={`/${product.category}/${product.id}`} >
                 <img src={product.img_url} alt="product"/>
             </Link><br/>
-            { props.favorite ? <button onClick={props.removeFavorite} value={product.id}> Remove Favorites </button> : 
-            <button onClick={props.addFavorite} value={product.id}> Add Favorites </button>}
+            { props.favorite ? <button className="btn btn-sm" onClick={props.removeFavorite} value={product.id}> Remove Favorites </button> : 
+            <button className="btn btn-sm" onClick={props.addFavorite} value={product.id}> Add Favorites </button>}
         </div>
     )
 }

@@ -1,13 +1,18 @@
 import React, {useContext} from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext } from './Store';
+import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext, OutfitsContext } from './Store';
 import FavoriteCard from '../Components/FavoriteCard';
 
 const Favorites = () => {
     const [currentUser] = useContext(CurrentUserContext)
+    const [outfits] = useContext(OutfitsContext)
     const [faveTops] = useContext(FaveTopsContext)
     const [faveBottoms] = useContext(FaveBottomsContext)
     const [faveShoes] = useContext(FaveShoesContext)
+
+    const filterMyOutfits = () => {
+        
+    }
 
     const filterMyFaveTops = () => {
         const topList = [...faveTops]
@@ -42,9 +47,37 @@ const Favorites = () => {
 
         return(
             <div>
-                {renderMyFavorites(myTops)}
-                {renderMyFavorites(myBottoms)}
-                {renderMyFavorites(myShoes)}
+                <div className='container'>
+                    <ul className="nav nav-tabs">
+                        <li className="active" ><a data-toggle="tab" href="#myOutfits">MyOutfits</a></li>
+                        <li><a data-toggle="tab" href="#tops">Tops</a></li>
+                        <li><a data-toggle="tab" href="#bottoms">Bottoms</a></li>
+                        <li><a data-toggle="tab" href="#shoes">Shoes</a></li>
+                    </ul>
+                    <div className="tab-content">
+                        <div id="myOutfits" className="tab-pane fade in active">
+                        <h3>My Outfits</h3>
+                        
+                        </div>
+                        <div id="tops" className="tab-pane fade">
+                        <h3>Tops</h3>
+                        {renderMyFavorites(myTops)}
+
+                        </div>
+                        <div id="bottoms" className="tab-pane fade">
+                        <h3>Bottoms</h3>
+                        {renderMyFavorites(myBottoms)}
+
+                        </div>
+                        <div id="shoes" className="tab-pane fade">
+                        <h3>Shoes</h3>
+                        {renderMyFavorites(myShoes)}
+
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         )
     }
