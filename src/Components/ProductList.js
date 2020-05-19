@@ -5,7 +5,7 @@ const ProductList = props => {
     const product = props.product
 
     return(
-        <div>
+        <div >
             <Link to={`/${product.category}/${product.id}`} >
                 <img src={product.img_url} alt="product"/>
             </Link><br/>
