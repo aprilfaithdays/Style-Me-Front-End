@@ -28,25 +28,6 @@ const Tops = () => {
         .then(res => setFaveTops(res))
     }
 
-    const renderTops = () => {
-        const list = [...tops]
-        const faveTopsIdList = faveTopsId()
-        return list.map(top => {
-            return <ProductList 
-                key={top.id} 
-                product={top} 
-                favorite={faveTopsIdList.includes(top.id) ? true: false}
-                addFavorite={addFavorite} 
-                removeFavorite={removeFavorite}
-            />
-        })        
-    }
-
-    const renderTop = props => {
-        const id = parseInt(props.match.params.id, 0)
-        return <ProductCard category='tops' id={id}/>
-    }
-
     const filterMyFaveTops = () => {
         const list = [...faveTops]
         return list.filter(fave => fave.user_id === currentUser)
@@ -89,6 +70,30 @@ const Tops = () => {
         const faveTopsList = [...faveTops]
         const updated = faveTopsList.filter(fave => fave.id !== id )
         setFaveTops(updated)
+    }
+
+    const renderTop = props => {
+        const id = parseInt(props.match.params.id, 0)
+        return <ProductCard category='tops' id={id}/>
+    }
+
+    const renderTops = () => {
+        const list = [...tops]
+        const faveTopsIdList = faveTopsId()
+        const topList = list.map(top => {
+            return <ProductList 
+                key={top.id} 
+                product={top} 
+                favorite={faveTopsIdList.includes(top.id) ? true: false}
+                addFavorite={addFavorite} 
+                removeFavorite={removeFavorite}
+            />
+        })
+        return (
+            <div className="product-list">
+                {topList}
+            </div>
+        )
     }
 
     return(

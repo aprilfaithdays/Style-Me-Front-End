@@ -28,25 +28,6 @@ const Bottoms = () => {
         .then(res => setFaveBottoms(res))
     }
 
-    const renderBottoms = () => {
-        const list = [...bottoms]
-        const faveBottoms = faveBottomsId()
-        return list.map(bottom => {
-            return <ProductList 
-                key={bottom.id} 
-                product={bottom} 
-                favorite={faveBottoms.includes(bottom.id) ? true: false}
-                addFavorite={addFavorite} 
-                removeFavorite={removeFavorite}
-            />
-        })
-    }
-
-    const renderBottom = props => {
-        const id = parseInt(props.match.params.id, 0)
-        return <ProductCard category='bottoms' id={id} />
-    }
-
     const filterMyFaveBottoms = () => {
         const list = [...faveBottoms]
         return list.filter(fave => fave.user_id === currentUser)
@@ -89,6 +70,30 @@ const Bottoms = () => {
         const faveBottomsList = [...faveBottoms]
         const updated = faveBottomsList.filter(fave => fave.id !== id)
         setFaveBottoms(updated)
+    }
+
+    const renderBottom = props => {
+        const id = parseInt(props.match.params.id, 0)
+        return <ProductCard category='bottoms' id={id} />
+    }
+
+    const renderBottoms = () => {
+        const list = [...bottoms]
+        const faveBottoms = faveBottomsId()
+        const bottomList = list.map(bottom => {
+            return <ProductList 
+                key={bottom.id} 
+                product={bottom} 
+                favorite={faveBottoms.includes(bottom.id) ? true: false}
+                addFavorite={addFavorite} 
+                removeFavorite={removeFavorite}
+            />
+        })
+        return (
+            <div className='product-list'>
+                {bottomList}
+            </div>
+        )
     }
 
     return(

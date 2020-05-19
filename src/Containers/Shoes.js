@@ -28,25 +28,6 @@ const Shoes = () => {
         .then(res => setFaveShoes(res))
     }
 
-    const renderShoes = () => {
-        const list = [...shoes]
-        const faveShoes = faveShoesId()
-        return list.map(shoe => {
-            return <ProductList 
-                key={shoe.id} 
-                product={shoe} 
-                favorite={faveShoes.includes(shoe.id) ? true: false}
-                addFavorite={addFavorite} 
-                removeFavorite={removeFavorite}
-            />
-        })        
-    }
-
-    const renderShoe = props => {
-        const id = parseInt(props.match.params.id, 0)
-        return <ProductCard category='shoes' id={id}/>
-    }
-
     const filterMyFaveShoes = () => {
         const list = [...faveShoes]
         return list.filter(fave => fave.user_id === currentUser)
@@ -89,6 +70,30 @@ const Shoes = () => {
         const faveShoesList = [...faveShoes]
         const updated = faveShoesList.filter(fave => fave.id !== id)
         setFaveShoes(updated)
+    }
+
+    const renderShoe = props => {
+        const id = parseInt(props.match.params.id, 0)
+        return <ProductCard category='shoes' id={id}/>
+    }
+
+    const renderShoes = () => {
+        const list = [...shoes]
+        const faveShoes = faveShoesId()
+        const shoeList = list.map(shoe => {
+            return <ProductList 
+                key={shoe.id} 
+                product={shoe} 
+                favorite={faveShoes.includes(shoe.id) ? true: false}
+                addFavorite={addFavorite} 
+                removeFavorite={removeFavorite}
+            />
+        }) 
+        return(
+            <div className='product-list'>
+                {shoeList}
+            </div>
+        )
     }
 
     return(

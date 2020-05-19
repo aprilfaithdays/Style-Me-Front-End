@@ -66,7 +66,9 @@ const Favorites = () => {
                     <div className="tab-content">
                         <div id="myOutfits" className="tab-pane fade in active">
                             <h3>My Outfits</h3>
-                            {filterMyOutfits()}
+                            <div className="outfit-list">
+                                {filterMyOutfits()}
+                            </div>
                         </div>
                         <div id="tops" className="tab-pane fade">
                             <h3>Tops</h3>
