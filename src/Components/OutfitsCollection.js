@@ -13,7 +13,9 @@ const OutfitsCollection = () => {
     return(
         <div>
             OutfitCollection Component
-            {renderOutfits()}
+            <div className='outfit-list'>
+                {renderOutfits()}
+            </div>
         </div>
     )
 }

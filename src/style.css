@@ -10,3 +10,12 @@ img{
     width: auto;
 }
 
+.outfit-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-list{
+    display: flex;
+    flex-wrap: wrap;
+}
