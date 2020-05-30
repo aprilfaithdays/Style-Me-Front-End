@@ -13,6 +13,7 @@ const Navbar = () => {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
                             <Link to='/' className="nav-link">Home<span className="sr-only">(current)</span></Link>
+                            
                         </li>
                         <li className="nav-item">
                             <Link to='/myFavorites' className="nav-link">Favorites</Link>
