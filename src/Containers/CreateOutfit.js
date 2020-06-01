@@ -1,9 +1,11 @@
 import React from 'react';
+import FavoritesList from '../Components/FavoritesList';
 
-const CreateOutfit = () => {
+const CreateOutfit = props => {
     return(
         <div>
-            CreateOutfit Component
+            <h3>Create Outfit</h3>
+            <FavoritesList {...props} />
         </div>
     )
 }
