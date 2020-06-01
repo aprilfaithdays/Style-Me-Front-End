@@ -3,7 +3,7 @@ import Tops from './Tops';
 import Bottoms from './Bottoms';
 import Shoes from './Shoes';
 import Outfits from './Outfits';
-import Favorites from './Favorites';
+import FavoritesPage from './FavoritesPage';
 
 const Products = () => {
     return(
@@ -12,7 +12,7 @@ const Products = () => {
             <Bottoms />
             <Shoes />
             <Outfits />
-            <Favorites />
+            <FavoritesPage />
         </div>
     )
 }

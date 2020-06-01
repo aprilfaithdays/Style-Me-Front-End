@@ -1,9 +1,8 @@
-import React, {useContext} from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext } from './Store';
+import React, {useContext} from 'react'
+import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext } from '../Containers/Store';
 import FavoriteCard from '../Components/FavoriteCard';
 
-const Favorites = () => {
+const FavoritesList = () => {
     const [currentUser] = useContext(CurrentUserContext)
     const [faveTops] = useContext(FaveTopsContext)
     const [faveBottoms] = useContext(FaveBottomsContext)
@@ -55,15 +54,15 @@ const Favorites = () => {
                     <div className="tab-content">
                         <div id="tops" className="tab-pane fade in active">
                             <h3>Tops</h3>
-                            {renderMyFavorites(myTops)}
+                            <div className="product-list">{renderMyFavorites(myTops)}</div>
                         </div>
                         <div id="bottoms" className="tab-pane fade">
                             <h3>Bottoms</h3>
-                            {renderMyFavorites(myBottoms)}
+                            <div className="product-list">{renderMyFavorites(myBottoms)}</div>
                         </div>
                         <div id="shoes" className="tab-pane fade">
                             <h3>Shoes</h3>
-                            {renderMyFavorites(myShoes)}
+                            <div className="product-list">{renderMyFavorites(myShoes)}</div>
                         </div>
                     </div>
                 </div>
@@ -71,13 +70,7 @@ const Favorites = () => {
         )
     }
 
-    return(
-        <div>
-            <Switch>
-                <Route path='/myFavorites' component={myFavorites} />
-            </Switch>
-        </div>
-    )
+    return myFavorites()
 }
 
-export default Favorites
+export default FavoritesList

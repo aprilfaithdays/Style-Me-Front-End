@@ -12,11 +12,10 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <Link to='/' className="nav-link">Home<span className="sr-only">(current)</span></Link>
-                            
+                            <Link to='/' className="nav-link">Home |<span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/myFavorites' className="nav-link">Favorites</Link>
+                            <Link to='/myFavorites' className="nav-link">Favorites |</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,12 +23,14 @@ const Navbar = () => {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <Link to='/outfits' className="dropdown-item">Outfits</Link> 
+                                <div className="dropdown-divider"></div>
                                 <Link to='/tops' className="dropdown-item">Tops</Link> 
                                 <Link to='/bottoms' className="dropdown-item">Bottoms</Link> 
                                 <Link to='/shoes' className="dropdown-item">Shoes</Link> 
-                                <div className="dropdown-divider"></div>
-                                <Link to ='/outfits/new' className="dropdown-item">Create Outfit</Link>
                             </div>
+                        </li>
+                        <li className="nav-item">
+                            <Link to='/outfits/new' className="nav-link">| Create Outfit</Link>
                         </li>
                     </ul>
                 </div>

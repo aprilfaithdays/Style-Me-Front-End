@@ -16,9 +16,9 @@ const HomePage = () => {
 
 
     return(
-        <div>
-            HomePage Container
-            {filterMyOutfits()}
+        <div className="container">
+            <h3>My Outfits</h3>
+            <div className="outfit-list"> {filterMyOutfits()} </div>
         </div>
     )
 }
