@@ -7,7 +7,7 @@ export const FaveBottomsContext = React.createContext('')
 export const FaveShoesContext = React.createContext('')
 
 const Store = ({children}) => {
-    const [currentUser, setCurrentUser] = useState(1)
+    const [currentUser, setCurrentUser] = useState(2)
     const [outfits, setOutfits] = useState('')
     const [faveTops, setFaveTops] = useState('')
     const [faveBottoms, setFaveBottoms] = useState('')
