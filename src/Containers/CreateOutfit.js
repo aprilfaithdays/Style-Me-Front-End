@@ -5,14 +5,14 @@ import CreateOutfitForm from '../Components/CreateOutfitForm';
 
 const CreateOutfit = () => {
 
-    const createOutfitPage = () => {
+    const createOutfitPage = props => {
         return (
             <div>
                 <h3 className="title">Create an Outfit!</h3>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-sm-4'>
-                            <CreateOutfitForm />
+                            <CreateOutfitForm {...props}/>
                         </div>
                         <div className='col-sm-8'>
                             <FavoritesList />

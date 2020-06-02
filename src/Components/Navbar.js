@@ -29,7 +29,7 @@ const Navbar = () => {
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                    <span class="navbar-text">You need to fix this later Apes</span>
+                    <span className="navbar-text">You need to fix this later Apes</span>
                     <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" type="submit">Log Out</button>
                     </form>
                 </div>

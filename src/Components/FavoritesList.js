@@ -4,7 +4,6 @@ import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesConte
 import FavoriteCard from '../Components/FavoriteCard';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 
