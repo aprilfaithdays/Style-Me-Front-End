@@ -1,9 +1,14 @@
 import React, {useContext, useState} from 'react'
+import {Link} from 'react-router-dom'
 import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext } from '../Containers/Store';
 import FavoriteCard from '../Components/FavoriteCard';
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
 
-const FavoritesList = props => {
-    const url = props.match.url
+const FavoritesList = () => {
     const [currentUser] = useContext(CurrentUserContext)
     const [faveTops, setFaveTops] = useContext(FaveTopsContext)
     const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext)
@@ -75,40 +80,33 @@ const FavoritesList = props => {
                 return <FavoriteCard 
                     key={product.id} 
                     product={product} 
-                    create={url === '/outfits/new'}
                     removeFavorite={removeFavorite}
                     />
             })
         }
     }
 
+    return(
+        <Container fluid>
+            <Col className="options">
+                <Tabs defaultActiveKey="tops" transition={false} id="noanim-tab-example">
+                <Tab eventKey="tops" title="Tops" className="links">
+                    {filterMyFaveTops().length !== 0 ? <div className="product-list">{renderMyFavorites(myTops)}</div> : 
+                    <p>You don't have any favorite <Link to="/tops">tops</Link> in your wardrobe!</p>}
+                </Tab>
+                <Tab eventKey="bottoms" title="Bottoms" className="links">
+                    {filterMyFaveBottoms().length !== 0 ? <div className="product-list">{renderMyFavorites(myBottoms)}</div> : 
+                    <p>You don't have any favorite <Link to="/bottoms">bottoms</Link> in your wardrobe!</p>}
+                </Tab>
+                <Tab eventKey="shoes" title="Shoes" className="links">
+                    {filterMyFaveShoes().length !== 0 ? <div className="product-list">{renderMyFavorites(myShoes)}</div> : 
+                    <p>You don't have any favorite <Link to='/shoes'>shoes</Link> in your wardrobe!</p>}
+                </Tab>
+                </Tabs>
+            </Col>
+        </Container>
+    )
 
-    const myFavorites = () => {
-        return(
-            <div>
-                <div className='container'>
-                    <ul className="nav nav-tabs">
-                        <li className="active"><a data-toggle="tab" href="#tops">Tops</a></li>
-                        <li><a data-toggle="tab" href="#bottoms">Bottoms</a></li>
-                        <li><a data-toggle="tab" href="#shoes">Shoes</a></li>
-                    </ul>
-                    <div className="tab-content">
-                        <div id="tops" className="tab-pane fade in active">
-                            <div className="product-list">{renderMyFavorites(myTops)}</div>
-                        </div>
-                        <div id="bottoms" className="tab-pane fade">
-                            <div className="product-list">{renderMyFavorites(myBottoms)}</div>
-                        </div>
-                        <div id="shoes" className="tab-pane fade">
-                            <div className="product-list">{renderMyFavorites(myShoes)}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
-    return myFavorites()
 }
 
 export default FavoritesList
