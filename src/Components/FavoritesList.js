@@ -13,6 +13,7 @@ const FavoritesList = () => {
     const [faveTops, setFaveTops] = useContext(FaveTopsContext)
     const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext)
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext)
+    const [key, setKey] = useState('tops')
     
     const myList = list => {
         return list.filter(object => object.user_id === currentUser)
@@ -89,7 +90,7 @@ const FavoritesList = () => {
     return(
         <Container fluid>
             <Col className="options">
-                <Tabs defaultActiveKey="tops" transition={false} id="noanim-tab-example">
+                <Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)}>
                 <Tab eventKey="tops" title="Tops" className="links">
                     {filterMyFaveTops().length !== 0 ? <div className="product-list">{renderMyFavorites(myTops)}</div> : 
                     <p>You don't have any favorite <Link to="/tops">tops</Link> in your wardrobe!</p>}
