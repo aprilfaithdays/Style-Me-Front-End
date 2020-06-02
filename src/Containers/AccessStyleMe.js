@@ -9,8 +9,10 @@ const AccessStyleMe = () => {
     return(
         <div>
             <Navbar />
-            <Products />
-            <Route exact path='/' component={HomePage} />
+            <div className="style-me">
+                <Products />
+                <Route exact path='/' component={HomePage} />
+            </div>
         </div>
     )
 }
