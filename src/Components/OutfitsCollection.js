@@ -12,6 +12,7 @@ const OutfitsCollection = () => {
 
     return(
         <div>
+            <h3>Browse All Outfits</h3>
             <div className='outfit-list'>
                 {renderOutfits()}
             </div>

@@ -90,8 +90,11 @@ const Bottoms = () => {
             />
         })
         return (
-            <div className='product-list'>
-                {bottomList}
+            <div>
+                <h3 className="title">Bottoms</h3>
+                <div className='product-list'>
+                    {bottomList}
+                </div>
             </div>
         )
     }

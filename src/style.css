@@ -14,6 +14,14 @@ h3{
     text-align: center;
 }
 
+.title{
+    margin-bottom: 20px;
+}
+
+.style-me{
+    margin-top: 53px;
+}
+
 .outfit-list{
     display: flex;
     flex-wrap: wrap;

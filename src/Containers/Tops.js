@@ -90,8 +90,11 @@ const Tops = () => {
             />
         })
         return (
-            <div className="product-list">
-                {topList}
+            <div>
+                <h3 className="title">Tops</h3>
+                <div className="product-list">
+                    {topList}
+                </div>
             </div>
         )
     }

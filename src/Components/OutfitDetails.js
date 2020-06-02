@@ -31,7 +31,7 @@ const OutfitDetails = props => {
     }
 
     return(
-        <div>
+        <div className="container">
             <h3>{outfit.name}</h3>
             Created by: {user.name}<br/>
             Price: ${outfitPrice()} <br/>
