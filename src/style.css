@@ -33,6 +33,30 @@ h3{
 }
 
 .product-card{
+    height: 250px;
+    width: auto;
+    display: block;
+    box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-left: 15px;
+}
+
+.product-detail{
     height: 300px;
     width: auto;
+    display: block;
+    box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.button{
+    margin-top: 10px;
+}
+
+:any-link{
+    color: rgb(11, 119, 146);
+}
+
+:any-link:hover{
+    color: rgb(14, 186, 192)
 }

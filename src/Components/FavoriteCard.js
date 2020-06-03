@@ -12,11 +12,12 @@ const FavoriteCard = props => {
     }
 
     return(
-        <div>
+        <div className="product-card">
             <img src={product.img_url} alt="product" onClick={handleSelect}/><br/>
             {props.create && <button>Select</button>}
-            {/* <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={handleSelect}>+ Select</button>{' '} */}
-            <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={handleRemove}>- Remove</button>
+            <div className="button">
+                <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={handleRemove}>- Remove</button>
+            </div>
         </div>
     )
 }
