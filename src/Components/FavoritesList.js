@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 import {Link} from 'react-router-dom'
-import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext } from '../Containers/Store';
+import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext, NewTopContext, NewBottomContext, NewShoeContext, TabKeyContext } from '../Containers/Store';
 import FavoriteCard from '../Components/FavoriteCard';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
@@ -12,7 +12,10 @@ const FavoritesList = () => {
     const [faveTops, setFaveTops] = useContext(FaveTopsContext)
     const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext)
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext)
-    const [key, setKey] = useState('tops')
+    const [, setNewTop] = useContext(NewTopContext)
+    const [, setNewBottom] = useContext(NewBottomContext)
+    const [, setNewShoe] = useContext(NewShoeContext)
+    const [key, setKey] = useContext(TabKeyContext)
     
     const myList = list => {
         return list.filter(object => object.user_id === currentUser)
@@ -48,13 +51,13 @@ const FavoritesList = () => {
             let updated = updateList(faveTops, removeFave.id)
             setFaveTops(updated)
 
-        } else if (category === 'bottoms'){
+        } if (category === 'bottoms'){
             removeFave = faveBottoms.find(fave => fave.user_id === currentUser && fave.bottom_id === id)
             deleteFave(category, removeFave.id)
             let updated = updateList(faveBottoms, removeFave.id)
             setFaveBottoms(updated)
 
-        } else if (category === 'shoes'){
+        } if (category === 'shoes'){
             removeFave = faveShoes.find(fave => fave.user_id === currentUser && fave.shoe_id === id)
             deleteFave(category, removeFave.id)
             let updated = updateList(faveShoes, removeFave.id)
@@ -73,6 +76,16 @@ const FavoritesList = () => {
         const faveList = [...list]
         return faveList.filter(fave => fave.id !== id)
     }
+
+    const selectFavorite = (category, id, img_url) => {
+        if (category === 'tops'){
+            setNewTop([img_url, id])
+        } if (category === 'bottoms'){
+            setNewBottom([img_url, id])
+        } if (category === 'shoes'){
+            setNewShoe([img_url, id])
+        }
+    }
         
     const renderMyFavorites = list => {
         if (list.length > 0){
@@ -81,6 +94,7 @@ const FavoritesList = () => {
                     key={product.id} 
                     product={product} 
                     removeFavorite={removeFavorite}
+                    selectFavorite={selectFavorite}
                     />
             })
         }
@@ -104,6 +118,7 @@ const FavoritesList = () => {
                 </Tab>
                 </Tabs>
             </Col>
+            {console.log(key)}
         </Container>
     )
 

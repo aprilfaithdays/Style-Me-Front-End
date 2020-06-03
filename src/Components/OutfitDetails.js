@@ -12,8 +12,8 @@ const OutfitDetails = props => {
     useEffect(() => {
         fetchOutfit()
         // eslint-disable-next-line
-    }, [id])
-
+    }, [])
+    
     const fetchOutfit = () => {
         fetch(`http://localhost:3000/outfits/${id}`)
         .then(res => res.json())
