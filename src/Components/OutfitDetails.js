@@ -38,7 +38,7 @@ const OutfitDetails = props => {
 
     const creatorAccess = () => (
         <div>
-            {update ? <button className="btn btn-outline-secondary btn-sm">Save</button> : 
+            {update ? <button className="btn btn-outline-secondary btn-sm" onClick={handleSave}>Save</button> : 
             <div>
                 <button className="btn btn-outline-secondary btn-sm" onClick={() => setUpdate(true)}>Update</button>
                 <button className="btn btn-outline-secondary btn-sm" onClick={handleDelete}>Delete</button>
@@ -58,6 +58,27 @@ const OutfitDetails = props => {
         const list = [...outfits]
         const updated = list.filter(outfit => outfit.id !== id)
         setOutfits(updated)
+    }
+
+    const handleSave = () => {
+        console.log(name, currentUser, top.id, bottom.id, shoe.id, url, outfit.likes)
+        fetch(url, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ 
+                name
+            })
+        })
+        .then(res => res.json())
+        .then(res => {
+            setOutfit(res);
+            setUser(res.user);
+            setTop(res.top);
+            setBottom(res.bottom);
+            setShoe(res.shoe);
+            setUpdate(false);
+            setEdit(false);
+        })
     }
 
     const handleUpdate = () => {
