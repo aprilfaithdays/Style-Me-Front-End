@@ -5,13 +5,19 @@ import { CurrentUserContext, OutfitsContext } from '../Containers/Store'
 const OutfitDetails = props => {
     const id = parseInt(props.match.params.id,0)
     const url = `http://localhost:3000/outfits/${id}`
+
     const [currentUser] = useContext(CurrentUserContext)
     const [outfits, setOutfits] = useContext(OutfitsContext)
+
     const [outfit, setOutfit] = useState('')
     const [user, setUser] = useState('')
     const [top, setTop] = useState('')
     const [bottom, setBottom] = useState('')
     const [shoe, setShoe] = useState('')
+    
+    const [edit, setEdit] = useState(false)
+    const [update, setUpdate] = useState(false)
+    const [name, setName] = useState('')
 
     useEffect(() => {
         fetchOutfit()
@@ -32,11 +38,11 @@ const OutfitDetails = props => {
 
     const creatorAccess = () => (
         <div>
-            <button className="btn btn-outline-secondary btn-sm">Update</button>
-            <button 
-                className="btn btn-outline-secondary btn-sm"
-                onClick={handleDelete}
-            >Delete</button>
+            {update ? <button className="btn btn-outline-secondary btn-sm">Save</button> : 
+            <div>
+                <button className="btn btn-outline-secondary btn-sm" onClick={() => setUpdate(true)}>Update</button>
+                <button className="btn btn-outline-secondary btn-sm" onClick={handleDelete}>Delete</button>
+            </div>}
         </div>
     )
 
@@ -44,15 +50,27 @@ const OutfitDetails = props => {
         fetch(url, {
             method: 'DELETE'
         })
-        updateOutfitList(id);
+        removeOutfit(id);
         props.history.push('/')
     }
 
-    const updateOutfitList = id => {
+    const removeOutfit = id => {
         const list = [...outfits]
         const updated = list.filter(outfit => outfit.id !== id)
         setOutfits(updated)
     }
+
+    const handleUpdate = () => {
+        return (
+            <div className="outfit-detail">
+                <input className="form-control col-md-2" type="text" value={name} onChange={e => setName(e.target.value)}></input>
+            </div>
+        )
+    }
+
+    const editButton = () => (
+        edit ? creatorAccess() : <div><button className="btn btn-outline-secondary btn-sm" onClick={() => setEdit(true)}>Edit</button></div>
+    )
 
     const outfitPrice = () => (
         top.price + bottom.price + shoe.price
@@ -68,14 +86,14 @@ const OutfitDetails = props => {
 
     return(
         <div className="container">
-            <h3>{outfit.name}</h3>
+            {update ? handleUpdate() : <h3>{outfit.name}</h3> }
             <div className="outfit-detail">
                 {productDetail(top)}
                 {productDetail(bottom)}
                 {productDetail(shoe)}
             </div>
-            {user.id === currentUser ? creatorAccess() : <div>Created by: {user.name}</div> }
-            Price: ${outfitPrice()} <br/>
+            {user.id === currentUser  ? editButton() : <div>Created by: {user.name}</div> }
+            Price: ${outfitPrice()} 
         </div>
     )
 }

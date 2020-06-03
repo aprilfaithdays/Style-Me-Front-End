@@ -9,14 +9,14 @@ const OutfitCard = props => {
     const user = outfit.user
 
     return(
-        <p>
+        <div>
             {/* {console.log(outfit)} */}
             <strong><Link to={`/outfits/${outfit.id}`}> {outfit.name} <br/></Link></strong>
              <em> Created by: {user.name}</em><br/>
             <img src={top.img_url} alt='top'/> <br/>
             <img src={bottom.img_url} alt='bottom'/> <br/>
             <img src={shoe.img_url} alt='shoe'/> 
-        </p>
+        </div>
     )
 }
 
