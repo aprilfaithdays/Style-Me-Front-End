@@ -123,7 +123,6 @@ const FavoritesList = () => {
                 </Tab>
                 </Tabs>
             </Col>
-            {console.log(key)}
         </Container>
     )
 
