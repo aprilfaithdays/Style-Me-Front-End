@@ -19,6 +19,7 @@ const HomePage = () => {
         <div className="container">
             <h3>My Outfits</h3>
             <div className="outfit-list"> {filterMyOutfits()} </div>
+            {/* {console.log(outfits)} */}
         </div>
     )
 }
