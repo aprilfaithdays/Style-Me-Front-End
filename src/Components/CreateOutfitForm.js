@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { OutfitsContext, CurrentUserContext, NewTopContext, NewBottomContext, NewShoeContext, NewNameContext } from '../Containers/Store'
+import { OutfitsContext, CurrentUserContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Containers/Store'
 
 const CreateOutfitForm = props => {
     const [currentUser] = useContext(CurrentUserContext)
     const [outfits, setOutfits] = useContext(OutfitsContext)
-    // const [newName, setNewName] = useContext(NewNameContext)
     const [newName, setNewName] = useState('')
     const [newTop, setNewTop] = useContext(NewTopContext)
     const [newBottom, setNewBottom] = useContext(NewBottomContext)
