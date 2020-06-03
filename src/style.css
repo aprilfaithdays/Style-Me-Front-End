@@ -35,6 +35,12 @@ h3{
     flex-wrap: wrap;
 }
 
+.outfit-detail{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .product-list{
     display: flex;
     flex-wrap: wrap;
@@ -57,8 +63,12 @@ h3{
     text-align: center;
 }
 
-.button{
+.buttons{
     margin-top: 10px;
+}
+
+.button{
+    margin-right: 8px;
 }
 
 .error{

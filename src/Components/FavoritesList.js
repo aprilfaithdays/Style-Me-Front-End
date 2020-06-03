@@ -111,7 +111,7 @@ const FavoritesList = () => {
     return(
         <Container fluid>
             <Col className="options">
-                <Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)}>
+                <Tabs activeKey={key} onSelect={(k) => setKey(k)}>
                 <Tab eventKey="tops" title="Tops">
                     {filterMyFaveTops().length !== 0 ? renderProducts(myTops) : emptyFaves('tops')}
                 </Tab>

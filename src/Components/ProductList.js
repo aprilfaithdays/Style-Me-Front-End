@@ -6,13 +6,13 @@ const ProductList = props => {
 
     const removeFave = () => (
         <div className="button">
-            <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={props.removeFavorite} value={product.id}> Remove Favorites </button>
+            <button className="btn btn-outline-secondary btn-sm" onClick={props.removeFavorite} value={product.id}> Remove Favorites </button>
         </div>
     )
 
     const addFave = () => (
         <div className="button">
-            <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={props.addFavorite} value={product.id}> Add Favorites </button>
+            <button className="btn btn-outline-secondary btn-sm" onClick={props.addFavorite} value={product.id}> Add Favorites </button>
         </div>
     )
 
