@@ -33,6 +33,7 @@ h3{
 .outfit-list{
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 .outfit-detail{

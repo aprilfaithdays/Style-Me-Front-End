@@ -4,7 +4,8 @@ import { OutfitsContext, CurrentUserContext, NewTopContext, NewBottomContext, Ne
 const CreateOutfitForm = props => {
     const [currentUser] = useContext(CurrentUserContext)
     const [outfits, setOutfits] = useContext(OutfitsContext)
-    const [newName, setNewName] = useContext(NewNameContext)
+    // const [newName, setNewName] = useContext(NewNameContext)
+    const [newName, setNewName] = useState('')
     const [newTop, setNewTop] = useContext(NewTopContext)
     const [newBottom, setNewBottom] = useContext(NewBottomContext)
     const [newShoe, setNewShoe] = useContext(NewShoeContext)
@@ -68,14 +69,14 @@ const CreateOutfitForm = props => {
     return (
         <div>
             <form>
-                <input className="form-control form-control-sm" type="text" placeholder="Outfit Name" onChange={e => setNewName(e.target.value)} value={newName}/>
-                {outfitName === false && <small className="error form-text">*Please name your outfit.</small>}
                 <img src={newTop[0]} alt="top"/>
                 {outfitTop === false && selectMessage('top')}
                 <img src={newBottom[0]} alt="bottom"/>
                 {outfitBottom === false && selectMessage('bottom')}
                 <img src={newShoe[0]} alt="shoe"/>
                 {outfitShoe === false && selectMessage('shoe')}
+                <input className="form-control form-control-sm" type="text" placeholder="Outfit Name" onChange={e => setNewName(e.target.value)} value={newName}/>
+                {outfitName === false && <small className="error form-text">*Please name your outfit.</small>}
                 <button className="btn btn-outline-secondary btn-sm" onClick={handleCreateOutfit}>Create Outfit</button>
             </form>
         </div>
