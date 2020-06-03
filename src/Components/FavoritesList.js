@@ -100,21 +100,26 @@ const FavoritesList = () => {
         }
     }
 
+    const renderProducts = list => (
+        <div className="product-list">{renderMyFavorites(list)}</div>
+    )
+
+    const emptyFaves = category => (
+        <p>You don't have any favorite <Link to={`/${category}`}>{category}</Link> in your wardrobe!</p>
+    )
+
     return(
         <Container fluid>
             <Col className="options">
                 <Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)}>
-                <Tab eventKey="tops" title="Tops" className="links">
-                    {filterMyFaveTops().length !== 0 ? <div className="product-list">{renderMyFavorites(myTops)}</div> : 
-                    <p>You don't have any favorite <Link to="/tops">tops</Link> in your wardrobe!</p>}
+                <Tab eventKey="tops" title="Tops">
+                    {filterMyFaveTops().length !== 0 ? renderProducts(myTops) : emptyFaves('tops')}
                 </Tab>
-                <Tab eventKey="bottoms" title="Bottoms" className="links">
-                    {filterMyFaveBottoms().length !== 0 ? <div className="product-list">{renderMyFavorites(myBottoms)}</div> : 
-                    <p>You don't have any favorite <Link to="/bottoms">bottoms</Link> in your wardrobe!</p>}
+                <Tab eventKey="bottoms" title="Bottoms">
+                    {filterMyFaveBottoms().length !== 0 ? renderProducts(myBottoms) : emptyFaves('bottoms')}
                 </Tab>
-                <Tab eventKey="shoes" title="Shoes" className="links">
-                    {filterMyFaveShoes().length !== 0 ? <div className="product-list">{renderMyFavorites(myShoes)}</div> : 
-                    <p>You don't have any favorite <Link to='/shoes'>shoes</Link> in your wardrobe!</p>}
+                <Tab eventKey="shoes" title="Shoes">
+                    {filterMyFaveShoes().length !== 0 ? renderProducts(myShoes) : emptyFaves('shoes')}
                 </Tab>
                 </Tabs>
             </Col>

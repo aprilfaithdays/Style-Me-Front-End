@@ -18,7 +18,7 @@ const ProductCard = props => {
             <h3 className="title">{product.name}</h3>
             <div className="row">
                 <div className="col-sm-4">
-                    <img className="product-card" src={product.img_url} alt="product"/>
+                    <img className="product-detail" src={product.img_url} alt="product"/>
                 </div>
                 <div className="col-sm-8">
                     $ {product.price} - {product.color}

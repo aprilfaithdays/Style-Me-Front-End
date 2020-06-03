@@ -90,7 +90,7 @@ const Shoes = () => {
             />
         }) 
         return(
-            <div>
+            <div className="container">
                 <h3 className="title">Shoes</h3>
                 <div className='product-list'>
                     {shoeList}

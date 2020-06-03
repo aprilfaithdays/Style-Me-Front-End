@@ -4,13 +4,26 @@ import { Link } from 'react-router-dom';
 const ProductList = props => {
     const product = props.product
 
+    const removeFave = () => (
+        <div className="button">
+            <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={props.removeFavorite} value={product.id}> Remove Favorites </button>
+        </div>
+    )
+
+    const addFave = () => (
+        <div className="button">
+            <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={props.addFavorite} value={product.id}> Add Favorites </button>
+        </div>
+    )
+
     return(
         <div>
-            <Link to={`/${product.category}/${product.id}`} >
-                <img src={product.img_url} alt="product"/>
-            </Link><br/>
-            { props.favorite ? <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={props.removeFavorite} value={product.id}> Remove Favorites </button> : 
-            <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={props.addFavorite} value={product.id}> Add Favorites </button>}
+            <div className="product-card">
+                <Link to={`/${product.category}/${product.id}`} >
+                        <img src={product.img_url} alt="product"/>
+                </Link><br/>
+                { props.favorite ?  removeFave() : addFave()}
+            </div>
         </div>
     )
 }
