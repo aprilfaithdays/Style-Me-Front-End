@@ -27,13 +27,17 @@ const OutfitDetails = props => {
     const fetchOutfit = () => {
         fetch(url)
         .then(res => res.json())
-        .then(res => {
-            setOutfit(res);
-            setUser(res.user);
-            setTop(res.top);
-            setBottom(res.bottom);
-            setShoe(res.shoe)
-        })
+        .then(res => setInfo(res))
+    }
+
+    const setInfo = res => {
+        setOutfit(res);
+        setUser(res.user);
+        setTop(res.top);
+        setBottom(res.bottom);
+        setShoe(res.shoe)
+        setUpdate(false);
+        setEdit(false);
     }
 
     const creatorAccess = () => (
@@ -71,14 +75,15 @@ const OutfitDetails = props => {
         })
         .then(res => res.json())
         .then(res => {
-            setOutfit(res);
-            setUser(res.user);
-            setTop(res.top);
-            setBottom(res.bottom);
-            setShoe(res.shoe);
-            setUpdate(false);
-            setEdit(false);
+            setInfo(res);
+            updateList(res);
         })
+    }
+
+    const updateList = res => {
+        const list = [...outfits]
+        const updated = list.map(outfit => outfit.id === id ? res : outfit)
+        setOutfits(updated)
     }
 
     const handleUpdate = () => {

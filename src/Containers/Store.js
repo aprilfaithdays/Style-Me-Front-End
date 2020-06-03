@@ -5,7 +5,7 @@ export const OutfitsContext = React.createContext('')
 export const FaveTopsContext = React.createContext('')
 export const FaveBottomsContext = React.createContext('')
 export const FaveShoesContext = React.createContext('')
-export const NewNameContext = React.createContext('')
+// export const NewNameContext = React.createContext('')
 export const NewTopContext = React.createContext('')
 export const NewBottomContext = React.createContext('')
 export const NewShoeContext = React.createContext('')
@@ -17,7 +17,7 @@ const Store = ({children}) => {
     const [faveTops, setFaveTops] = useState('')
     const [faveBottoms, setFaveBottoms] = useState('')
     const [faveShoes, setFaveShoes] = useState('')
-    const [newName, setNewName] = useState('')
+    // const [newName, setNewName] = useState('')
     const [newTop, setNewTop] = useState('')
     const [newBottom, setNewBottom] = useState('')
     const [newShoe, setNewShoe] = useState('')
@@ -31,7 +31,7 @@ const Store = ({children}) => {
             <FaveTopsContext.Provider value={[faveTops, setFaveTops]}>
             <FaveBottomsContext.Provider value={[faveBottoms, setFaveBottoms]}>
             <FaveShoesContext.Provider value={[faveShoes, setFaveShoes]}>
-            <NewNameContext.Provider value={[newName, setNewName]}>
+            {/* <NewNameContext.Provider value={[newName, setNewName]}> */}
             <NewTopContext.Provider value={[newTop, setNewTop]}>
             <NewBottomContext.Provider value={[newBottom, setNewBottom]}>
             <NewShoeContext.Provider value={[newShoe, setNewShoe]}>
@@ -41,7 +41,7 @@ const Store = ({children}) => {
             </NewShoeContext.Provider>
             </NewBottomContext.Provider>
             </NewTopContext.Provider>
-            </NewNameContext.Provider>
+            {/* </NewNameContext.Provider> */}
             </FaveShoesContext.Provider>
             </FaveBottomsContext.Provider>
             </FaveTopsContext.Provider>
