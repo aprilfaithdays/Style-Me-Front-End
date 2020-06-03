@@ -5,12 +5,13 @@ const ProductCard = props => {
     const id = props.id
     const category = props.category
 
-
     useEffect(() => {
         fetch(`http://localhost:3000/${category}/${id}`)
         .then(res => res.json())
         .then(res => setProduct(res))
-    }, [id, category])
+        // eslint-disable-next-line 
+    }, [])
+
 
     return(
         <div className="container">
