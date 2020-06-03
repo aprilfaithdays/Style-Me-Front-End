@@ -16,7 +16,7 @@ const FavoriteCard = props => {
             <img src={product.img_url} alt="product" onClick={handleSelect}/><br/>
             {props.create && <button>Select</button>}
             <div className="button">
-                <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={handleRemove}>- Remove</button>
+                <button className="btn btn-outline-secondary btn-sm" onClick={handleRemove}>- Remove</button>
             </div>
         </div>
     )

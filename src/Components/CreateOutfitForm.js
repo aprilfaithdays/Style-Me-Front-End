@@ -76,7 +76,7 @@ const CreateOutfitForm = props => {
                 {outfitBottom === false && selectMessage('bottom')}
                 <img src={newShoe[0]} alt="shoe"/>
                 {outfitShoe === false && selectMessage('shoe')}
-                <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={handleCreateOutfit}>Create Outfit</button>
+                <button className="btn btn-outline-secondary btn-sm" onClick={handleCreateOutfit}>Create Outfit</button>
             </form>
         </div>
     )
