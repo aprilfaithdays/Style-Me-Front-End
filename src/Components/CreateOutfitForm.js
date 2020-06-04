@@ -67,7 +67,7 @@ const CreateOutfitForm = props => {
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleCreateOutfit}>
                 <img src={newTop[0]} alt="top"/>
                 {outfitTop === false && selectMessage('top')}
                 <img src={newBottom[0]} alt="bottom"/>
@@ -76,7 +76,7 @@ const CreateOutfitForm = props => {
                 {outfitShoe === false && selectMessage('shoe')}
                 <input className="form-control form-control-sm" type="text" placeholder="Outfit Name" onChange={e => setNewName(e.target.value)} value={newName}/>
                 {outfitName === false && <small className="error form-text">*Please name your outfit.</small>}
-                <button className="btn btn-outline-secondary btn-sm" onClick={handleCreateOutfit}>Create Outfit</button>
+                <button className="btn btn-outline-secondary btn-sm" type="submit">Create Outfit</button>
             </form>
         </div>
     )

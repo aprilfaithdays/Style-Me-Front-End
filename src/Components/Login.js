@@ -1,14 +1,21 @@
-import React from 'react';
-import {Route, Switch, Link} from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link} from 'react-router-dom'
 
 
 const Login = () => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     const returningUser = () => {
         return(
             <div>
-                Login component
-                <Link to='/signup'>Sign Up</Link>
+                <h5>Login</h5>
+                <form>
+                    <input className="form-control form-control-sm" type="text" placeholder="username" onChange={e => setUsername(e.target.value)} value={username}/>
+                    <input className="form-control form-control-sm" type="password" placeholder="password" onChange={e => setPassword(e.target.value)} value={password}/>
+                    <button className="btn btn-outline-secondary btn-sm">Login</button>
+                </form>
+                New to this? <span>➤ </span><Link to='/signup'>Sign Up</Link>
             </div>
         )
     }
@@ -17,9 +24,6 @@ const Login = () => {
     return(
         <div>
             {returningUser()}
-            {/* <Switch>
-                <Route path="/login" component={returningUser} />
-            </Switch> */}
         </div>
     )
 }
