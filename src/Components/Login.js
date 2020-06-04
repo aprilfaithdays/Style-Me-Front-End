@@ -21,9 +21,11 @@ const Login = props => {
         const user = users.find(user => user.username === username)
         if (user) {
             if(user.password === password){
-                const id = parseInt(user.id, 0)
+                localStorage.id = user.id;
+                const id = parseInt(localStorage.id, 0)
                 setCurrentUser(id)
-                props.history.push('/')
+                console.log(localStorage.id, id)
+                // props.history.push('/')
             } else {
                 alert("Can't find username/password combo")
             }
