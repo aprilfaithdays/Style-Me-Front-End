@@ -12,7 +12,7 @@ export const NewShoeContext = React.createContext('')
 export const TabKeyContext = React.createContext('')
 
 const Store = ({children}) => {
-    const [currentUser, setCurrentUser] = useState(2)
+    const [currentUser, setCurrentUser] = useState('')
     const [outfits, setOutfits] = useState('')
     const [faveTops, setFaveTops] = useState('')
     const [faveBottoms, setFaveBottoms] = useState('')
