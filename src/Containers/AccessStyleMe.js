@@ -11,7 +11,7 @@ const AccessStyleMe = props => {
             <Navbar {...props}/>
             <div className="style-me">
                 <Products />
-                <Route exact path='/' component={HomePage} />
+                <Route exact path='/home' component={HomePage} />
             </div>
         </div>
     )
