@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,7 +11,7 @@ const App = () => {
     <>
       <Router>
         <Store>
-          <StyleMe />
+          <Route to='/home' component={StyleMe} />
         </Store>
       </Router>
     </>
