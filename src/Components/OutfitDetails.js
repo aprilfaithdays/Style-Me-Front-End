@@ -42,7 +42,7 @@ const OutfitDetails = props => {
 
     const creatorAccess = () => (
         <div>
-            {update ? <button className="btn btn-outline-secondary btn-sm" onClick={handleSave}>Save</button> : 
+            {update === false && 
             <div>
                 <button className="btn btn-outline-secondary btn-sm" onClick={() => setUpdate(true)}>Update</button>
                 <button className="btn btn-outline-secondary btn-sm" onClick={handleDelete}>Delete</button>
@@ -64,8 +64,8 @@ const OutfitDetails = props => {
         setOutfits(updated)
     }
 
-    const handleSave = () => {
-        console.log(name, currentUser, top.id, bottom.id, shoe.id, url, outfit.likes)
+    const handleSave = e => {
+        e.preventDefault()
         fetch(url, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
@@ -89,7 +89,10 @@ const OutfitDetails = props => {
     const handleUpdate = () => {
         return (
             <div className="outfit-detail">
-                <input className="form-control col-md-2" type="text" value={name} onChange={e => setName(e.target.value)}></input>
+                <form className="form-inline my-2 my-lg-0" onSubmit={handleSave}>
+                    <input className="form-control" type="text" value={name} onChange={e => setName(e.target.value)}/>
+                    <button className="btn btn-outline-secondary btn-sm" type="submit">Save</button>
+                </form>
             </div>
         )
     }

@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = props => {
+
+    const logOut = () => {
+        localStorage.removeItem('id')
+        props.history.push('/')
+    }
+
     return(
         <div>
+            {console.log(props)}
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-                <Link to ='/' className="navbar-brand">Style Me</Link>
+                <Link to ='/home' className="navbar-brand">Style Me</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -30,7 +37,7 @@ const Navbar = () => {
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                     <span className="navbar-text">You need to fix this later Apes</span>
-                    <button className="btn btn-outline-secondary btn-sm" type="submit">Log Out</button>
+                    <button className="btn btn-outline-secondary btn-sm" onClick={logOut}>Log Out</button>
                     </form>
                 </div>
             </nav>

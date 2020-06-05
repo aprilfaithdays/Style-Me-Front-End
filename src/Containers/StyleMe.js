@@ -3,12 +3,13 @@ import { CurrentUserContext } from './Store'
 import AccessStyleMe from './AccessStyleMe'
 import Auth from './Auth'
 
-const StyleMe = () => {
-    const [currentUser] = useContext(CurrentUserContext)
+const StyleMe = props => {
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
 
     return(
         <div>
-            {currentUser !== '' ? <AccessStyleMe /> : <Auth />}
+            {localStorage.id && setCurrentUser(parseInt(localStorage.id, 0))}
+            {currentUser !== '' ? <AccessStyleMe {...props} /> : <Auth />}
         </div>
     )
 }
