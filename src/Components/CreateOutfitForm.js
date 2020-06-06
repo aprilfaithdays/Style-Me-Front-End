@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { OutfitsContext, CurrentUserContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Containers/Store'
 
 const CreateOutfitForm = props => {
+    const abortController = new AbortController()
     const [currentUser] = useContext(CurrentUserContext)
     const [outfits, setOutfits] = useContext(OutfitsContext)
     const [newName, setNewName] = useState('')
@@ -46,6 +47,10 @@ const CreateOutfitForm = props => {
         })
     }
 
+    const cleanUp = () => {
+        abortController.abort()
+    }
+
     const checkValidation = () => {
         if (name === ''){
             setOutfitName(false)
@@ -78,6 +83,7 @@ const CreateOutfitForm = props => {
                 {outfitName === false && <small className="error form-text">*Please name your outfit.</small>}
                 <button className="btn btn-outline-secondary btn-sm" type="submit">Create Outfit</button>
             </form>
+            {cleanUp()}
         </div>
     )
 }
