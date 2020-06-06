@@ -8,6 +8,9 @@ import Bottoms from './Bottoms';
 import Bottom from './Bottom';
 import Shoes from './Shoes';
 import Shoe from './Shoe';
+import Outfits from './Outfits';
+import OutfitPage from './OutfitPage';
+import CreateOutfit from './CreateOutfit';
 
 
 const AccessStyleMe = props => {
@@ -20,9 +23,12 @@ const AccessStyleMe = props => {
                     <Route exact path='/tops' component={Tops} />
                     <Route exact path='/bottoms' component={Bottoms} />
                     <Route exact path='/shoes' component={Shoes} />
+                    <Route exact path='/outfits' component={Outfits} />
                     <Route path='/tops/:id' component={Top} />
                     <Route path='/bottoms/:id' component={Bottom} />
                     <Route path='/shoes/:id' component={Shoe} />
+                    <Route path='/outfits/new' component={CreateOutfit} />
+                    <Route path='/outfits/:id' component={OutfitPage} />
                 </Switch>
             </div>
         </div>
