@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { Switch, Route } from 'react-router-dom';
-import ProductCard from '../Components/ProductCard';
 import { CurrentUserContext, FaveBottomsContext } from './Store';
 
 const Bottoms = () => {
@@ -16,14 +14,14 @@ const Bottoms = () => {
         // eslint-disable-next-line
     }, [])
 
-    const getBottoms = () => {
-        fetch('http://localhost:3000/bottoms')
+    const getBottoms = async () => {
+        await fetch('http://localhost:3000/bottoms')
         .then(res => res.json())
         .then(res => setBottoms(res))
     }
 
-    const getFaveBottoms = () => {
-        fetch(faveBottomsUrl)
+    const getFaveBottoms = async () => {
+        await fetch(faveBottomsUrl)
         .then(res => res.json())
         .then(res => setFaveBottoms(res))
     }
@@ -72,15 +70,10 @@ const Bottoms = () => {
         setFaveBottoms(updated)
     }
 
-    const renderBottom = props => {
-        const id = parseInt(props.match.params.id, 0)
-        return <ProductCard category='bottoms' id={id} />
-    }
-
     const renderBottoms = () => {
         const list = [...bottoms]
         const faveBottoms = faveBottomsId()
-        const bottomList = list.map(bottom => {
+        return list.map(bottom => {
             return <ProductList 
                 key={bottom.id} 
                 product={bottom} 
@@ -89,22 +82,14 @@ const Bottoms = () => {
                 removeFavorite={removeFavorite}
             />
         })
-        return (
-            <div className="container">
-                <h3 className="title">Bottoms</h3>
-                <div className='product-list'>
-                    {bottomList}
-                </div>
-            </div>
-        )
     }
 
     return(
-        <div>
-            <Switch>
-                <Route path='/bottoms/:id' component={renderBottom} />
-                <Route path='/bottoms' component={renderBottoms} />
-            </Switch>
+        <div className="container">
+            <h3 className="title">Bottoms</h3>
+            <div className='product-list'>
+                {renderBottoms()}
+            </div>
         </div>
     )
 }

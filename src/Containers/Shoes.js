@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
-import ProductCard from '../Components/ProductCard';
 import { CurrentUserContext, FaveShoesContext } from './Store';
 
 const Shoes = () => {
@@ -16,14 +14,14 @@ const Shoes = () => {
         // eslint-disable-next-line 
     }, [])
 
-    const getShoes = () => {
-        fetch('http://localhost:3000/shoes')
+    const getShoes = async () => {
+        await fetch('http://localhost:3000/shoes')
         .then(res => res.json())
         .then(res => setShoes(res))
     }
 
-    const getFaveShoes = () => {
-        fetch(faveShoesUrl)
+    const getFaveShoes = async () => {
+        await fetch(faveShoesUrl)
         .then(res => res.json())
         .then(res => setFaveShoes(res))
     }
@@ -72,15 +70,10 @@ const Shoes = () => {
         setFaveShoes(updated)
     }
 
-    const renderShoe = props => {
-        const id = parseInt(props.match.params.id, 0)
-        return <ProductCard category='shoes' id={id}/>
-    }
-
     const renderShoes = () => {
         const list = [...shoes]
         const faveShoes = faveShoesId()
-        const shoeList = list.map(shoe => {
+        return list.map(shoe => {
             return <ProductList 
                 key={shoe.id} 
                 product={shoe} 
@@ -89,22 +82,14 @@ const Shoes = () => {
                 removeFavorite={removeFavorite}
             />
         }) 
-        return(
-            <div className="container">
-                <h3 className="title">Shoes</h3>
-                <div className='product-list'>
-                    {shoeList}
-                </div>
-            </div>
-        )
     }
 
     return(
-        <div>
-            <Switch>
-                <Route path='/shoes/:id' component={renderShoe} />
-                <Route path='/shoes' component={renderShoes} />
-            </Switch>
+        <div className="container">
+            <h3 className="title">Shoes</h3>
+            <div className='product-list'>
+                {renderShoes()}
+            </div>
         </div>
     )
 }

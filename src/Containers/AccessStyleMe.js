@@ -1,8 +1,13 @@
 import React from 'react';
 import Navbar from '../Components/Navbar';
-import Products from './Products';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HomePage from './HomePage';
+import Tops from './Tops';
+import Top from './Top';
+import Bottoms from './Bottoms';
+import Bottom from './Bottom';
+import Shoes from './Shoes';
+import Shoe from './Shoe';
 
 
 const AccessStyleMe = props => {
@@ -10,8 +15,15 @@ const AccessStyleMe = props => {
         <div>
             <Navbar {...props}/>
             <div className="style-me">
-                <Products />
-                <Route exact path='/home' component={HomePage} />
+                <Switch>
+                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/tops' component={Tops} />
+                    <Route exact path='/bottoms' component={Bottoms} />
+                    <Route exact path='/shoes' component={Shoes} />
+                    <Route path='/tops/:id' component={Top} />
+                    <Route path='/bottoms/:id' component={Bottom} />
+                    <Route path='/shoes/:id' component={Shoe} />
+                </Switch>
             </div>
         </div>
     )
