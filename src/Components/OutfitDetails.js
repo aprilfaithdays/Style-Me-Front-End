@@ -54,7 +54,6 @@ const OutfitDetails = props => {
         setOutfits(updated)
     }
 
-
     const creatorAccess = () => (
         <div>
             {update === false && 

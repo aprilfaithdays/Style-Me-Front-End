@@ -12,7 +12,15 @@ export const NewShoeContext = React.createContext('')
 export const TabKeyContext = React.createContext('')
 
 const Store = ({children}) => {
-    const [currentUser, setCurrentUser] = useState('')
+    const user = () => {
+        if (localStorage.id){
+            return parseInt(localStorage.id, 0)
+        } else {
+            return ''
+        }
+    }
+
+    const [currentUser, setCurrentUser] = useState(user())
     const [outfits, setOutfits] = useState('')
     const [faveTops, setFaveTops] = useState('')
     const [faveBottoms, setFaveBottoms] = useState('')
@@ -22,7 +30,6 @@ const Store = ({children}) => {
     const [newBottom, setNewBottom] = useState('')
     const [newShoe, setNewShoe] = useState('')
     const [key, setKey] = useState('tops')
-
 
     return (
         <div>
