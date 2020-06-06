@@ -4,7 +4,7 @@ import FavoritesList from '../Components/FavoritesList';
 import CreateOutfitForm from '../Components/CreateOutfitForm';
 
 const CreateOutfit = () => {
-
+    
     const createOutfitPage = props => {
         return (
             <div>
@@ -22,7 +22,6 @@ const CreateOutfit = () => {
             </div>
         )
     }
-
 
     return(
         <div>

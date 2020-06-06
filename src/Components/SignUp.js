@@ -1,27 +1,23 @@
-import React, { useState, useContext } from 'react';
-import {Route, Switch, Link} from 'react-router-dom'
-import Login from './Login';
-import { CurrentUserContext } from '../Containers/Store';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 
-const SignUp = () => {
-    const abortController = new AbortController()
-    const [, setCurrentUser] = useContext(CurrentUserContext)
+const SignUp = props => {
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [match, setMatch] = useState(true)
 
-    const handleSignUp = (e, props) => {
+    const handleSignUp = e => {
         e.preventDefault()
         if (password === confirmPassword){
-            addUser(props)
+            addUser()
         } else {
             setMatch(false)
         }
     }
 
-    const addUser = props => {
+    const addUser = () => {
         const img_url = 'https://t4america.org/wp-content/uploads/2016/10/Blank-User.jpg'
         fetch('http://localhost:3000/users', {
             method: 'POST',
@@ -32,41 +28,21 @@ const SignUp = () => {
             body: JSON.stringify({ name, username, password, img_url })       
         })
         .then(res => res.json())
-        .then(res => {
-            localStorage.id = res.id;
-            setCurrentUser(parseInt(localStorage.id, 0));
-            props.history.push('/home')
-        })
-        return cleanUp()
-    }
-
-    const cleanUp = () => {
-        abortController.abort()
-    }
-
-    const newUser = props => {
-        return(
-            <div>
-                <h5>Sign Up</h5>
-                <form onSubmit={e => handleSignUp(e, props)}>
-                    <input className="form-control form-control-sm" type="text" placeholder="name" value={name} onChange={e => setName(e.target.value)} />
-                    <input className="form-control form-control-sm" type="text" placeholder="username" value={username} onChange={e => setUsername(e.target.value)} />
-                    <input className="form-control form-control-sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)} />
-                    <input className="form-control form-control-sm" type="password" placeholder="confirm password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-                    {match === false && <small className="error form-text">*Passwords don't match.</small>}
-                    <button className="btn btn-outline-secondary btn-sm" type="submit">Sign Up</button>
-                </form>
-                Been here before? <span>➤ </span> <Link to='/login'>Login</Link>
-            </div>
-        )
+        .then(res => props.history.push('/login') )
     }
 
     return(
         <div>
-            <Switch>
-                <Route path="/signup" component={newUser} />
-                <Route path="/" component={Login} />
-            </Switch>
+            <h5>Sign Up</h5>
+            <form onSubmit={handleSignUp}>
+                <input className="form-control form-control-sm" type="text" placeholder="name" value={name} onChange={e => setName(e.target.value)} />
+                <input className="form-control form-control-sm" type="text" placeholder="username" value={username} onChange={e => setUsername(e.target.value)} />
+                <input className="form-control form-control-sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)} />
+                <input className="form-control form-control-sm" type="password" placeholder="confirm password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                {match === false && <small className="error form-text">*Passwords don't match.</small>}
+                <button className="btn btn-outline-secondary btn-sm" type="submit">Sign Up</button>
+            </form>
+            Been here before? <span>➤ </span> <Link to='/login'>Login</Link>
         </div>
     )
 }
