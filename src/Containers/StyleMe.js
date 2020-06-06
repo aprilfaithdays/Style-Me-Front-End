@@ -4,11 +4,10 @@ import AccessStyleMe from './AccessStyleMe'
 import Auth from './Auth'
 
 const StyleMe = props => {
-    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
+    const [currentUser] = useContext(CurrentUserContext)
 
     return(
         <div>
-            {localStorage.id && setCurrentUser(parseInt(localStorage.id, 0))}
             {currentUser !== '' ? <AccessStyleMe {...props} /> : <Auth />}
         </div>
     )

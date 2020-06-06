@@ -10,7 +10,6 @@ const Navbar = props => {
 
     return(
         <div>
-            {console.log(props)}
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                 <Link to ='/home' className="navbar-brand">Style Me</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
