@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../Containers/Store';
 
 
 const Login = props => {
+    const abortController = new AbortController()
     const [, setCurrentUser] = useContext(CurrentUserContext)
     const [users, setUsers] = useState([])
     const [username, setUsername] = useState('')
@@ -25,12 +26,17 @@ const Login = props => {
                 const id = parseInt(localStorage.id, 0)
                 setCurrentUser(id)
                 props.history.push('/home')
+                return cleanUp()
             } else {
                 alert("Can't find username/password combo")
             }
         } else {
             alert("Can't find username/password combo")
         }
+    }
+
+    const cleanUp = () => {
+        abortController.abort()
     }
 
     const returningUser = () => {
