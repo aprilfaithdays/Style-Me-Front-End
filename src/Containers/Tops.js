@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
-import ProductCard from '../Components/ProductCard';
 import { CurrentUserContext, FaveTopsContext } from './Store';
 
 const Tops = () => {
@@ -16,14 +14,14 @@ const Tops = () => {
         // eslint-disable-next-line 
     }, [])
 
-    const getTops = () => {
-        fetch('http://localhost:3000/tops')
+    const getTops = async () => {
+        await fetch('http://localhost:3000/tops')
         .then(res => res.json())
         .then(res => setTops(res))
     }
 
-    const getFaveTops = () => {
-        fetch(faveTospUrl)
+    const getFaveTops = async () => {
+        await fetch(faveTospUrl)
         .then(res => res.json())
         .then(res => setFaveTops(res))
     }
@@ -72,15 +70,10 @@ const Tops = () => {
         setFaveTops(updated)
     }
 
-    const renderTop = props => {
-        const id = parseInt(props.match.params.id, 0)
-        return <ProductCard category='tops' id={id}/>
-    }
-
     const renderTops = () => {
         const list = [...tops]
         const faveTopsIdList = faveTopsId()
-        const topList = list.map(top => {
+        return list.map(top => {
             return <ProductList 
                 key={top.id} 
                 product={top} 
@@ -89,22 +82,14 @@ const Tops = () => {
                 removeFavorite={removeFavorite}
             />
         })
-        return (
-            <div className="container">
-                <h3 className="title">Tops</h3>
-                <div className="product-list">
-                    {topList}
-                </div>
-            </div>
-        )
     }
 
     return(
-        <div>
-            <Switch>
-                <Route path='/tops/:id' component={renderTop} />
-                <Route path='/tops' component={renderTops} />
-            </Switch>
+        <div className="container">
+            <h3 className="title">Tops</h3>
+            <div className="product-list">
+                {renderTops()}
+            </div>
         </div>
     )
 }
