@@ -4,6 +4,7 @@ import Login from './Login';
 import { CurrentUserContext } from '../Containers/Store';
 
 const SignUp = () => {
+    const abortController = new AbortController()
     const [, setCurrentUser] = useContext(CurrentUserContext)
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
@@ -33,9 +34,14 @@ const SignUp = () => {
         .then(res => res.json())
         .then(res => {
             localStorage.id = res.id;
-            setCurrentUser(parseInt(localStorage.id, 0))
+            setCurrentUser(parseInt(localStorage.id, 0));
+            props.history.push('/home')
         })
-        props.history.push('/home')
+        return cleanUp()
+    }
+
+    const cleanUp = () => {
+        abortController.abort()
     }
 
     const newUser = props => {
