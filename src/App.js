@@ -11,7 +11,7 @@ const App = () => {
     <>
       <Router>
         <Store>
-          <Route to='/home' component={StyleMe} />
+          <Route to='/' component={StyleMe} />
         </Store>
       </Router>
     </>
