@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {Route, Switch, Link} from 'react-router-dom'
 import Login from './Login';
+import { CurrentUserContext } from '../Containers/Store';
 
 const SignUp = () => {
+    const [, setCurrentUser] = useContext(CurrentUserContext)
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -31,6 +33,7 @@ const SignUp = () => {
         .then(res => res.json())
         .then(res => {
             localStorage.id = res.id;
+            setCurrentUser(parseInt(localStorage.id, 0))
         })
         props.history.push('/home')
     }
@@ -54,7 +57,6 @@ const SignUp = () => {
 
     return(
         <div>
-            {console.log(username)}
             <Switch>
                 <Route path="/signup" component={newUser} />
                 <Route path="/" component={Login} />
