@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext, OutfitsContext } from '../Containers/Store'
+import UpdateOutfit from './UpdateOutfit';
 
 const OutfitDetails = props => {
     const id = parseInt(props.match.params.id,0)
@@ -17,7 +18,6 @@ const OutfitDetails = props => {
     
     const [edit, setEdit] = useState(false)
     const [update, setUpdate] = useState(false)
-    const [name, setName] = useState('')
 
     useEffect(() => {
         fetchOutfit()
@@ -40,16 +40,6 @@ const OutfitDetails = props => {
         setEdit(false);
     }
 
-    const creatorAccess = () => (
-        <div>
-            {update === false && 
-            <div>
-                <button className="btn btn-outline-secondary btn-sm" onClick={() => setUpdate(true)}>Update</button>
-                <button className="btn btn-outline-secondary btn-sm" onClick={handleDelete}>Delete</button>
-            </div>}
-        </div>
-    )
-
     const handleDelete = () => {
         fetch(url, {
             method: 'DELETE'
@@ -64,38 +54,16 @@ const OutfitDetails = props => {
         setOutfits(updated)
     }
 
-    const handleSave = e => {
-        e.preventDefault()
-        fetch(url, {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ 
-                name
-            })
-        })
-        .then(res => res.json())
-        .then(res => {
-            setInfo(res);
-            updateList(res);
-        })
-    }
 
-    const updateList = res => {
-        const list = [...outfits]
-        const updated = list.map(outfit => outfit.id === id ? res : outfit)
-        setOutfits(updated)
-    }
-
-    const handleUpdate = () => {
-        return (
-            <div className="outfit-detail">
-                <form className="form-inline my-2 my-lg-0" onSubmit={handleSave}>
-                    <input className="form-control" type="text" value={name} onChange={e => setName(e.target.value)}/>
-                    <button className="btn btn-outline-secondary btn-sm" type="submit">Save</button>
-                </form>
-            </div>
-        )
-    }
+    const creatorAccess = () => (
+        <div>
+            {update === false && 
+            <div>
+                <button className="btn btn-outline-secondary btn-sm" onClick={() => setUpdate(true)}>Update</button>
+                <button className="btn btn-outline-secondary btn-sm" onClick={handleDelete}>Delete</button>
+            </div>}
+        </div>
+    )
 
     const editButton = () => (
         edit ? creatorAccess() : <div><button className="btn btn-outline-secondary btn-sm" onClick={() => setEdit(true)}>Edit</button></div>
@@ -115,7 +83,7 @@ const OutfitDetails = props => {
 
     return(
         <div className="container">
-            {update ? handleUpdate() : <h3>{outfit.name}</h3> }
+            {update ? <UpdateOutfit setInfo={setInfo} id={id} /> : <h3>{outfit.name}</h3> }
             <div className="outfit-detail">
                 {productDetail(top)}
                 {productDetail(bottom)}
