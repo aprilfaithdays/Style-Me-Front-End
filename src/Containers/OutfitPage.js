@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { CurrentUserContext, OutfitsContext } from '../Containers/Store'
-import UpdateOutfit from './UpdateOutfit';
+import { CurrentUserContext, OutfitsContext } from './Store'
+import UpdateOutfit from '../Components/UpdateOutfit';
 
-const OutfitDetails = props => {
+const OutfitPage = props => {
     const id = parseInt(props.match.params.id,0)
     const url = `http://localhost:3000/outfits/${id}`
 
@@ -94,4 +94,4 @@ const OutfitDetails = props => {
     )
 }
 
-export default OutfitDetails
+export default OutfitPage

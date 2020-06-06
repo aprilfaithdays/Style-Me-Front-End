@@ -1,27 +1,33 @@
 import React, { useContext, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import { OutfitsContext } from './Store';
-import OutfitsCollection from '../Components/OutfitsCollection';
-import OutfitDetails from '../Components/OutfitDetails';
-import CreateOutfit from '../Containers/CreateOutfit';
+import OutfitCard from '../Components/OutfitCard'
+
 
 const Outfits = () => {
-    const [, setOutfits] = useContext(OutfitsContext)
+    const [outfits, setOutfits] = useContext(OutfitsContext)
 
     useEffect(() => {
-        fetch('http://localhost:3000/outfits')
-        .then(res => res.json())
-        .then(res => setOutfits(res))
+        fetchOutfits()
         // eslint-disable-next-line
     },[])
 
+    const fetchOutfits = async () => {
+        await fetch('http://localhost:3000/outfits')
+        .then(res => res.json())
+        .then(res => setOutfits(res))
+    }
+
+    const renderOutfits = () => {
+        const list = [...outfits]
+        return list.map(outfit => <OutfitCard key={outfit.id} outfit={outfit} />)
+    }
+
     return(
-        <div>
-            <Switch>
-                <Route path='/outfits/new' component={CreateOutfit} />
-                <Route path='/outfits/:id' component={OutfitDetails} />
-                <Route path='/outfits' component={OutfitsCollection} />
-            </Switch>
+        <div className="container">
+            <h3>Browse All Outfits</h3>
+            <div className='outfit-list'>
+                {renderOutfits()}
+            </div>
         </div>
     )
 }
