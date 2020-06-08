@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
-import './style.css';
+import './Styling/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Store from './Context/Store';
 import StyleMe from './Containers/StyleMe';

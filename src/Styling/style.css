@@ -76,10 +76,3 @@ h3{
     color: rgb(228, 59, 59);
 }
 
-.display-gif{
-    height: 100%;
-    width: auto;
-    display: block;
-    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
-}

@@ -44,7 +44,7 @@ const Login = props => {
 
     const returningUser = () => {
         return(
-            <div>
+            <div className="auth-form">
                 <h5>Login</h5>
                 <form onSubmit={handleSubmit}>
                     <input className="form-control form-control-sm" type="text" placeholder="username" onChange={e => setUsername(e.target.value)} value={username}/>
