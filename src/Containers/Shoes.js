@@ -1,31 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { FaveShoesContext } from '../Context/Store';
+import { FaveShoesContext, ShoesContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 const Shoes = () => {
     const faveShoesUrl = 'http://localhost:3000/favorite_shoes'
     const [currentUser] = useContext(CurrentUserContext)
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext)
-    const [shoes, setShoes] = useState('')
+    const [shoes] = useContext(ShoesContext)
 
-    useEffect(() => {
-        getShoes()
-        getFaveShoes()
-        // eslint-disable-next-line 
-    }, [])
-
-    const getShoes = async () => {
-        await fetch('http://localhost:3000/shoes')
-        .then(res => res.json())
-        .then(res => setShoes(res))
-    }
-
-    const getFaveShoes = async () => {
-        await fetch(faveShoesUrl)
-        .then(res => res.json())
-        .then(res => setFaveShoes(res))
-    }
 
     const filterMyFaveShoes = () => {
         const list = [...faveShoes]
