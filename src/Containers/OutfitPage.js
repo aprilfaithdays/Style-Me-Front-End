@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { OutfitsContext } from './Store'
+import { OutfitsContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 import UpdateOutfit from '../Components/UpdateOutfit';
 

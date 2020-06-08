@@ -19,7 +19,7 @@ const AccessStyleMe = props => {
             <Navbar {...props}/>
             <div className="style-me">
                 <Switch>
-                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/' component={HomePage} />
                     <Route exact path='/tops' component={Tops} />
                     <Route exact path='/bottoms' component={Bottoms} />
                     <Route exact path='/shoes' component={Shoes} />

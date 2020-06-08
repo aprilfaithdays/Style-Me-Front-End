@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { OutfitsContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Containers/Store'
+import { OutfitsContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 const CreateOutfitForm = props => {
@@ -48,9 +48,7 @@ const CreateOutfitForm = props => {
         })
     }
 
-    const cleanUp = () => {
-        abortController.abort()
-    }
+    const cleanUp = () => abortController.abort()
 
     const checkValidation = () => {
         if (name === ''){

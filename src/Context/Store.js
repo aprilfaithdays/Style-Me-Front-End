@@ -10,6 +10,8 @@ export const NewShoeContext = React.createContext('')
 export const TabKeyContext = React.createContext('')
 
 const Store = ({children}) => {
+    const abortController = new AbortController()
+
     const [outfits, setOutfits] = useState('')
     const [faveTops, setFaveTops] = useState('')
     const [faveBottoms, setFaveBottoms] = useState('')
@@ -28,6 +30,10 @@ const Store = ({children}) => {
         await fetch('http://localhost:3000/outfits')
         .then(res => res.json())
         .then(res => setOutfits(res))
+    }
+
+    const cleanUp = () => {
+        abortController.abort()
     }
 
     return (
@@ -49,6 +55,7 @@ const Store = ({children}) => {
             </FaveBottomsContext.Provider>
             </FaveTopsContext.Provider>
             </OutfitsContext.Provider>
+            {cleanUp()}
         </div>
     )
 }

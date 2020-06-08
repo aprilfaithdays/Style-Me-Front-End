@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import Welcome from './Welcome';
 
 const SignUp = props => {
     const [name, setName] = useState('')
@@ -31,7 +32,7 @@ const SignUp = props => {
         .then(res => props.history.push('/login') )
     }
 
-    return(
+    const newUser = () => (
         <div>
             <h5>Sign Up</h5>
             <form onSubmit={handleSignUp}>
@@ -43,6 +44,12 @@ const SignUp = props => {
                 <button className="btn btn-outline-secondary btn-sm" type="submit">Sign Up</button>
             </form>
             Been here before? <span>➤ </span> <Link to='/login'>Login</Link>
+        </div>
+    )
+
+    return(
+        <div>
+            <Welcome form={newUser()} />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { FaveShoesContext } from './Store';
+import { FaveShoesContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 const Shoes = () => {

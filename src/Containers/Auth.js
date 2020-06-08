@@ -4,7 +4,6 @@ import Login from '../Components/Login';
 import SignUp from '../Components/SignUp';
 
 const Auth = () => {
-
     return(
         <div>
             <Switch>
