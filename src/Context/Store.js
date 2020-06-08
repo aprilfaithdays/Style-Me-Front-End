@@ -5,6 +5,7 @@ export const TopsContext = React.createContext('');
 export const FaveTopsContext = React.createContext('');
 export const BottomsContext = React.createContext('');
 export const FaveBottomsContext = React.createContext('');
+export const ShoesContext = React.createContext('');
 export const FaveShoesContext = React.createContext('');
 export const NewTopContext = React.createContext('');
 export const NewBottomContext = React.createContext('');
@@ -19,6 +20,7 @@ const Store = ({children}) => {
     const [faveTops, setFaveTops] = useState([]);
     const [bottoms, setBottoms] = useState([]);
     const [faveBottoms, setFaveBottoms] = useState([]);
+    const [shoes, setShoes] = useState('')
     const [faveShoes, setFaveShoes] = useState([]);
     const [newTop, setNewTop] = useState('');
     const [newBottom, setNewBottom] = useState('');
@@ -31,6 +33,8 @@ const Store = ({children}) => {
         getFaveTops();
         getBottoms();
         getFaveBottoms();
+        getShoes();
+        getFaveShoes();
         // eslint-disable-next-line 
     },[])
 
@@ -64,6 +68,18 @@ const Store = ({children}) => {
         .then(res => setFaveBottoms(res))
     }
 
+    const getShoes = async () => {
+        await fetch('http://localhost:3000/shoes')
+        .then(res => res.json())
+        .then(res => setShoes(res))
+    }
+
+    const getFaveShoes = async () => {
+        await fetch('http://localhost:3000/favorite_shoes')
+        .then(res => res.json())
+        .then(res => setFaveShoes(res))
+    }
+
     const cleanUp = () => {
         abortController.abort()
     }
@@ -75,6 +91,7 @@ const Store = ({children}) => {
             <BottomsContext.Provider value={[bottoms, setBottoms]}>
             <FaveTopsContext.Provider value={[faveTops, setFaveTops]}>
             <FaveBottomsContext.Provider value={[faveBottoms, setFaveBottoms]}>
+            <ShoesContext.Provider value={[shoes, setShoes]}>
             <FaveShoesContext.Provider value={[faveShoes, setFaveShoes]}>
             <NewTopContext.Provider value={[newTop, setNewTop]}>
             <NewBottomContext.Provider value={[newBottom, setNewBottom]}>
@@ -86,6 +103,7 @@ const Store = ({children}) => {
             </NewBottomContext.Provider>
             </NewTopContext.Provider>
             </FaveShoesContext.Provider>
+            </ShoesContext.Provider>
             </FaveBottomsContext.Provider>
             </FaveTopsContext.Provider>
             </BottomsContext.Provider>
