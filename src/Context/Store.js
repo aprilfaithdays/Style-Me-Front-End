@@ -1,32 +1,36 @@
 import React, {useState, useEffect} from 'react'
 
-export const OutfitsContext = React.createContext('')
-export const TopsContext = React.createContext('')
-export const FaveTopsContext = React.createContext('')
-export const FaveBottomsContext = React.createContext('')
-export const FaveShoesContext = React.createContext('')
-export const NewTopContext = React.createContext('')
-export const NewBottomContext = React.createContext('')
-export const NewShoeContext = React.createContext('')
-export const TabKeyContext = React.createContext('')
+export const OutfitsContext = React.createContext('');
+export const TopsContext = React.createContext('');
+export const FaveTopsContext = React.createContext('');
+export const BottomsContext = React.createContext('');
+export const FaveBottomsContext = React.createContext('');
+export const FaveShoesContext = React.createContext('');
+export const NewTopContext = React.createContext('');
+export const NewBottomContext = React.createContext('');
+export const NewShoeContext = React.createContext('');
+export const TabKeyContext = React.createContext('');
 
 const Store = ({children}) => {
     const abortController = new AbortController()
 
-    const [outfits, setOutfits] = useState('')
-    const [tops, setTops] = useState([])
-    const [faveTops, setFaveTops] = useState('')
-    const [faveBottoms, setFaveBottoms] = useState('')
-    const [faveShoes, setFaveShoes] = useState('')
-    const [newTop, setNewTop] = useState('')
-    const [newBottom, setNewBottom] = useState('')
-    const [newShoe, setNewShoe] = useState('')
-    const [key, setKey] = useState('tops')
+    const [outfits, setOutfits] = useState('');
+    const [tops, setTops] = useState([]);
+    const [faveTops, setFaveTops] = useState([]);
+    const [bottoms, setBottoms] = useState([]);
+    const [faveBottoms, setFaveBottoms] = useState([]);
+    const [faveShoes, setFaveShoes] = useState([]);
+    const [newTop, setNewTop] = useState('');
+    const [newBottom, setNewBottom] = useState('');
+    const [newShoe, setNewShoe] = useState('');
+    const [key, setKey] = useState('tops');
 
     useEffect(() => {
-        getOutfits()
-        getTops()
-        getFaveTops()
+        getOutfits();
+        getTops();
+        getFaveTops();
+        getBottoms();
+        getFaveBottoms();
         // eslint-disable-next-line 
     },[])
 
@@ -40,14 +44,24 @@ const Store = ({children}) => {
         await fetch('http://localhost:3000/tops')
         .then(res => res.json())
         .then(res => setTops(res))
-        return cleanUp()
     }
 
     const getFaveTops = async () => {
         await fetch('http://localhost:3000/favorite_tops')
         .then(res => res.json())
         .then(res => setFaveTops(res))
-        return cleanUp()
+    }
+
+    const getBottoms = async () => {
+        await fetch('http://localhost:3000/bottoms')
+        .then(res => res.json())
+        .then(res => setBottoms(res))
+    }
+
+    const getFaveBottoms = async () => {
+        await fetch('http://localhost:3000/favorite_bottoms')
+        .then(res => res.json())
+        .then(res => setFaveBottoms(res))
     }
 
     const cleanUp = () => {
@@ -58,6 +72,7 @@ const Store = ({children}) => {
         <div>
             <OutfitsContext.Provider value={[outfits, setOutfits]}>
             <TopsContext.Provider value={[tops, setTops]}>
+            <BottomsContext.Provider value={[bottoms, setBottoms]}>
             <FaveTopsContext.Provider value={[faveTops, setFaveTops]}>
             <FaveBottomsContext.Provider value={[faveBottoms, setFaveBottoms]}>
             <FaveShoesContext.Provider value={[faveShoes, setFaveShoes]}>
@@ -73,6 +88,7 @@ const Store = ({children}) => {
             </FaveShoesContext.Provider>
             </FaveBottomsContext.Provider>
             </FaveTopsContext.Provider>
+            </BottomsContext.Provider>
             </TopsContext.Provider>
             </OutfitsContext.Provider>
             {cleanUp()}
