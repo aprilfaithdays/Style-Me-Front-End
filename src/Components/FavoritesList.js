@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react'
 import {Link} from 'react-router-dom'
-// import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext, NewTopContext, NewBottomContext, NewShoeContext, TabKeyContext } from '../Containers/Store';
-import { FaveTopsContext, FaveBottomsContext, FaveShoesContext, NewTopContext, NewBottomContext, NewShoeContext, TabKeyContext } from '../Containers/Store';
+import { FaveTopsContext, FaveBottomsContext, FaveShoesContext, NewTopContext, NewBottomContext, NewShoeContext, TabKeyContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 import FavoriteCard from '../Components/FavoriteCard';
 import Tabs from 'react-bootstrap/Tabs'

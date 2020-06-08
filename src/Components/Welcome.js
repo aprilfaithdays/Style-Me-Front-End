@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Welcome = () =>{
+const Welcome = props =>{
     return(
         <div>
             <h3 className="title">Welcome to Style Me!</h3>
@@ -10,7 +10,7 @@ const Welcome = () =>{
                         <img className="display-gif" src="https://media.giphy.com/media/xT8qBe6CcgWfVfHQZO/source.gif" alt="gif"/>
                     </div>
                     <div className='col-sm-4'>
-                        <SignUp />
+                        {props.form}
                     </div>
                 </div>
             </div>

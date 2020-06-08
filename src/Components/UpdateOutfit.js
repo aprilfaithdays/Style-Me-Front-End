@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react'
-import { OutfitsContext } from '../Containers/Store'
+import React, { useState, useContext } from 'react';
+import { OutfitsContext } from '../Context/Store';
 
 const UpdateOutfit = props => {
     const id = props.id

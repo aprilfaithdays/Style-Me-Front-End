@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link} from 'react-router-dom'
 import { CurrentUserContext } from '../Context/CurrentUser';
+import Welcome from './Welcome';
 
 const Login = props => {
     const abortController = new AbortController()
@@ -10,11 +11,16 @@ const Login = props => {
     const [password, setPassword] = useState('')
 
     useEffect(()=> {
+        getUsers()
+        // eslint-disable-next-line
+    },[])
+
+    const getUsers = () => {
         fetch('http://localhost:3000/users')
         .then(res => res.json())
         .then(res => setUsers(res))
-        // eslint-disable-next-line
-    },[])
+        return cleanUp()
+    }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -23,8 +29,7 @@ const Login = props => {
             if(user.password === password){
                 localStorage.id = user.id;
                 setCurrentUser(user)
-                props.history.push('/home')
-                return cleanUp()
+                props.history.push('/')
             } else {
                 alert("Can't find username/password combo")
             }
@@ -51,10 +56,9 @@ const Login = props => {
         )
     }
 
-
     return(
         <div>
-            {returningUser()}
+            <Welcome form={returningUser()} />
         </div>
     )
 }
