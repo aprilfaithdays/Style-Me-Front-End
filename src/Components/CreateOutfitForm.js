@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { OutfitsContext, CurrentUserContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Containers/Store'
+// import { OutfitsContext, CurrentUserContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Containers/Store'
+import { OutfitsContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Containers/Store'
+import { CurrentUserContext } from '../Context/CurrentUser';
 
 const CreateOutfitForm = props => {
     const abortController = new AbortController()
@@ -15,7 +17,7 @@ const CreateOutfitForm = props => {
     const [outfitBottom, setOutfitBottom] = useState(true)
     const [outfitShoe, setOutfitShoe] = useState(true)
     
-    const user_id = currentUser
+    const user_id = currentUser.id
     const name = newName
     const top_id = parseInt(newTop[1], 0)
     const bottom_id = parseInt(newBottom[1], 0)

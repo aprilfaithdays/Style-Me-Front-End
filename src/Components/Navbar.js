@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CurrentUserContext } from '../Context/CurrentUser';
 
 const Navbar = props => {
+    const [currentUser] = useContext(CurrentUserContext)
 
     const logOut = () => {
         localStorage.removeItem('id')
@@ -35,7 +37,7 @@ const Navbar = props => {
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                    <span className="navbar-text">You need to fix this later Apes</span>
+                    <span className="navbar-text">Hi {currentUser.name}!</span>
                     <button className="btn btn-outline-secondary btn-sm" onClick={logOut}>Log Out</button>
                     </form>
                 </div>

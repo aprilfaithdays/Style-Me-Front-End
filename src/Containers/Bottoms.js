@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { CurrentUserContext, FaveBottomsContext } from './Store';
+// import { CurrentUserContext, FaveBottomsContext } from './Store';
+import { FaveBottomsContext } from './Store';
+import { CurrentUserContext } from '../Context/CurrentUser';
+
 
 const Bottoms = () => {
     const faveBottomsUrl = 'http://localhost:3000/favorite_bottoms'
@@ -28,7 +31,7 @@ const Bottoms = () => {
 
     const filterMyFaveBottoms = () => {
         const list = [...faveBottoms]
-        return list.filter(fave => fave.user_id === currentUser)
+        return list.filter(fave => fave.user_id === currentUser.id)
     }
 
     const faveBottomsId = () => {
@@ -45,7 +48,7 @@ const Bottoms = () => {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({ 
-                user_id: currentUser,
+                user_id: currentUser.id,
                 bottom_id: id
             })
         })
@@ -56,7 +59,7 @@ const Bottoms = () => {
     const removeFavorite  = e => {
         const id = parseInt(e.target.value, 0)
         const myList = filterMyFaveBottoms()
-        const fave = myList.find(fave => (fave.user_id === currentUser && fave.bottom_id === id))
+        const fave = myList.find(fave => (fave.user_id === currentUser.id && fave.bottom_id === id))
 
         fetch(`${faveBottomsUrl}/${fave.id}`, {
             method: 'DELETE'

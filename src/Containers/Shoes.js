@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { CurrentUserContext, FaveShoesContext } from './Store';
+// import { CurrentUserContext, FaveShoesContext } from './Store';
+import { FaveShoesContext } from './Store';
+import { CurrentUserContext } from '../Context/CurrentUser';
 
 const Shoes = () => {
     const faveShoesUrl = 'http://localhost:3000/favorite_shoes'
@@ -28,7 +30,7 @@ const Shoes = () => {
 
     const filterMyFaveShoes = () => {
         const list = [...faveShoes]
-        return list.filter(fave => fave.user_id === currentUser)
+        return list.filter(fave => fave.user_id === currentUser.id)
     }
 
     const faveShoesId = () => {
@@ -45,7 +47,7 @@ const Shoes = () => {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({ 
-                user_id: currentUser,
+                user_id: currentUser.id,
                 shoe_id: id
             })
         })
@@ -56,7 +58,7 @@ const Shoes = () => {
     const removeFavorite = e => {
         const id = parseInt(e.target.value, 0)
         const myList = filterMyFaveShoes()
-        const fave = myList.find(fave => (fave.user_id === currentUser && fave.shoe_id === id))
+        const fave = myList.find(fave => (fave.user_id === currentUser.id && fave.shoe_id === id))
 
         fetch(`${faveShoesUrl}/${fave.id}`, {
             method: 'DELETE'
