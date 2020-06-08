@@ -1,0 +1,48 @@
+#auth-page{
+    background-image: url('https://media.giphy.com/media/xT8qBe6CcgWfVfHQZO/source.gif');
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: auto;
+}
+
+#header{
+    background-color: rgb(255, 255, 255);
+    height: 5vh;
+    width: 100%;
+}
+
+.header-text{
+    padding-top: 15px;
+    padding-left: 25px;
+    font-size: 28px;
+    font-weight: 650;
+}
+
+#content{
+    height: 85vh;
+    width: 100%;
+    text-align: center;
+}
+
+.content-text{
+    height: 80px;
+    width: 250px;
+    margin-left: 73%;
+    padding-top: 50px;
+    color: black;
+}
+
+#footer{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-text{
+    text-align: center;
+    color: black;
+}
