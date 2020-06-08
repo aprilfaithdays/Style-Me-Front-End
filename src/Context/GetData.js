@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 
+export const OutfitsCon
+
 const GetData = () => {
-    const [, setCurrentUser]
 
     useEffect(() => {
 
     }, [])
 
+    const getOutfits = () => {
 
+    }
 
     return (
         <div>

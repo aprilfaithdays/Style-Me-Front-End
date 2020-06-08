@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ProductList from '../Components/ProductList';
 import { FaveTopsContext } from './Store';
-// import { CurrentUserContext, FaveTopsContext } from './Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 
