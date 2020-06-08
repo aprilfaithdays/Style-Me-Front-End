@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-export const CurrentUserContext = React.createContext('')
+// export const CurrentUserContext = React.createContext('')
 export const OutfitsContext = React.createContext('')
 export const FaveTopsContext = React.createContext('')
 export const FaveBottomsContext = React.createContext('')
@@ -11,15 +11,9 @@ export const NewShoeContext = React.createContext('')
 export const TabKeyContext = React.createContext('')
 
 const Store = ({children}) => {
-    const user = () => {
-        if (localStorage.id){
-            return parseInt(localStorage.id, 0)
-        } else {
-            return ''
-        }
-    }
+    // const userId = () => localStorage.id ? parseInt(localStorage.id, 0) : ''
 
-    const [currentUser, setCurrentUser] = useState(user())
+    // const [currentUser, setCurrentUser] = useState(userId())
     const [outfits, setOutfits] = useState('')
     const [faveTops, setFaveTops] = useState('')
     const [faveBottoms, setFaveBottoms] = useState('')
@@ -31,7 +25,7 @@ const Store = ({children}) => {
 
     return (
         <div>
-            <CurrentUserContext.Provider value={[currentUser, setCurrentUser]}>
+            {/* <CurrentUserContext.Provider value={[currentUser, setCurrentUser]}> */}
             <OutfitsContext.Provider value={[outfits, setOutfits]}>
             <FaveTopsContext.Provider value={[faveTops, setFaveTops]}>
             <FaveBottomsContext.Provider value={[faveBottoms, setFaveBottoms]}>
@@ -49,7 +43,7 @@ const Store = ({children}) => {
             </FaveBottomsContext.Provider>
             </FaveTopsContext.Provider>
             </OutfitsContext.Provider>
-            </CurrentUserContext.Provider>
+            {/* </CurrentUserContext.Provider> */}
         </div>
     )
 }

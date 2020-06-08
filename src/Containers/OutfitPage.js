@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { CurrentUserContext, OutfitsContext } from './Store'
+// import { CurrentUserContext, OutfitsContext } from './Store'
+import { OutfitsContext } from './Store'
+import { CurrentUserContext } from '../Context/CurrentUser';
 import UpdateOutfit from '../Components/UpdateOutfit';
 
 const OutfitPage = props => {
@@ -88,7 +90,7 @@ const OutfitPage = props => {
                 {productDetail(bottom)}
                 {productDetail(shoe)}
             </div>
-            {user.id === currentUser  ? editButton() : <div>Created by: {user.name}</div> }
+            {user.id === currentUser.id  ? editButton() : <div>Created by: {user.name}</div> }
             Price: ${outfitPrice()} 
         </div>
     )

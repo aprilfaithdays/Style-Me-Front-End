@@ -1,11 +1,14 @@
 import React, {useContext, useState} from 'react'
 import {Link} from 'react-router-dom'
-import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext, NewTopContext, NewBottomContext, NewShoeContext, TabKeyContext } from '../Containers/Store';
+// import { CurrentUserContext, FaveTopsContext, FaveBottomsContext, FaveShoesContext, NewTopContext, NewBottomContext, NewShoeContext, TabKeyContext } from '../Containers/Store';
+import { FaveTopsContext, FaveBottomsContext, FaveShoesContext, NewTopContext, NewBottomContext, NewShoeContext, TabKeyContext } from '../Containers/Store';
+import { CurrentUserContext } from '../Context/CurrentUser';
 import FavoriteCard from '../Components/FavoriteCard';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
+
 
 const FavoritesList = () => {
     const [currentUser] = useContext(CurrentUserContext)
@@ -18,7 +21,7 @@ const FavoritesList = () => {
     const [key, setKey] = useContext(TabKeyContext)
     
     const myList = list => {
-        return list.filter(object => object.user_id === currentUser)
+        return list.filter(object => object.user_id === currentUser.id)
     }
     
     const filterMyFaveTops = () => {
@@ -46,19 +49,19 @@ const FavoritesList = () => {
     const removeFavorite = (category, id) => {
         let removeFave
         if (category === 'tops'){
-            removeFave = faveTops.find(fave => fave.user_id === currentUser && fave.top_id === id)
+            removeFave = faveTops.find(fave => fave.user_id === currentUser.id && fave.top_id === id)
             deleteFave(category, removeFave.id)
             let updated = updateList(faveTops, removeFave.id)
             setFaveTops(updated)
 
         } if (category === 'bottoms'){
-            removeFave = faveBottoms.find(fave => fave.user_id === currentUser && fave.bottom_id === id)
+            removeFave = faveBottoms.find(fave => fave.user_id === currentUser.id && fave.bottom_id === id)
             deleteFave(category, removeFave.id)
             let updated = updateList(faveBottoms, removeFave.id)
             setFaveBottoms(updated)
 
         } if (category === 'shoes'){
-            removeFave = faveShoes.find(fave => fave.user_id === currentUser && fave.shoe_id === id)
+            removeFave = faveShoes.find(fave => fave.user_id === currentUser.id && fave.shoe_id === id)
             deleteFave(category, removeFave.id)
             let updated = updateList(faveShoes, removeFave.id)
             setFaveShoes(updated)

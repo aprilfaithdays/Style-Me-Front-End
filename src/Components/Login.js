@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link} from 'react-router-dom'
-import { CurrentUserContext } from '../Containers/Store';
-
+import { CurrentUserContext } from '../Context/CurrentUser';
 
 const Login = props => {
     const abortController = new AbortController()
@@ -23,8 +22,7 @@ const Login = props => {
         if (user) {
             if(user.password === password){
                 localStorage.id = user.id;
-                const id = parseInt(localStorage.id, 0)
-                setCurrentUser(id)
+                setCurrentUser(user)
                 props.history.push('/home')
                 return cleanUp()
             } else {

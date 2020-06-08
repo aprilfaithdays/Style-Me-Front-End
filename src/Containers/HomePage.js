@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import { OutfitsContext, CurrentUserContext } from './Store';
+import { OutfitsContext } from './Store';
+// import { OutfitsContext, CurrentUserContext } from './Store';
+import { CurrentUserContext } from '../Context/CurrentUser';
 import OutfitCard from '../Components/OutfitCard';
 
 const HomePage = () => {
@@ -8,7 +10,7 @@ const HomePage = () => {
 
     const filterMyOutfits = () => {
         const list = [...outfits]
-        const myList = list.filter(outfit => outfit.user_id === currentUser)
+        const myList = list.filter(outfit => outfit.user_id === currentUser.id)
         return myList.map(outfit => {
             return <OutfitCard key={outfit.id} outfit={outfit}/>
         })

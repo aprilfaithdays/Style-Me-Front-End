@@ -5,13 +5,16 @@ import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Store from './Containers/Store';
 import StyleMe from './Containers/StyleMe';
+import CurrentUser from './Context/CurrentUser';
 
 const App = () => {
   return (
     <>
       <Router>
         <Store>
-          <Route to='/' component={StyleMe} />
+          <CurrentUser>
+            <Route to='/' component={StyleMe} />
+          </CurrentUser>
         </Store>
       </Router>
     </>
