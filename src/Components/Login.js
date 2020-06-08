@@ -11,11 +11,16 @@ const Login = props => {
     const [password, setPassword] = useState('')
 
     useEffect(()=> {
+        getUsers()
+        // eslint-disable-next-line
+    },[])
+
+    const getUsers = () => {
         fetch('http://localhost:3000/users')
         .then(res => res.json())
         .then(res => setUsers(res))
-        // eslint-disable-next-line
-    },[])
+        return cleanUp()
+    }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -25,7 +30,6 @@ const Login = props => {
                 localStorage.id = user.id;
                 setCurrentUser(user)
                 props.history.push('/')
-                return cleanUp()
             } else {
                 alert("Can't find username/password combo")
             }

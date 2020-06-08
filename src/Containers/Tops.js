@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { FaveTopsContext } from '../Context/Store';
+import { FaveTopsContext, TopsContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 
@@ -8,25 +8,7 @@ const Tops = () => {
     const faveTospUrl = 'http://localhost:3000/favorite_tops'
     const [currentUser] = useContext(CurrentUserContext)
     const [faveTops, setFaveTops] = useContext(FaveTopsContext)
-    const [tops, setTops] = useState([])
-
-    useEffect(() => {
-        getTops()
-        getFaveTops()
-        // eslint-disable-next-line 
-    }, [])
-
-    const getTops = async () => {
-        await fetch('http://localhost:3000/tops')
-        .then(res => res.json())
-        .then(res => setTops(res))
-    }
-
-    const getFaveTops = async () => {
-        await fetch(faveTospUrl)
-        .then(res => res.json())
-        .then(res => setFaveTops(res))
-    }
+    const [tops] = useContext(TopsContext)
 
     const filterMyFaveTops = () => {
         const list = [...faveTops]

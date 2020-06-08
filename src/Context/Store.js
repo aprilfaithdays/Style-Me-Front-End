@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 export const OutfitsContext = React.createContext('')
+export const TopsContext = React.createContext('')
 export const FaveTopsContext = React.createContext('')
 export const FaveBottomsContext = React.createContext('')
 export const FaveShoesContext = React.createContext('')
@@ -13,6 +14,7 @@ const Store = ({children}) => {
     const abortController = new AbortController()
 
     const [outfits, setOutfits] = useState('')
+    const [tops, setTops] = useState([])
     const [faveTops, setFaveTops] = useState('')
     const [faveBottoms, setFaveBottoms] = useState('')
     const [faveShoes, setFaveShoes] = useState('')
@@ -23,6 +25,8 @@ const Store = ({children}) => {
 
     useEffect(() => {
         getOutfits()
+        getTops()
+        getFaveTops()
         // eslint-disable-next-line 
     },[])
 
@@ -32,6 +36,20 @@ const Store = ({children}) => {
         .then(res => setOutfits(res))
     }
 
+    const getTops = async () => {
+        await fetch('http://localhost:3000/tops')
+        .then(res => res.json())
+        .then(res => setTops(res))
+        return cleanUp()
+    }
+
+    const getFaveTops = async () => {
+        await fetch('http://localhost:3000/favorite_tops')
+        .then(res => res.json())
+        .then(res => setFaveTops(res))
+        return cleanUp()
+    }
+
     const cleanUp = () => {
         abortController.abort()
     }
@@ -39,6 +57,7 @@ const Store = ({children}) => {
     return (
         <div>
             <OutfitsContext.Provider value={[outfits, setOutfits]}>
+            <TopsContext.Provider value={[tops, setTops]}>
             <FaveTopsContext.Provider value={[faveTops, setFaveTops]}>
             <FaveBottomsContext.Provider value={[faveBottoms, setFaveBottoms]}>
             <FaveShoesContext.Provider value={[faveShoes, setFaveShoes]}>
@@ -54,6 +73,7 @@ const Store = ({children}) => {
             </FaveShoesContext.Provider>
             </FaveBottomsContext.Provider>
             </FaveTopsContext.Provider>
+            </TopsContext.Provider>
             </OutfitsContext.Provider>
             {cleanUp()}
         </div>

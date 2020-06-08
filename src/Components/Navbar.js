@@ -7,7 +7,7 @@ const Navbar = props => {
 
     const logOut = () => {
         localStorage.removeItem('id')
-        props.history.push('/')
+        props.history.push('/login')
     }
 
     return(
