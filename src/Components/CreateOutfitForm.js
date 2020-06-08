@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-// import { OutfitsContext, CurrentUserContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Containers/Store'
 import { OutfitsContext, NewTopContext, NewBottomContext, NewShoeContext } from '../Containers/Store'
 import { CurrentUserContext } from '../Context/CurrentUser';
 

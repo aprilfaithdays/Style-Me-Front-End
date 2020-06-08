@@ -1,6 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
-// export const CurrentUserContext = React.createContext('')
 export const OutfitsContext = React.createContext('')
 export const FaveTopsContext = React.createContext('')
 export const FaveBottomsContext = React.createContext('')
@@ -11,9 +10,6 @@ export const NewShoeContext = React.createContext('')
 export const TabKeyContext = React.createContext('')
 
 const Store = ({children}) => {
-    // const userId = () => localStorage.id ? parseInt(localStorage.id, 0) : ''
-
-    // const [currentUser, setCurrentUser] = useState(userId())
     const [outfits, setOutfits] = useState('')
     const [faveTops, setFaveTops] = useState('')
     const [faveBottoms, setFaveBottoms] = useState('')
@@ -23,9 +19,19 @@ const Store = ({children}) => {
     const [newShoe, setNewShoe] = useState('')
     const [key, setKey] = useState('tops')
 
+    useEffect(() => {
+        getOutfits()
+        // eslint-disable-next-line 
+    },[])
+
+    const getOutfits = async () => {
+        await fetch('http://localhost:3000/outfits')
+        .then(res => res.json())
+        .then(res => setOutfits(res))
+    }
+
     return (
         <div>
-            {/* <CurrentUserContext.Provider value={[currentUser, setCurrentUser]}> */}
             <OutfitsContext.Provider value={[outfits, setOutfits]}>
             <FaveTopsContext.Provider value={[faveTops, setFaveTops]}>
             <FaveBottomsContext.Provider value={[faveBottoms, setFaveBottoms]}>
@@ -43,7 +49,6 @@ const Store = ({children}) => {
             </FaveBottomsContext.Provider>
             </FaveTopsContext.Provider>
             </OutfitsContext.Provider>
-            {/* </CurrentUserContext.Provider> */}
         </div>
     )
 }

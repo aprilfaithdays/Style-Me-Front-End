@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { OutfitsContext } from './Store';
-// import { OutfitsContext, CurrentUserContext } from './Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 import OutfitCard from '../Components/OutfitCard';
 

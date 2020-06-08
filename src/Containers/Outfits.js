@@ -1,21 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { OutfitsContext } from './Store';
 import OutfitCard from '../Components/OutfitCard'
 
 
 const Outfits = () => {
-    const [outfits, setOutfits] = useContext(OutfitsContext)
-
-    useEffect(() => {
-        fetchOutfits()
-        // eslint-disable-next-line
-    },[])
-
-    const fetchOutfits = async () => {
-        await fetch('http://localhost:3000/outfits')
-        .then(res => res.json())
-        .then(res => setOutfits(res))
-    }
+    const [outfits] = useContext(OutfitsContext)
 
     const renderOutfits = () => {
         const list = [...outfits]
