@@ -27,22 +27,3 @@ const Welcome = props =>{
 }
 
 export default Welcome
-
-
-        // <div id="auth-page">
-        //     <h3 className="welcome">Welcome to Style Me!</h3>
-        //     <div>
-        //         <div className="row">
-        //             <div className="col left">
-        //                 <div className="center">
-        //                     {/* <img className="display-gif" src="https://media.giphy.com/media/xT8qBe6CcgWfVfHQZO/source.gif" alt="gif"/> */}
-        //                 </div>
-        //             </div>
-        //             <div className="col right">
-        //                 <div className="auth-form">
-        //                     {props.form}
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
