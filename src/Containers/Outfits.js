@@ -8,6 +8,7 @@ const Outfits = () => {
 
     const renderOutfits = () => {
         const list = [...outfits]
+        list.sort((a, b) => b.id - a.id)
         return list.map(outfit => <OutfitCard key={outfit.id} outfit={outfit} />)
     }
 

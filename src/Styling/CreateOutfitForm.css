@@ -1,0 +1,14 @@
+.create-outfit{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.outfit-name{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.select-product{
+    height: 200px;
+    width: auto;
+}

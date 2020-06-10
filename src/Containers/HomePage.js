@@ -10,6 +10,7 @@ const HomePage = () => {
     const filterMyOutfits = () => {
         const list = [...outfits]
         const myList = list.filter(outfit => outfit.user_id === currentUser.id)
+        myList.sort((a, b) => b.id - a.id)
         return myList.map(outfit => {
             return <OutfitCard key={outfit.id} outfit={outfit}/>
         })
