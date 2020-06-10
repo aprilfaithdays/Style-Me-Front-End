@@ -5,6 +5,13 @@ body {
     background-attachment: fixed;
 }
 
+
+.submit-button{
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 img{
     height: 250px;
     width: auto;
