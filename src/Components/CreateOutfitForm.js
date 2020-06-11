@@ -68,10 +68,18 @@ const CreateOutfitForm = props => {
     }
 
     const instructions = () => (
-        <em> 
-            Create an outfit by selecting from your favorite products on the the right. <br/><br/>
-            Don't forget to give your outfit a name and select a season(s) you'd wear it.
-        </em>
+        <div id="instructions"> 
+            <div className="instructions">Instructions:</div>
+            <p>
+                1. Create an outfit by selecting from your favorite products on the the right.
+            </p> 
+            <p>
+                2. Once the outfit is complete, you can then name the outfit and select a season(s).
+            </p> 
+            <p>
+                3. The submit button will only pop up once everything has been completed.
+            </p>
+        </div>
     )
 
     const renderOption = (product, category) => (
@@ -94,15 +102,21 @@ const CreateOutfitForm = props => {
         </div>
     )
 
+    const outfitComplete = () => (
+        newTop[0] && newBottom[0] && newShoe[0]
+    )
+
     return (
         <div>
             {(newTop[0] || newBottom[0] || newShoe[0]) ? null : instructions()}
             <form className="create-outfit" onSubmit={handleCreateOutfit}>
                 {/* name */}
-                    {newTop[0] && newBottom[0] && newShoe[0] && nameOutfit()}
+                <div className="input-name">
+                    {outfitComplete() && nameOutfit()}
                     {outfitName === false && <small className="error form-text">*Please name your outfit.</small>}
+                </div>
                 {/* submit button */}
-                    {newName && newTop[0] && newBottom[0] && newShoe[0] && createOutfit()}
+                    {outfitComplete() && newName && createOutfit()}
                 {/* top options */}
                     {newTop[0] && renderOption(newTop, 'top')}
                     {outfitTop === false && selectMessage('top')}<br/>
