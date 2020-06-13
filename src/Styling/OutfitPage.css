@@ -1,0 +1,22 @@
+.outfit-page{
+    margin-left: 35px;
+    margin-top: 10px;
+}
+
+.center-card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.outfit-page-card{
+    height: 310px;
+    width: 700px;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.767);
+    padding-top: 25px;
+    text-align: center;
+}

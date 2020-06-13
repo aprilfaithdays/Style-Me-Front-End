@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { OutfitsContext } from '../Context/Store';
+import '../Styling/OutfitPage.css'
 
 const UpdateOutfit = props => {
     const id = props.id

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { OutfitsContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 import UpdateOutfit from '../Components/UpdateOutfit';
+import '../Styling/OutfitPage.css'
 
 const OutfitPage = props => {
     const id = parseInt(props.match.params.id,0)
@@ -75,22 +76,36 @@ const OutfitPage = props => {
 
     const productDetail = product => {
         return (
-            <Link to={`/${product.category}/${product.id}`}>
-                <img className="outfit-index-img" src={product.img_url} alt={product}/>
-            </Link>
+            <div>
+                <Link to={`/${product.category}/${product.id}`}>
+                    <img className="outfit-index-img" src={product.img_url} alt={product}/>
+                </Link>
+                <p>{product.name}</p>
+            </div>
         )
     }
 
     return(
-        <div className="container">
-            {update ? <UpdateOutfit setInfo={setInfo} id={id} /> : <h3>{outfit.name}</h3> }
-            <div className="outfit-list">
-                {productDetail(top)}
-                {productDetail(bottom)}
-                {productDetail(shoe)}
-            </div>
-            {user.id === currentUser.id  ? editButton() : <div>Created by: {user.name}</div> }
-            Price: ${outfitPrice()} 
+        <div className="outfit-page">
+                <div className='row'>
+                    <div className='col-sm-8'>
+                        <div className="center-card">
+                            <div className="outfit-page-card">
+                                {productDetail(top)}
+                                {productDetail(bottom)}
+                                {productDetail(shoe)}
+                            </div>
+                        </div>
+                        <div className="outfit-details">
+                            {update ? <UpdateOutfit setInfo={setInfo} id={id} /> : <h4>{outfit.name}</h4> }
+                            {user.id === currentUser.id  ? editButton() : <em>Created by: {user.name}</em> }<br/>
+                            Price: ${outfitPrice()} 
+                        </div>
+                    </div>
+                    <div className='col-sm-4'>
+                        Comments section
+                    </div>
+                </div>
         </div>
     )
 }
