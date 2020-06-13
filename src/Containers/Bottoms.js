@@ -69,7 +69,7 @@ const Bottoms = () => {
     }
 
     return(
-        <div className="container">
+        <div>
             <h3 className="title">Bottoms</h3>
             <div className='product-list'>
                 {renderBottoms()}

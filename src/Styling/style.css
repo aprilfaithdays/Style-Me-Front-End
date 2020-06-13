@@ -40,7 +40,6 @@ body {
     padding-top: 15px;
 }
 
-
 h3{
     text-align: center;
 }
@@ -56,6 +55,7 @@ h3{
 .product-list{
     display: flex;
     flex-wrap: wrap;
+    margin-left: 2%;
 }
 
 .product-card{
@@ -66,7 +66,7 @@ h3{
     text-align: center;
     padding-top: 15px;
     margin-top: 15px;
-    margin-left: 15px;
+    margin-left: 25px;
 }
 
 .product-card:hover{
@@ -94,7 +94,7 @@ h3{
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-
+    margin-left: 2%;
 }
 
 .outfit-index-img{
@@ -111,7 +111,7 @@ h3{
     padding-top: 15px;
     margin-top: 10px;
     margin-bottom: 15px;
-    margin-left: 15px;
+    margin-left: 1%;
 }
 
 .outfit-card:hover{

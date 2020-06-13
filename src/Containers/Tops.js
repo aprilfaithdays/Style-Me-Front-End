@@ -69,7 +69,7 @@ const Tops = () => {
     }
 
     return(
-        <div className="container">
+        <div>
             <h3 className="title">Tops</h3>
             <div className="product-list">
                 {renderTops()}

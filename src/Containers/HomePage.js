@@ -18,7 +18,7 @@ const HomePage = () => {
 
 
     return(
-        <div className="container">
+        <div>
             <h3>My Outfits</h3>
             <div className="outfit-list"> {filterMyOutfits()} </div>
             {/* {console.log(outfits)} */}
