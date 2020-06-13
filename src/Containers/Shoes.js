@@ -69,7 +69,7 @@ const Shoes = () => {
     }
 
     return(
-        <div className="container">
+        <div>
             <h3 className="title">Shoes</h3>
             <div className='product-list'>
                 {renderShoes()}
