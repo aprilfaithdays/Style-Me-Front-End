@@ -5,6 +5,31 @@ body {
     background-attachment: fixed;
 }
 
+.header{
+    background-color: rgb(255, 255, 255);
+    height: 5vh;
+    width: 100%;
+}
+
+.content{
+    height: 90vh;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: show;
+}
+
+.footer{
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+}
+
+.style-me{
+    padding-top: 15px;
+}
 
 .submit-button{
     margin-top: 15px;
@@ -31,10 +56,6 @@ h3{
 
 .title{
     margin-bottom: 20px;
-}
-
-.style-me{
-    margin-top: 53px;
 }
 
 .outfit-list{

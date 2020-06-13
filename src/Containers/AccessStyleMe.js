@@ -16,8 +16,10 @@ import CreateOutfit from './CreateOutfit';
 const AccessStyleMe = props => {
     return(
         <div>
-            <Navbar {...props}/>
-            <div className="style-me">
+            <div className="header">
+                <Navbar {...props}/>
+            </div>
+            <div className="content style-me">
                 <Switch>
                     <Route exact path='/' component={HomePage} />
                     <Route exact path='/tops' component={Tops} />
@@ -30,6 +32,13 @@ const AccessStyleMe = props => {
                     <Route path='/outfits/new' component={CreateOutfit} />
                     <Route path='/outfits/:id' component={OutfitPage} />
                 </Switch>
+            </div>
+            <div className="footer">
+                <small><em>
+                    Designed by: April Escobar <span>•</span>
+                    <a href="https://github.com/aprilfaithdays" target="_blank" rel="noopener noreferrer"> Github </a><span>•</span>
+                    <a href="https://www.linkedin.com/in/april-escobar/" target="_blank" rel="noopener noreferrer"> LinkedIn </a>
+                </em></small>
             </div>
         </div>
     )

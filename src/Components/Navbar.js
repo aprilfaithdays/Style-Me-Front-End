@@ -11,7 +11,7 @@ const Navbar = props => {
     }
 
     return(
-        <div>
+        <div className="header">
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                 <Link to ='/' className="navbar-brand">Style Me</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
