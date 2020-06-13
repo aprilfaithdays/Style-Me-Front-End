@@ -11,6 +11,7 @@ import Shoe from './Shoe';
 import Outfits from './Outfits';
 import OutfitPage from './OutfitPage';
 import CreateOutfit from './CreateOutfit';
+import Footer from '../Components/Footer';
 
 
 const AccessStyleMe = props => {
@@ -34,11 +35,7 @@ const AccessStyleMe = props => {
                 </Switch>
             </div>
             <div className="footer">
-                <small><em>
-                    Designed by: April Escobar <span>•</span>
-                    <a href="https://github.com/aprilfaithdays" target="_blank" rel="noopener noreferrer"> Github </a><span>•</span>
-                    <a href="https://www.linkedin.com/in/april-escobar/" target="_blank" rel="noopener noreferrer"> LinkedIn </a>
-                </em></small>
+                <Footer />
             </div>
         </div>
     )

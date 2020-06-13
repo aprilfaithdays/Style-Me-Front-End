@@ -5,13 +5,13 @@ const ProductList = props => {
     const product = props.product
 
     const removeFave = () => (
-        <div className="button">
+        <div className="favorite-btn">
             <button className="btn btn-outline-secondary btn-sm" onClick={props.removeFavorite} value={product.id}> Remove Favorites </button>
         </div>
     )
 
     const addFave = () => (
-        <div className="button">
+        <div className="favorite-btn">
             <button className="btn btn-outline-secondary btn-sm" onClick={props.addFavorite} value={product.id}> Add Favorites </button>
         </div>
     )
@@ -20,7 +20,7 @@ const ProductList = props => {
         <div>
             <div className="product-card">
                 <Link to={`/${product.category}/${product.id}`} >
-                        <img src={product.img_url} alt="product"/>
+                    <img className="product-index" src={product.img_url} alt="product"/>
                 </Link><br/>
                 { props.favorite ?  removeFave() : addFave()}
             </div>

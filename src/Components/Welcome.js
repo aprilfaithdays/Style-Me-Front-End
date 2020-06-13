@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from './Footer'
 
 const Welcome = props =>{
     return(
@@ -15,11 +16,7 @@ const Welcome = props =>{
             </div> 
             <div className="footer">
                 <div className="footer-text">
-                    <small><em>
-                        Designed by: April Escobar <span>•</span>
-                        <a href="https://github.com/aprilfaithdays" target="_blank" rel="noopener noreferrer"> Github </a><span>•</span>
-                        <a href="https://www.linkedin.com/in/april-escobar/" target="_blank" rel="noopener noreferrer"> LinkedIn </a>
-                    </em></small>
+                    <Footer/>
                 </div>
             </div> 
         </div>
