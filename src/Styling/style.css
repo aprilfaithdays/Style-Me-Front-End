@@ -1,8 +1,17 @@
+/* Entire App */
 body {
     background-image: url("https://wallpapertag.com/wallpaper/full/2/6/0/283037-download-free-marble-background-2048x1347-xiaomi.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+}
+
+:any-link{
+    color: rgb(11, 119, 146);
+}
+
+:any-link:hover{
+    color: rgb(14, 186, 192)
 }
 
 .header{
@@ -31,28 +40,66 @@ body {
     padding-top: 15px;
 }
 
+
+h3{
+    text-align: center;
+}
+
+/* Navbar */
+
+.log-out-btn{
+    margin-left: 20px;
+}
+
+/* 
+Create Outfit Page (Favorites List) 
+Product Index Pages
+*/
+
+.product-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-card{
+    height: 315px;
+    width: 230px;
+    display: block;
+    box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding-top: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.product-card:hover{
+    background-color: rgba(255, 255, 255, 0.338);
+    transform:scale(1.025);
+    filter:blur(0px);
+    opacity:5;
+    box-shadow:0 8px 20px 0px rgba(0, 4, 11, 0.577);
+}
+
+.product-index{
+    height: 250px;
+    width: 200px;
+    cursor:pointer;
+}
+
+.favorite-btn{
+    margin-top: 10px;
+}
+
+/* - - - - - - - - - - - - - - - - - -  */
+
+
 .submit-button{
     margin-top: 15px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-img{
-    height: 250px;
-    width: auto;
-}
 
-h3{
-    text-align: center;
-}
-
-:any-link{
-    color: rgb(11, 119, 146);
-}
-
-:any-link:hover{
-    color: rgb(14, 186, 192)
-}
 
 .title{
     margin-bottom: 20px;
@@ -70,19 +117,7 @@ h3{
     justify-content: center;
 }
 
-.product-list{
-    display: flex;
-    flex-wrap: wrap;
-}
 
-.product-card{
-    height: 250px;
-    width: auto;
-    display: block;
-    box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.2);
-    text-align: center;
-    margin-left: 15px;
-}
 
 .product-detail{
     height: 300px;

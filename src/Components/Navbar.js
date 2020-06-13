@@ -37,8 +37,15 @@ const Navbar = props => {
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                    <span className="navbar-text">Hi {currentUser.name}!</span>
-                    <button className="btn btn-outline-secondary btn-sm" onClick={logOut}>Log Out</button>
+                        <span className="navbar-text">Hi there, {currentUser.name}! </span>
+                        <div className="log-out-btn">
+                            <button className="btn btn-outline-secondary btn-sm" onClick={logOut}>Log Out</button>
+                        </div>
+                        {/* <nav class="navbar navbar-light bg-light">
+                            <a class="navbar-brand" href="#">
+                                <img src={currentUser.img_url} width="30" height="30" class="d-inline-block align-top" alt={currentUser.name} loading="lazy" />
+                            </a>
+                        </nav> */}
                     </form>
                 </div>
             </nav>

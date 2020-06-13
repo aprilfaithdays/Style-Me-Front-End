@@ -9,7 +9,6 @@ const CreateOutfit = () => {
         return (
             <div>
                 <h3 className="title">Create an Outfit!</h3>
-                <div className='container'>
                     <div className='row'>
                         <div className='col-sm-4'>
                             <CreateOutfitForm {...props}/>
@@ -18,7 +17,6 @@ const CreateOutfit = () => {
                             <FavoritesList />
                         </div>
                     </div>
-                </div>
             </div>
         )
     }

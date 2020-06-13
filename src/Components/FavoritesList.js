@@ -8,7 +8,6 @@ import Tab from 'react-bootstrap/Tab'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 
-
 const FavoritesList = () => {
     const [currentUser] = useContext(CurrentUserContext)
     const [faveTops, setFaveTops] = useContext(FaveTopsContext)

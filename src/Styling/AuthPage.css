@@ -11,23 +11,12 @@ h5, .text{
     text-align: center;
 }
 
-/* #header{
-    background-color: rgb(255, 255, 255);
-    height: 5vh;
-    width: 100%;
-} */
-
 .header-text{
     padding-top: 15px;
     padding-left: 25px;
     font-size: 28px;
     font-weight: 650;
 }
-
-/* #content{
-    height: 87vh;
-    width: 100%;
-} */
 
 .content-text{
     height: 80px;
@@ -36,14 +25,6 @@ h5, .text{
     padding-top: 50px;
     color: black;
 }
-
-/* .footer{
-    height: 8vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
 
 .footer-text{
     text-align: center;
