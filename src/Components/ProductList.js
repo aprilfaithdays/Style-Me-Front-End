@@ -20,7 +20,7 @@ const ProductList = props => {
         <div>
             <div className="product-card">
                 <Link to={`/${product.category}/${product.id}`} >
-                    <img className="product-index" src={product.img_url} alt="product"/>
+                    <img className="product-index-img" src={product.img_url} alt="product"/>
                 </Link><br/>
                 { props.favorite ?  removeFave() : addFave()}
             </div>

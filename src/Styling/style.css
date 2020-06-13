@@ -51,10 +51,7 @@ h3{
     margin-left: 20px;
 }
 
-/* 
-Create Outfit Page (Favorites List) 
-Product Index Pages
-*/
+/* Create Outfit Page (Favorites List) , Product Index Pages */
 
 .product-list{
     display: flex;
@@ -80,7 +77,7 @@ Product Index Pages
     box-shadow:0 8px 20px 0px rgba(0, 4, 11, 0.577);
 }
 
-.product-index{
+.product-index-img{
     height: 250px;
     width: 200px;
     cursor:pointer;
@@ -90,8 +87,43 @@ Product Index Pages
     margin-top: 10px;
 }
 
-/* - - - - - - - - - - - - - - - - - -  */
 
+/* Browse Outfits, Home Page  */
+
+.outfit-list{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
+
+.outfit-index-img{
+    height: 250px;
+    width: 200px;
+}
+
+.outfit-card{
+    height: 820px;
+    width: 230px;
+    display: block;
+    box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding-top: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+
+.outfit-card:hover{
+    background-color: rgba(255, 255, 255, 0.338);
+    transform:scale(1.025);
+    filter:blur(0px);
+    opacity:5;
+    box-shadow:0 8px 20px 0px rgba(0, 4, 11, 0.577);
+    cursor:pointer;
+}
+
+/* - - - - - - - - - - - - - - - - - -  */
 
 .submit-button{
     margin-top: 15px;
@@ -100,24 +132,9 @@ Product Index Pages
 }
 
 
-
 .title{
     margin-bottom: 20px;
 }
-
-.outfit-list{
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-}
-
-.outfit-detail{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-
 
 .product-detail{
     height: 300px;

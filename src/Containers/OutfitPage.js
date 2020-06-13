@@ -76,7 +76,7 @@ const OutfitPage = props => {
     const productDetail = product => {
         return (
             <Link to={`/${product.category}/${product.id}`}>
-                <img src={product.img_url} alt={product}/>
+                <img className="outfit-index-img" src={product.img_url} alt={product}/>
             </Link>
         )
     }
@@ -84,7 +84,7 @@ const OutfitPage = props => {
     return(
         <div className="container">
             {update ? <UpdateOutfit setInfo={setInfo} id={id} /> : <h3>{outfit.name}</h3> }
-            <div className="outfit-detail">
+            <div className="outfit-list">
                 {productDetail(top)}
                 {productDetail(bottom)}
                 {productDetail(shoe)}

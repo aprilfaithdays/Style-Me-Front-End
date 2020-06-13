@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { OutfitsContext } from '../Context/Store';
 import OutfitCard from '../Components/OutfitCard'
 
-
 const Outfits = () => {
     const [outfits] = useContext(OutfitsContext)
 
