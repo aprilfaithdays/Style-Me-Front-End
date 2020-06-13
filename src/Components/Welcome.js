@@ -3,17 +3,17 @@ import React from 'react'
 const Welcome = props =>{
     return(
         <div id="auth-page">
-            <div id="header">
+            <div className="header">
                 <div className="header-text">
                     Style Me
                 </div>
             </div> 
-            <div id="content"> 
+            <div className="content"> 
                 <div className="content-text">
                     {props.form}
                 </div>
             </div> 
-            <div id="footer">
+            <div className="footer">
                 <div className="footer-text">
                     <small><em>
                         Designed by: April Escobar <span>•</span>
