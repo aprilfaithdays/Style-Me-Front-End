@@ -12,9 +12,9 @@ const OutfitCard = props => {
             <strong> {outfit.name} <br/></strong>
             <em> Created by: {user.name}</em><br/>
             <Link to={`/outfits/${outfit.id}`}>
-            <img className="outfit-index-img" src={top.img_url} alt='top'/> <br/>
-            <img className="outfit-index-img" src={bottom.img_url} alt='bottom'/> <br/>
-            <img className="outfit-index-img" src={shoe.img_url} alt='shoe'/> 
+            <img className="product-img" src={top.img_url} alt='top'/> <br/>
+            <img className="product-img" src={bottom.img_url} alt='bottom'/> <br/>
+            <img className="product-img" src={shoe.img_url} alt='shoe'/> 
             </Link>
         </div>
     )
