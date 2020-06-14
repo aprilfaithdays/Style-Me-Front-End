@@ -6,7 +6,7 @@ const UpdateOutfit = props => {
     const id = props.id
     const url = `http://localhost:3000/outfits/${id}`
     const [outfits, setOutfits] = useContext(OutfitsContext)
-    const [name, setName] = useState('')
+    const [name, setName] = useState(props.name)
 
     const handleSave = e => {
         e.preventDefault()

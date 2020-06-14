@@ -97,7 +97,7 @@ const OutfitPage = props => {
                             </div>
                         </div>
                         <div className="outfit-details">
-                            {update ? <UpdateOutfit setInfo={setInfo} id={id} /> : <h4>{outfit.name}</h4> }
+                            {update ? <UpdateOutfit setInfo={setInfo} id={id} name={outfit.name}/> : <h4>{outfit.name}</h4> }
                             {user.id === currentUser.id  ? editButton() : <em>Created by: {user.name}</em> }<br/>
                             Price: ${outfitPrice()} 
                         </div>
