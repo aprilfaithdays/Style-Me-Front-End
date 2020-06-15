@@ -5,6 +5,8 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 import UpdateOutfit from '../Components/UpdateOutfit';
 import '../Styling/OutfitPage.css'
 import DeleteForm from '../Components/DeleteForm';
+import OutfitComments from '../Components/OutfitComments';
+import CommentForm from '../Components/CommentForm';
 
 const OutfitPage = props => {
     const id = parseInt(props.match.params.id,0)
@@ -119,6 +121,8 @@ const OutfitPage = props => {
                     </div>
                     <div className='col-sm-4'>
                         Comments section
+                        <CommentForm id={id} />
+                        <OutfitComments />
                     </div>
                 </div>
         </div>
