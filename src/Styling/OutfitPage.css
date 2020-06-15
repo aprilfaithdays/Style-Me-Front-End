@@ -10,7 +10,14 @@
 .cmt-side{
     width: 40%;
     padding-left: 25px;
-    background-color: rgba(241, 240, 240, 0.76);
+    padding-right: 25px;
+    background-color: rgba(241, 240, 240, 0.678);
+
+}
+
+.render-cmts{
+    max-height: 80vh;
+    overflow-y: scroll;
 }
 
 .center-card{
@@ -61,8 +68,7 @@
     height: 95%;
     padding-right: 15px;
     padding-top: 15px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+
 }
 
 .comment-img{

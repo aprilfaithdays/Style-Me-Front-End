@@ -22,19 +22,21 @@ const OutfitComments = props => {
 
     const renderComment = comment =>{
         return (
-            <div key={comment.id} className="comments">
-                <img src={comment.user.img_url} alt={comment.user.name} className="comment-img"/>
-                <div className="cmt-text">
-                    <b>{comment.user.name}</b>
-                    <em className="cmt-created">
-                        <Moment fromNow>{comment.created_at}</Moment>
-                    </em>
-                    <div>
-                        {comment.text}
-                        {comment.user_id === currentUser.id && <button 
-                            className="btn btn-outline-secondary btn-sm"
-                            onClick={() => deleteComment(comment.id)}
-                        >Delete</button>}
+            <div>
+                <div key={comment.id} className="comments">
+                    <img src={comment.user.img_url} alt={comment.user.name} className="comment-img"/>
+                    <div className="cmt-text">
+                        <b>{comment.user.name}</b>
+                        <em className="cmt-created">
+                            <Moment fromNow>{comment.created_at}</Moment>
+                        </em>
+                        <div>
+                            {comment.text}
+                            {comment.user_id === currentUser.id && <button 
+                                className="btn btn-outline-secondary btn-sm"
+                                onClick={() => deleteComment(comment.id)}
+                            >Delete</button>}
+                        </div>
                     </div>
                 </div>
             </div>
