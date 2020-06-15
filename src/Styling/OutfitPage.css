@@ -34,3 +34,12 @@
     box-shadow:0 8px 20px 0px rgba(0, 4, 11, 0.577);
     cursor:pointer;
 }
+
+.outfit-name{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.edit-btn{
+    margin-left: 8px;
+}

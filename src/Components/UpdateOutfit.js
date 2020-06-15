@@ -34,7 +34,9 @@ const UpdateOutfit = props => {
         <div className="outfit-detail">
             <form className="form-inline my-2 my-lg-0" onSubmit={handleSave}>
                 <input className="form-control" type="text" value={name} onChange={e => setName(e.target.value)}/>
-                <button className="btn btn-outline-secondary btn-sm" type="submit">Save</button>
+                <div className="edit-btn">
+                    <button className="btn btn-outline-secondary btn-sm" type="submit">Save</button>
+                </div>
             </form>
         </div>
     )

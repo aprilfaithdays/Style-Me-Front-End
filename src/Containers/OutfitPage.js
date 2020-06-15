@@ -20,6 +20,9 @@ const OutfitPage = props => {
     
     const [edit, setEdit] = useState(false)
     const [update, setUpdate] = useState(false)
+    
+    const buttonStyle = "btn btn-outline-secondary btn-sm"
+    const buttonWarning = "btn btn-outline-danger btn-sm "
 
     useEffect(() => {
         fetchOutfit()
@@ -59,15 +62,43 @@ const OutfitPage = props => {
     const creatorAccess = () => (
         <div>
             {update === false && 
-            <div>
-                <button className="btn btn-outline-secondary btn-sm" onClick={() => setUpdate(true)}>Update</button>
-                <button className="btn btn-outline-secondary btn-sm" onClick={handleDelete}>Delete</button>
+            <div className="outfit-name">
+                <div className="edit-btn">
+                    <button className={buttonStyle} onClick={() => setUpdate(true)}>Update Name</button>
+                </div>
+                <div className="edit-btn">
+                    <button type="button" className={buttonWarning} data-toggle="modal" data-target="#deleteWarning">
+                        Delete Outfit
+                    </button>
+                    <div className="modal fade" id="deleteWarning" tabIndex="-1" role="dialog" aria-labelledby="deleteWarningTitle" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLongTitle">Are you sure?</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    You can't undo this
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className={buttonStyle} data-dismiss="modal">Nevermind</button>
+                                    <button type="button" className={buttonWarning} data-dismiss="modal" onClick={handleDelete}>Yes, delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="edit-btn">
+                    <span className={buttonStyle} onClick={() => setEdit(false)}>✖︎</span>
+                </div>
             </div>}
         </div>
     )
 
     const editButton = () => (
-        edit ? creatorAccess() : <div><button className="btn btn-outline-secondary btn-sm" onClick={() => setEdit(true)}>Edit</button></div>
+        edit ? creatorAccess() : <div><button className={buttonStyle} onClick={() => setEdit(true)}>Edit</button></div>
     )
 
     const outfitPrice = () => (
@@ -97,8 +128,13 @@ const OutfitPage = props => {
                             </div>
                         </div>
                         <div className="outfit-details">
-                            {update ? <UpdateOutfit setInfo={setInfo} id={id} name={outfit.name}/> : <h4>{outfit.name}</h4> }
-                            {user.id === currentUser.id  ? editButton() : <em>Created by: {user.name}</em> }<br/>
+                            <div className="outfit-name"> 
+                                {update ? <UpdateOutfit setInfo={setInfo} id={id} name={outfit.name}/> : <h4>{outfit.name} </h4> }
+                                <div className="edit-btn">
+                                    {user.id === currentUser.id  && editButton()}
+                                </div>
+                            </div>
+                            <em>Created by: {user.name}</em><br/>
                             Price: ${outfitPrice()} 
                         </div>
                     </div>
