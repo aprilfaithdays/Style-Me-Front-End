@@ -132,7 +132,7 @@ const OutfitPage = props => {
                             </div>
                         </div>
                         <div className="outfit-details">
-                            <div className="outfit-name"> 
+                            <div className="outfit-page-name"> 
                                 {update ? <UpdateOutfit setInfo={setInfo} id={id} name={outfit.name}/> : <h4>{outfit.name} </h4> }
                                 <div className="edit-btn">
                                     {user.id === currentUser.id  && editButton()}

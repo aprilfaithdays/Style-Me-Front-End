@@ -47,10 +47,10 @@ const Login = props => {
             <div className="auth-form">
                 <h5>Login</h5>
                 <form onSubmit={handleSubmit}>
-                    <small><b>Username:</b></small>
-                    <input className="form-control form-control-sm" type="text" onChange={e => setUsername(e.target.value)} value={username}/>
-                    <small><b>Password:</b></small>
-                    <input className="form-control form-control-sm" type="password" onChange={e => setPassword(e.target.value)} value={password}/>
+                    <small><b>Username:</b></small><br/>
+                    <input className="auth-input" type="text" onChange={e => setUsername(e.target.value)} value={username}/><br/>
+                    <small><b>Password:</b></small><br/>
+                    <input className="auth-input" type="password" onChange={e => setPassword(e.target.value)} value={password}/>
                 <div className="submit-button">
                     <button className="btn btn-outline-secondary btn-sm">Login</button>
                 </div>

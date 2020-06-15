@@ -52,13 +52,29 @@
     cursor:pointer;
 }
 
-.outfit-name{
+.outfit-page-name{
     display: flex;
-    flex-wrap: wrap;
+    justify-content: left; 
 }
 
 .edit-btn{
     margin-left: 8px;
+}
+
+.update-input{
+    width: 200px;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.update-input[type=text] {
+    border: none;
+    border-bottom: 1px solid rgb(41, 42, 46);
+    background-color: rgba(248, 247, 247, 0.781);
+}
+
+.update-input[type=text]:focus {
+    outline: none;
 }
 
 .comments{
@@ -69,6 +85,16 @@
     padding-right: 15px;
     padding-top: 15px;
 
+}
+
+.cmt-input[type=text] {
+    border: none;
+    border-bottom: 1px solid rgb(41, 42, 46);
+    background-color: rgba(245, 243, 243, 0.678);
+}
+
+.cmt-input[type=text]:focus {
+    outline: none;
 }
 
 .comment-img{

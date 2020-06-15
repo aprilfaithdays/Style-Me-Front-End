@@ -37,13 +37,13 @@ const SignUp = props => {
             <h5>Sign Up</h5>
             <form onSubmit={handleSignUp}>
                 <small><b>Name:</b></small>
-                <input className="form-control form-control-sm" type="text" value={name} onChange={e => setName(e.target.value)} />
+                <input className="auth-input" type="text" value={name} onChange={e => setName(e.target.value)} />
                 <small><b>Username:</b></small>
-                <input className="form-control form-control-sm" type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                <input className="auth-input" type="text" value={username} onChange={e => setUsername(e.target.value)} />
                 <small><b>Password:</b></small>
-                <input className="form-control form-control-sm" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                <input className="auth-input" type="password" value={password} onChange={e => setPassword(e.target.value)} />
                 <small><b>Confirm Password:</b></small>
-                <input className="form-control form-control-sm" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                <input className="auth-input" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
                 {match === false && <small className="error form-text">*Passwords don't match.</small>}
                 <div className="submit-button">
                     <button className="btn btn-outline-secondary btn-sm" type="submit">Sign Up</button>
