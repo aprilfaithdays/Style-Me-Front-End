@@ -9,7 +9,15 @@ const OutfitComments = props => {
     
     const renderComments = () => {
         const list = props.comments
+        list.sort((a,b) => b.id - a.id)
         return list.map(comment => renderComment(comment))
+    }
+
+    const deleteComment = id => {
+        fetch(`http://localhost:3000/comments/${id}`, {
+            method: 'DELETE'
+        })
+        props.removeComment(id);
     }
 
     const renderComment = comment =>{
@@ -25,7 +33,7 @@ const OutfitComments = props => {
                         {comment.text}
                         {comment.user_id === currentUser.id && <button 
                             className="btn btn-outline-secondary btn-sm"
-                            onClick={() => props.deleteComment(comment.id)}
+                            onClick={() => deleteComment(comment.id)}
                         >Delete</button>}
                     </div>
                 </div>
@@ -35,7 +43,7 @@ const OutfitComments = props => {
 
     return(
         <div>
-            Map out the comments~
+            <b>Comments</b>
             {renderComments()}
         </div>
     )

@@ -11,7 +11,6 @@ import CommentForm from '../Components/CommentForm';
 const OutfitPage = props => {
     const id = parseInt(props.match.params.id,0)
     const outfitUrl = `http://localhost:3000/outfits/${id}`
-    const cmtsUrl = 'http://localhost:3000/comments'
 
     const [currentUser] = useContext(CurrentUserContext)
     const [outfits, setOutfits] = useContext(OutfitsContext)
@@ -41,7 +40,7 @@ const OutfitPage = props => {
     }
 
     const getComments = () => {
-        fetch(cmtsUrl)
+        fetch('http://localhost:3000/comments')
         .then(res => res.json())
         .then(res => filterComments(res))
     }
@@ -74,12 +73,9 @@ const OutfitPage = props => {
         const updated = list.filter(outfit => outfit.id !== id)
         setOutfits(updated)
     }
-
-    const deleteComment = id => {
-        fetch(`${cmtsUrl}/${id}`, {
-            method: 'DELETE'
-        })
-        removeComment(id);
+    
+    const postComment = res => {
+        setComments([...comments, res])
     }
 
     const removeComment = id => {
@@ -147,8 +143,8 @@ const OutfitPage = props => {
                         </div>
                     </div>
                     <div className='cmt-side'>
-                        <CommentForm id={id} />
-                        <OutfitComments comments={comments} deleteComment={deleteComment}/>
+                        <CommentForm id={id} postComment={postComment}/>
+                        <OutfitComments comments={comments} removeComment={removeComment}/>
                     </div>
                 </div>
         </div>
