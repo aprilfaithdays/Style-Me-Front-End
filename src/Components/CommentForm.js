@@ -33,7 +33,7 @@ const CommentForm = props => {
     const comment = () => (
         <div>
             <form onSubmit={e => addComment(e)}>
-                <input type="text" value={text} onChange={e => setText(e.target.value)}/>
+                <input className="cmt-input" type="text" value={text} onChange={e => setText(e.target.value)}/>
             </form>
         </div>
     )

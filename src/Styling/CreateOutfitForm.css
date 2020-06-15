@@ -22,6 +22,8 @@
 .outfit-name{
     padding-left: 30px;
     padding-right: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .select-product{
@@ -29,3 +31,16 @@
     width: auto;
 }
 
+.create-input{
+    width: 220px;
+}
+
+.create-input[type=text] {
+    border: none;
+    border-bottom: 1px solid rgb(41, 42, 46);
+    background-color: rgba(255, 255, 255, 0.692);
+}
+
+.create-input[type=text]:focus {
+    outline: none;
+}

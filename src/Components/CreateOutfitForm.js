@@ -92,7 +92,7 @@ const CreateOutfitForm = props => {
 
     const nameOutfit = () => (
         <div className="outfit-name">
-            <input className="form-control form-control-sm" type="text" placeholder="Outfit Name" onChange={e => setNewName(e.target.value)} value={newName}/>
+            <input className="create-input" type="text" placeholder="Outfit Name" onChange={e => setNewName(e.target.value)} value={newName}/>
         </div>
     )
 
