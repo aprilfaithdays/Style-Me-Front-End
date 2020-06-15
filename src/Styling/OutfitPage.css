@@ -3,6 +3,16 @@
     margin-top: 10px;
 }
 
+.outfit-side{
+    width: 60%;
+}
+
+.cmt-side{
+    width: 40%;
+    padding-left: 25px;
+    background-color: rgba(241, 240, 240, 0.76);
+}
+
 .center-card{
     display: flex;
     flex-wrap: wrap;
@@ -42,4 +52,35 @@
 
 .edit-btn{
     margin-left: 8px;
+}
+
+.comments{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 95%;
+    padding-right: 15px;
+    padding-top: 15px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.comment-img{
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.cmt-text{
+    margin-left: 10px;
+}
+
+.cmt-created{
+    margin-left: 10px;
+    font-size: small;
+}
+
+span{
+    margin-left: 10px;
+
 }
