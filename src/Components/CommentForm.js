@@ -9,8 +9,10 @@ const CommentForm = props => {
     const buttonStyle = "btn btn-outline-secondary btn-sm"
     const [currentUser] = useContext(CurrentUserContext)
     const [text, setText] = useState('')
+    const [addCmt, setAddCmt] = useState(false)
 
-    const addComment = () => {
+    const addComment = e => {
+        e.preventDefault()
         const user_id = parseInt(currentUser.id, 0)
         fetch('http://localhost:3000/comments', {
             method: 'POST',
@@ -22,36 +24,29 @@ const CommentForm = props => {
         })
         .then(res => res.json())
         .then(res => {
-            console.log(res);
-            setText('')
+            props.postComment(res);
+            setText('');
+            setAddCmt(false)
         })
     }
 
+    const comment = () => (
+        <div>
+            <form onSubmit={e => addComment(e)}>
+                <input type="text" value={text} onChange={e => setText(e.target.value)}/>
+            </form>
+        </div>
+    )
+
+    const cmtBtn = () => (
+        <div>
+            <button className={buttonStyle} onClick={() => setAddCmt(true)}> Add Comment</button>
+        </div>
+    )
+
     return(
         <div>
-            <button type="button" className={buttonStyle} data-toggle="modal" data-target="#commentOutfit" data-whatever="@mdo">Add Comment</button>
-            <div className="modal fade" id="commentOutfit" tabIndex="-1" role="dialog" aria-labelledby="commentOutfitLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="commentOutfitLabel">Add Comment</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        <form>
-                        <div className="form-group">
-                            <textarea className="form-control" id="message-text" value={text} onChange={e => setText(e.target.value)}></textarea>
-                        </div>
-                        </form>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className={buttonStyle} data-dismiss="modal" onClick={addComment}>Post</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
+            {addCmt ? comment() : cmtBtn() }
         </div>
     )
 }
