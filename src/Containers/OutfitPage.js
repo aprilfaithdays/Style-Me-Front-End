@@ -10,7 +10,7 @@ import CommentForm from '../Components/CommentForm';
 
 const OutfitPage = props => {
     const id = parseInt(props.match.params.id,0)
-    const url = `http://localhost:3000/outfits/${id}`
+    const outfitUrl = `http://localhost:3000/outfits/${id}`
 
     const [currentUser] = useContext(CurrentUserContext)
     const [outfits, setOutfits] = useContext(OutfitsContext)
@@ -23,18 +23,31 @@ const OutfitPage = props => {
     
     const [edit, setEdit] = useState(false)
     const [update, setUpdate] = useState(false)
+    const [comments, setComments] = useState([])
     
     const buttonStyle = "btn btn-outline-secondary btn-sm"
 
     useEffect(() => {
-        fetchOutfit()
+        fetchOutfit();
+        getComments();
         // eslint-disable-next-line
     }, [])
     
     const fetchOutfit = () => {
-        fetch(url)
+        fetch(outfitUrl)
         .then(res => res.json())
         .then(res => setInfo(res))
+    }
+
+    const getComments = () => {
+        fetch('http://localhost:3000/comments')
+        .then(res => res.json())
+        .then(res => filterComments(res))
+    }
+
+    const filterComments = res => {
+        const list = res.filter(comment => comment.outfit_id === id)
+        setComments(list)
     }
 
     const setInfo = res => {
@@ -48,7 +61,7 @@ const OutfitPage = props => {
     }
 
     const handleDelete = () => {
-        fetch(url, {
+        fetch(outfitUrl, {
             method: 'DELETE'
         })
         removeOutfit(id);
@@ -122,7 +135,7 @@ const OutfitPage = props => {
                     <div className='col-sm-4'>
                         Comments section
                         <CommentForm id={id} />
-                        <OutfitComments />
+                        <OutfitComments comments={comments}/>
                     </div>
                 </div>
         </div>
