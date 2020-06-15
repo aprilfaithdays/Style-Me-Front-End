@@ -19,7 +19,7 @@ const SignUp = props => {
     }
 
     const addUser = () => {
-        const img_url = 'https://t4america.org/wp-content/uploads/2016/10/Blank-User.jpg'
+        const img_url = 'https://s3.amazonaws.com/pure_charity/uploads/production/avatar/image/179257/large_blank-profile-picture-973460_1280.png'
         fetch('http://localhost:3000/users', {
             method: 'POST',
             headers: {

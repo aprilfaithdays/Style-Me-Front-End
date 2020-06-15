@@ -11,6 +11,7 @@ import CommentForm from '../Components/CommentForm';
 const OutfitPage = props => {
     const id = parseInt(props.match.params.id,0)
     const outfitUrl = `http://localhost:3000/outfits/${id}`
+    const cmtsUrl = 'http://localhost:3000/comments'
 
     const [currentUser] = useContext(CurrentUserContext)
     const [outfits, setOutfits] = useContext(OutfitsContext)
@@ -40,7 +41,7 @@ const OutfitPage = props => {
     }
 
     const getComments = () => {
-        fetch('http://localhost:3000/comments')
+        fetch(cmtsUrl)
         .then(res => res.json())
         .then(res => filterComments(res))
     }
@@ -72,6 +73,19 @@ const OutfitPage = props => {
         const list = [...outfits]
         const updated = list.filter(outfit => outfit.id !== id)
         setOutfits(updated)
+    }
+
+    const deleteComment = id => {
+        fetch(`${cmtsUrl}/${id}`, {
+            method: 'DELETE'
+        })
+        removeComment(id);
+    }
+
+    const removeComment = id => {
+        const list = [...comments]
+        const updated = list.filter(comment => comment.id !== id)
+        setComments(updated)
     }
 
     const creatorAccess = () => (
@@ -113,7 +127,7 @@ const OutfitPage = props => {
     return(
         <div className="outfit-page">
                 <div className='row'>
-                    <div className='col-sm-8'>
+                    <div className='outfit-side'>
                         <div className="center-card">
                             <div className="outfit-page-card">
                                 {productDetail(top)}
@@ -132,10 +146,9 @@ const OutfitPage = props => {
                             Price: ${outfitPrice()} 
                         </div>
                     </div>
-                    <div className='col-sm-4'>
-                        Comments section
+                    <div className='cmt-side'>
                         <CommentForm id={id} />
-                        <OutfitComments comments={comments}/>
+                        <OutfitComments comments={comments} deleteComment={deleteComment}/>
                     </div>
                 </div>
         </div>
