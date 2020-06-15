@@ -5,13 +5,26 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 import { useState } from 'react';
 
 const CommentForm = props => {
-    const outfitId = props.id
+    const outfit_id = props.id
     const buttonStyle = "btn btn-outline-secondary btn-sm"
     const [currentUser] = useContext(CurrentUserContext)
-    const [cmt, setCmt] = useState('')
+    const [text, setText] = useState('')
 
     const addComment = () => {
-        // need to update my backend first
+        const user_id = parseInt(currentUser.id, 0)
+        fetch('http://localhost:3000/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ outfit_id, user_id, text })
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            setText('')
+        })
     }
 
     return(
@@ -29,13 +42,12 @@ const CommentForm = props => {
                     <div className="modal-body">
                         <form>
                         <div className="form-group">
-                            <textarea className="form-control" id="message-text" value={cmt} onChange={e => setCmt(e.target.value)}></textarea>
+                            <textarea className="form-control" id="message-text" value={text} onChange={e => setText(e.target.value)}></textarea>
                         </div>
                         </form>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className={buttonStyle} data-dismiss="modal">Close</button>
-                        <button type="button" className={buttonStyle} onClick={addComment}>Add Comment</button>
+                        <button type="button" className={buttonStyle} data-dismiss="modal" onClick={addComment}>Post</button>
                     </div>
                     </div>
                 </div>
