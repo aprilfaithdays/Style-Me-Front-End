@@ -12,7 +12,12 @@ const Navbar = props => {
 
     return(
         <div className="header">
-            <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light" style={
+                padding-bottom: 5px;
+                padding-top: 5px;
+                padding-right: 15px;
+                padding-left: 15px;
+            }>
                 <Link to ='/' className="navbar-brand">Style Me</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -38,7 +43,13 @@ const Navbar = props => {
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                         <span className="navbar-text"><em> Hi {currentUser.name}</em></span>
-                        <nav className="navbar navbar-light bg-light">
+                        <nav className="navbar navbar-light bg-light" 
+                            style="
+                                padding-bottom: 5px;
+                                padding-top: 5px;
+                                padding-right: 10px;
+                                padding-left: 10px;
+                                width: 60px;">
                             <Link to="/" className="navbar-brand">
                                 <img src={currentUser.img_url} width="30" height="30" className="d-inline-block align-top nav-img" alt={currentUser.name} loading="lazy" />
                             </Link>
