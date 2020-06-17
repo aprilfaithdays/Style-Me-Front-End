@@ -143,9 +143,11 @@ const OutfitPage = props => {
                         </div>
                     </div>
                     <div className='cmt-side'>
-                        <CommentForm id={id} postComment={postComment}/>
-                        <div className="render-cmts">
-                            <OutfitComments comments={comments} removeComment={removeComment}/>
+                        <div className="cmt-width">
+                            <CommentForm id={id} postComment={postComment}/>
+                            <div className="render-cmts">
+                                <OutfitComments comments={comments} removeComment={removeComment}/>
+                            </div>
                         </div>
                     </div>
                 </div>
