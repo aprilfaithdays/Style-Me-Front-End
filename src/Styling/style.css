@@ -16,12 +16,12 @@ body {
 
 .header{
     background-color: rgb(255, 255, 255);
-    height: 5vh;
+    height: 7vh;
     width: 100%;
 }
 
 .content{
-    height: 90vh;
+    height: 88vh;
     width: 100%;
     overflow-x: hidden;
     overflow-y: show;
@@ -52,8 +52,8 @@ h3{
 
 /* Navbar */
 
-.log-out-btn{
-    margin-left: 20px;
+.nav-img{
+    border-radius: 50%;
 }
 
 /* Create Outfit Page (Favorites List) , Product Index Pages */

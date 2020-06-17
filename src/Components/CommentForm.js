@@ -33,14 +33,17 @@ const CommentForm = props => {
     const comment = () => (
         <div>
             <form onSubmit={e => addComment(e)}>
-                <input className="cmt-input" type="text" value={text} onChange={e => setText(e.target.value)}/>
+                <textarea className="cmt-input" type="text" value={text} onChange={e => setText(e.target.value)}/>
+                <div className="post-btn">
+                    <button className={buttonStyle} type="submit">Post</button>
+                </div>
             </form>
         </div>
     )
 
     const cmtBtn = () => (
-        <div>
-            <button className={buttonStyle} onClick={() => setAddCmt(true)}> Add Comment</button>
+        <div className="add-comment">
+            <button className={buttonStyle} onClick={() => setAddCmt(true)}>Add Comment</button>
         </div>
     )
 
