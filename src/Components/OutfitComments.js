@@ -6,6 +6,7 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 
 const OutfitComments = props => {
     const [currentUser] = useContext(CurrentUserContext)
+    // const []
     
     const renderComments = () => {
         const list = props.comments
@@ -22,23 +23,28 @@ const OutfitComments = props => {
 
     const renderComment = comment =>{
         return (
-            <div>
-                <div key={comment.id} className="comments">
-                    <img src={comment.user.img_url} alt={comment.user.name} className="comment-img"/>
-                    <div className="cmt-text">
-                        <b>{comment.user.name}</b>
+            <div key={comment.id} className="cmt-section">
+                <div className="cmt-img">
+                    <img className="comment-img" src={comment.user.img_url} alt={comment.user.name}/>
+                </div>
+                <div className="cmt-info">
+                    <div>
+                        <b>
+                            {comment.user.name}
+                        </b>
                         <em className="cmt-created">
                             <Moment fromNow>{comment.created_at}</Moment>
                         </em>
-                        <div>
-                            {comment.text}
-                            {comment.user_id === currentUser.id && <button 
-                                className="btn btn-outline-secondary btn-sm"
-                                onClick={() => deleteComment(comment.id)}
-                            >Delete</button>}
-                        </div>
+                        {comment.user_id === currentUser.id && <span 
+                            className="del-btn"
+                            onClick={() => deleteComment(comment.id)}
+                        ><em>-delete-</em></span>}
+                    </div>
+                    <div>
+                        {comment.text}
                     </div>
                 </div>
+
             </div>
         )
     }
