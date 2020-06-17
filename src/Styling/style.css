@@ -16,12 +16,12 @@ body {
 
 .header{
     background-color: rgb(255, 255, 255);
-    height: 7vh;
+    height: 5vh;
     width: 100%;
 }
 
 .content{
-    height: 88vh;
+    height: 90vh;
     width: 100%;
     overflow-x: hidden;
     overflow-y: show;
@@ -37,7 +37,7 @@ body {
 }
 
 .style-me{
-    padding-top: 15px;
+    padding-top: 12px;
 }
 
 h3{
@@ -47,13 +47,33 @@ h3{
 .product-img{
     height: 250px;
     width: 200px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 /* Navbar */
 
+.nav-style{
+    padding-top: 8px;
+    padding-bottom: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 50px;
+}
+
+.img-style{
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 40px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
 .nav-img{
     border-radius: 50%;
+}
+
+.navbar-text{
+    margin-right: 25px;
 }
 
 /* Create Outfit Page (Favorites List) , Product Index Pages */
