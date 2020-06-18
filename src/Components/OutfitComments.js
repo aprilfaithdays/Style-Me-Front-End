@@ -51,6 +51,7 @@ const OutfitComments = props => {
 
     return(
         <div>
+            {props.comments.length}
             <b>Comments</b>
             {renderComments()}
         </div>

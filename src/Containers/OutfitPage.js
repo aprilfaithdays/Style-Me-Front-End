@@ -138,8 +138,12 @@ const OutfitPage = props => {
                                     {user.id === currentUser.id  && editButton()}
                                 </div>
                             </div>
-                            <em>Created by: {user.name}</em><br/>
-                            Price: ${outfitPrice()} 
+                            <img className="profile-img" src={user.img_url} height="45" width="45" alt={user.name}/>
+                            <b>{user.name}</b>
+                            <p>
+                            Total Price: ${outfitPrice()}<br/>
+                            Season(s):
+                            </p>
                         </div>
                     </div>
                     <div className='cmt-side'>

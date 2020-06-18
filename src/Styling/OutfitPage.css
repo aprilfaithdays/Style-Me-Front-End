@@ -172,3 +172,7 @@ span{
     margin-right: 15px;
     text-align: right;
 }
+
+.profile-img{
+    border-radius: 50%;
+}
