@@ -42,18 +42,22 @@ const ProductCard = props => {
     }
 
     return(
-        <div className="outfit-list">
-            <h3 className="title">{product.name}</h3>
-            <div className="row">
-                <div className="col-sm-4">
-                    <img className="product-img" src={product.img_url} alt="product"/>
-                </div>
-                <div className="col-sm-8">
-                    $ {product.price} - {product.color}
+        <div>
+            <div className="product-info">
+                <h3 className="title">{product.name}</h3>
+                <div className="row">
+                    <div className="col-sm-4">
+                        <img className="product-img" src={product.img_url} alt="product"/>
+                    </div>
+                    <div className="col-sm-8">
+                        $ {product.price} - {product.color}
+                    </div>
                 </div>
             </div>
-            {renderOutfit()}
-            {/* {console.log(outfits)} */}
+                <h4>Outfits Created with this Product:</h4>
+            <div className="outfit-list">
+                {renderOutfit()}
+            </div>
         </div>
     )
 }
