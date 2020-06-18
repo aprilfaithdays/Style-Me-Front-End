@@ -1,20 +1,48 @@
 import React, { useState, useEffect } from 'react';
+import OutfitCard from './OutfitCard';
+import { useContext } from 'react';
+import { OutfitsContext } from '../Context/Store';
 
 const ProductCard = props => {
     const [product, setProduct] = useState('')
+    const [outfits] = useContext(OutfitsContext)
     const id = props.id
     const category = props.category
 
     useEffect(() => {
-        fetch(`http://localhost:3000/${category}/${id}`)
-        .then(res => res.json())
-        .then(res => setProduct(res))
+        getProduct()
         // eslint-disable-next-line 
     }, [])
 
+    const getProduct = () => {
+        fetch(`http://localhost:3000/${category}/${id}`)
+        .then(res => res.json())
+        .then(res => setProduct(res))
+    }
+
+    const productOutfits = () => {
+        const list = [...outfits]
+        let productList 
+        if (category === 'tops') {
+            productList = list.filter(outfit => outfit.top_id === id)
+        } if (category === 'bottoms') {
+            productList = list.filter(outfit => outfit.bottom_id === id)
+        } if (category === 'shoes') {
+            productList = list.filter(outfit => outfit.shoe_id === id)
+        }
+        return productList
+    }
+
+    const renderOutfit = () => {
+        const list = [...productOutfits()]
+        list.sort((a, b) => b.id - a.id)
+        return list.map(outfit => { console.log(outfit)
+            return <OutfitCard key={outfit.id} outfit={outfit}/>
+        })
+    }
 
     return(
-        <div className="container">
+        <div className="outfit-list">
             <h3 className="title">{product.name}</h3>
             <div className="row">
                 <div className="col-sm-4">
@@ -24,7 +52,8 @@ const ProductCard = props => {
                     $ {product.price} - {product.color}
                 </div>
             </div>
-            {/* {console.log(product)} */}
+            {renderOutfit()}
+            {/* {console.log(outfits)} */}
         </div>
     )
 }
