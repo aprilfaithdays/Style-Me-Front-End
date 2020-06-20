@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { OutfitsContext } from '../Context/Store';
+import { OutfitsContext } from '../Context/Outfits';
 import { CurrentUserContext } from '../Context/CurrentUser';
 import OutfitCard from '../Components/OutfitCard';
 

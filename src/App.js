@@ -6,15 +6,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Store from './Context/Store';
 import StyleMe from './Containers/StyleMe';
 import CurrentUser from './Context/CurrentUser';
+import Outfits from './Context/Outfits';
 
 const App = () => {
   return (
     <>
       <Router>
         <Store>
+        <Outfits>
           <CurrentUser>
             <Route to='/' component={StyleMe} />
           </CurrentUser>
+        </Outfits>
         </Store>
       </Router>
     </>
