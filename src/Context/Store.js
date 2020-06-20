@@ -10,7 +10,6 @@ export const TabKeyContext = React.createContext('');
 const Store = ({children}) => {
     const abortController = new AbortController()
 
-    const [faveBottoms, setFaveBottoms] = useState([]);
     const [faveShoes, setFaveShoes] = useState([]);
     const [newTop, setNewTop] = useState('');
     const [newBottom, setNewBottom] = useState('');
@@ -18,16 +17,9 @@ const Store = ({children}) => {
     const [key, setKey] = useState('tops');
 
     useEffect(() => {
-        getFaveBottoms();
         getFaveShoes();
         // eslint-disable-next-line 
     },[])
-
-    const getFaveBottoms = async () => {
-        await fetch('http://localhost:3000/favorite_bottoms')
-        .then(res => res.json())
-        .then(res => setFaveBottoms(res))
-    }
 
     const getFaveShoes = async () => {
         await fetch('http://localhost:3000/favorite_shoes')
@@ -41,7 +33,6 @@ const Store = ({children}) => {
 
     return (
         <div>
-            <FaveBottomsContext.Provider value={[faveBottoms, setFaveBottoms]}>
             <FaveShoesContext.Provider value={[faveShoes, setFaveShoes]}>
             <NewTopContext.Provider value={[newTop, setNewTop]}>
             <NewBottomContext.Provider value={[newBottom, setNewBottom]}>
@@ -53,7 +44,6 @@ const Store = ({children}) => {
             </NewBottomContext.Provider>
             </NewTopContext.Provider>
             </FaveShoesContext.Provider>
-            </FaveBottomsContext.Provider>
             {cleanUp()}
         </div>
     )
