@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { NewTopContext, NewBottomContext, NewShoeContext } from '../Context/Store';
+import { NewTopContext, NewBottomContext, NewShoeContext } from '../Context/CreateOutfit';
 import { OutfitsContext } from '../Context/Outfits';
 import { CurrentUserContext } from '../Context/CurrentUser';
 import '../Styling/CreateOutfitForm.css'
