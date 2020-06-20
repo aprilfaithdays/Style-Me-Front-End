@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import OutfitCard from './OutfitCard';
 import { useContext } from 'react';
-import { OutfitsContext } from '../Context/Store';
+import { OutfitsContext } from '../Context/Outfits';
 
 const ProductCard = props => {
     const [product, setProduct] = useState('')

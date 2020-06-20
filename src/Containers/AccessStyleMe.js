@@ -8,7 +8,7 @@ import Bottoms from './Bottoms';
 import Bottom from './Bottom';
 import Shoes from './Shoes';
 import Shoe from './Shoe';
-import Outfits from './Outfits';
+import OutfitsContainer from './OutfitsContainer';
 import OutfitPage from './OutfitPage';
 import CreateOutfit from './CreateOutfit';
 import Footer from '../Components/Footer';
@@ -26,7 +26,7 @@ const AccessStyleMe = props => {
                     <Route exact path='/tops' component={Tops} />
                     <Route exact path='/bottoms' component={Bottoms} />
                     <Route exact path='/shoes' component={Shoes} />
-                    <Route exact path='/outfits' component={Outfits} />
+                    <Route exact path='/outfits' component={OutfitsContainer} />
                     <Route path='/tops/:id' component={Top} />
                     <Route path='/bottoms/:id' component={Bottom} />
                     <Route path='/shoes/:id' component={Shoe} />

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { OutfitsContext } from '../Context/Store';
+import { OutfitsContext } from '../Context/Outfits';
 import OutfitCard from '../Components/OutfitCard'
 
-const Outfits = () => {
+const OutfitsContainer = () => {
     const [outfits] = useContext(OutfitsContext)
 
     const renderOutfits = () => {
@@ -21,4 +21,4 @@ const Outfits = () => {
     )
 }
 
-export default Outfits
+export default OutfitsContainer
