@@ -9,6 +9,8 @@ import CurrentUser from './Context/CurrentUser';
 import Outfits from './Context/Outfits';
 import Tops from './Context/Tops';
 import Bottoms from './Context/Bottoms';
+import Shoes from './Context/Shoes';
+import FaveTops from './Context/FaveTops';
 
 const App = () => {
   return (
@@ -18,9 +20,13 @@ const App = () => {
           <Outfits>
             <Tops>
               <Bottoms>
-                <CurrentUser>
-                    <Route to='/' component={StyleMe} />
-                </CurrentUser>
+                <Shoes>
+                  <FaveTops>
+                    <CurrentUser>
+                      <Route to='/' component={StyleMe} />
+                    </CurrentUser>
+                  </FaveTops>
+                </Shoes>
               </Bottoms>
             </Tops>
           </Outfits>

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { FaveShoesContext, ShoesContext } from '../Context/Store';
+import { FaveShoesContext } from '../Context/Store';
+import { ShoesContext } from '../Context/Shoes';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 const ShoesContainer = () => {
