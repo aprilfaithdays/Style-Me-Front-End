@@ -4,7 +4,7 @@ import { FaveBottomsContext, BottomsContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 
-const Bottoms = () => {
+const BottomsContainer = () => {
     const faveBottomsUrl = 'http://localhost:3000/favorite_bottoms';
     const [currentUser] = useContext(CurrentUserContext);
     const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext);
@@ -78,4 +78,4 @@ const Bottoms = () => {
     )
 }
 
-export default Bottoms
+export default BottomsContainer

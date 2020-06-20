@@ -2,12 +2,12 @@ import React from 'react';
 import Navbar from '../Components/Navbar';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './HomePage';
-import Tops from './Tops';
-import Top from './Top';
-import Bottoms from './Bottoms';
-import Bottom from './Bottom';
-import Shoes from './Shoes';
-import Shoe from './Shoe';
+import TopsContainer from './TopsContainer';
+import TopContainer from './TopContainer';
+import BottomsContainer from './BottomsContainer';
+import BottomContainer from './BottomContainer';
+import ShoesContainer from './ShoesContainer';
+import ShoeContainer from './ShoeContainer';
 import OutfitsContainer from './OutfitsContainer';
 import OutfitPage from './OutfitPage';
 import CreateOutfit from './CreateOutfit';
@@ -23,13 +23,13 @@ const AccessStyleMe = props => {
             <div className="content style-me">
                 <Switch>
                     <Route exact path='/' component={HomePage} />
-                    <Route exact path='/tops' component={Tops} />
-                    <Route exact path='/bottoms' component={Bottoms} />
-                    <Route exact path='/shoes' component={Shoes} />
+                    <Route exact path='/tops' component={TopsContainer} />
+                    <Route exact path='/bottoms' component={BottomsContainer} />
+                    <Route exact path='/shoes' component={ShoesContainer} />
                     <Route exact path='/outfits' component={OutfitsContainer} />
-                    <Route path='/tops/:id' component={Top} />
-                    <Route path='/bottoms/:id' component={Bottom} />
-                    <Route path='/shoes/:id' component={Shoe} />
+                    <Route path='/tops/:id' component={TopContainer} />
+                    <Route path='/bottoms/:id' component={BottomContainer} />
+                    <Route path='/shoes/:id' component={ShoeContainer} />
                     <Route path='/outfits/new' component={CreateOutfit} />
                     <Route path='/outfits/:id' component={OutfitPage} />
                 </Switch>

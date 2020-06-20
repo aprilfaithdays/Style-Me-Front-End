@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 
-export const OutfitsContext = React.createContext('');
 export const TopsContext = React.createContext('');
 export const FaveTopsContext = React.createContext('');
 export const BottomsContext = React.createContext('');
@@ -15,7 +14,6 @@ export const TabKeyContext = React.createContext('');
 const Store = ({children}) => {
     const abortController = new AbortController()
 
-    const [outfits, setOutfits] = useState('');
     const [tops, setTops] = useState([]);
     const [faveTops, setFaveTops] = useState([]);
     const [bottoms, setBottoms] = useState([]);
@@ -28,7 +26,7 @@ const Store = ({children}) => {
     const [key, setKey] = useState('tops');
 
     useEffect(() => {
-        getOutfits();
+        // getOutfits();
         getTops();
         getFaveTops();
         getBottoms();
@@ -38,11 +36,6 @@ const Store = ({children}) => {
         // eslint-disable-next-line 
     },[])
 
-    const getOutfits = async () => {
-        await fetch('http://localhost:3000/outfits')
-        .then(res => res.json())
-        .then(res => setOutfits(res))
-    }
 
     const getTops = async () => {
         await fetch('http://localhost:3000/tops')
@@ -86,7 +79,6 @@ const Store = ({children}) => {
 
     return (
         <div>
-            <OutfitsContext.Provider value={[outfits, setOutfits]}>
             <TopsContext.Provider value={[tops, setTops]}>
             <BottomsContext.Provider value={[bottoms, setBottoms]}>
             <FaveTopsContext.Provider value={[faveTops, setFaveTops]}>
@@ -108,7 +100,6 @@ const Store = ({children}) => {
             </FaveTopsContext.Provider>
             </BottomsContext.Provider>
             </TopsContext.Provider>
-            </OutfitsContext.Provider>
             {cleanUp()}
         </div>
     )

@@ -3,7 +3,7 @@ import ProductList from '../Components/ProductList';
 import { FaveShoesContext, ShoesContext } from '../Context/Store';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
-const Shoes = () => {
+const ShoesContainer = () => {
     const faveShoesUrl = 'http://localhost:3000/favorite_shoes'
     const [currentUser] = useContext(CurrentUserContext)
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext)
@@ -78,4 +78,4 @@ const Shoes = () => {
     )
 }
 
-export default Shoes
+export default ShoesContainer

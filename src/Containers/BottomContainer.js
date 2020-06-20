@@ -1,18 +1,18 @@
 import React from 'react'
 import ProductCard from '../Components/ProductCard';
 
-const Shoe = props => {
+const BottomContainer = props => {
 
-    const renderShoe = () => {
+    const renderBottom = () => {
         const id = parseInt(props.match.params.id, 0)
-        return <ProductCard category='shoes' id={id}/>
+        return <ProductCard category='bottoms' id={id}/>
     }
 
     return (
         <div>
-            {renderShoe()}
+            {renderBottom()}
         </div>
     )
 }
 
-export default Shoe
+export default BottomContainer
