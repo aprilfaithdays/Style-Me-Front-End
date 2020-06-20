@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { FaveTopsContext, TopsContext } from '../Context/Store';
+import { FaveTopsContext } from '../Context/Store';
+import { TopsContext } from '../Context/Tops';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 
-const Tops = () => {
+const TopsContainer = () => {
     const faveTospUrl = 'http://localhost:3000/favorite_tops';
     const [currentUser] = useContext(CurrentUserContext);
     const [faveTops, setFaveTops] = useContext(FaveTopsContext);
@@ -78,4 +79,4 @@ const Tops = () => {
     )
 }
 
-export default Tops
+export default TopsContainer

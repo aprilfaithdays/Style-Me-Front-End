@@ -7,6 +7,7 @@ import Store from './Context/Store';
 import StyleMe from './Containers/StyleMe';
 import CurrentUser from './Context/CurrentUser';
 import Outfits from './Context/Outfits';
+import Tops from './Context/Tops';
 
 const App = () => {
   return (
@@ -14,9 +15,11 @@ const App = () => {
       <Router>
         <Store>
         <Outfits>
+        <Tops>
           <CurrentUser>
             <Route to='/' component={StyleMe} />
           </CurrentUser>
+        </Tops>
         </Outfits>
         </Store>
       </Router>
