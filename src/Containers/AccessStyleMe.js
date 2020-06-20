@@ -10,7 +10,7 @@ import ShoesContainer from './ShoesContainer';
 import ShoeContainer from './ShoeContainer';
 import OutfitsContainer from './OutfitsContainer';
 import OutfitPage from './OutfitPage';
-import CreateOutfit from './CreateOutfit';
+import CreateOutfitContainer from './CreateOutfitContainer';
 import Footer from '../Components/Footer';
 
 
@@ -30,7 +30,7 @@ const AccessStyleMe = props => {
                     <Route path='/tops/:id' component={TopContainer} />
                     <Route path='/bottoms/:id' component={BottomContainer} />
                     <Route path='/shoes/:id' component={ShoeContainer} />
-                    <Route path='/outfits/new' component={CreateOutfit} />
+                    <Route path='/outfits/new' component={CreateOutfitContainer} />
                     <Route path='/outfits/:id' component={OutfitPage} />
                 </Switch>
             </div>

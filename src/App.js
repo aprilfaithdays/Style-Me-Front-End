@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import './Styling/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Store from './Context/Store';
+import CreateOutfit from './Context/CreateOutfit';
 import StyleMe from './Containers/StyleMe';
 import CurrentUser from './Context/CurrentUser';
 import Outfits from './Context/Outfits';
@@ -18,7 +18,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <Store>
+        <CreateOutfit>
           <Outfits>
             <Tops>
               <Bottoms>
@@ -36,7 +36,7 @@ const App = () => {
               </Bottoms>
             </Tops>
           </Outfits>
-        </Store>
+        </CreateOutfit>
       </Router>
     </>
   )
