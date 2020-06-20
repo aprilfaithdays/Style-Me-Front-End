@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import ProductList from '../Components/ProductList';
-import { FaveShoesContext } from '../Context/Store';
+import { FaveShoesContext } from '../Context/FaveShoes';
 import { ShoesContext } from '../Context/Shoes';
 import { CurrentUserContext } from '../Context/CurrentUser';
 

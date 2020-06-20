@@ -11,15 +11,14 @@ const Login = props => {
     const [password, setPassword] = useState('')
 
     useEffect(()=> {
-        getUsers()
+        getUsers();
         // eslint-disable-next-line
     },[])
 
-    const getUsers = () => {
-        fetch('http://localhost:3000/users')
+    const getUsers = async () => {
+        await fetch('http://localhost:3000/users')
         .then(res => res.json())
         .then(res => setUsers(res))
-        return cleanUp()
     }
 
     const handleSubmit = e => {
@@ -38,9 +37,7 @@ const Login = props => {
         }
     }
 
-    const cleanUp = () => {
-        abortController.abort()
-    }
+    const cleanUp = () => abortController.abort() 
 
     const returningUser = () => {
         return(
@@ -65,6 +62,7 @@ const Login = props => {
     return(
         <div>
             <Welcome form={returningUser()} />
+            {cleanUp()}
         </div>
     )
 }
