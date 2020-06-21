@@ -13,30 +13,33 @@ import Shoes from './Context/Shoes';
 import FaveTops from './Context/FaveTops';
 import FaveBottoms from './Context/FaveBottoms';
 import FaveShoes from './Context/FaveShoes';
+import Favorites from './Context/Favorites';
 
 const App = () => {
   return (
     <>
       <Router>
-        <CreateOutfit>
-          <Outfits>
-            <Tops>
-              <Bottoms>
-                <Shoes>
-                  <FaveTops>
-                    <FaveBottoms>
-                      <FaveShoes>
-                        <CurrentUser>
-                          <Route to='/' component={StyleMe} />
-                        </CurrentUser>
-                      </FaveShoes>
-                    </FaveBottoms>
-                  </FaveTops>
-                </Shoes>
-              </Bottoms>
-            </Tops>
-          </Outfits>
-        </CreateOutfit>
+        <CurrentUser>
+          <CreateOutfit>
+            <Outfits>
+              <Tops>
+                <Bottoms>
+                  <Shoes>
+                    <FaveTops>
+                      <FaveBottoms>
+                        <FaveShoes>
+                          <Favorites>
+                            <Route to='/' component={StyleMe} />
+                          </Favorites>
+                        </FaveShoes>
+                      </FaveBottoms>
+                    </FaveTops>
+                  </Shoes>
+                </Bottoms>
+              </Tops>
+            </Outfits>
+          </CreateOutfit>
+        </CurrentUser>
       </Router>
     </>
   )
