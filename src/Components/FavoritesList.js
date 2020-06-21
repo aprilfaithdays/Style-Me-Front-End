@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react'
-import {Link} from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { NewTopContext, NewBottomContext, NewShoeContext, TabKeyContext } from '../Context/CreateOutfit';
 import { FaveShoesContext } from '../Context/FaveShoes';
 import { FaveBottomsContext } from '../Context/FaveBottoms';
@@ -10,32 +10,24 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
-import { MyTopsContext, MyBottomsContext } from '../Context/Favorites';
+import { MyTopsContext, MyBottomsContext, MyShoesContext } from '../Context/Favorites';
 
 const FavoritesList = () => {
     const [currentUser] = useContext(CurrentUserContext)
+
     const [faveTops, setFaveTops] = useContext(FaveTopsContext)
     const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext)
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext)
+
     const [, setNewTop] = useContext(NewTopContext)
     const [, setNewBottom] = useContext(NewBottomContext)
     const [, setNewShoe] = useContext(NewShoeContext)
+
     const [key, setKey] = useContext(TabKeyContext)
 
     const [myTops] = useContext(MyTopsContext)
     const [myBottoms] = useContext(MyBottomsContext)
-    
-    const myList = list => {
-        return list.filter(object => object.user_id === currentUser.id)
-    }
-    
-    const filterMyFaveShoes = () => {
-        const shoeList = [...faveShoes]
-        const myShoeList = myList(shoeList)
-        return myShoeList.map(fave => fave.shoe)
-    }
-
-    const [myShoes] = useState(filterMyFaveShoes())
+    const [myShoes] = useContext(MyShoesContext)
     
     const removeFavorite = (category, id) => {
         if (category === 'tops'){
@@ -112,13 +104,12 @@ const FavoritesList = () => {
                     {myBottoms.length !== 0 ? renderProducts(myBottoms) : emptyFaves('bottoms')}
                 </Tab>
                 <Tab eventKey="shoes" title="Shoes">
-                    {filterMyFaveShoes().length !== 0 ? renderProducts(myShoes) : emptyFaves('shoes')}
+                    {myShoes.length !== 0 ? renderProducts(myShoes) : emptyFaves('shoes')}
                 </Tab>
                 </Tabs>
             </Col>
         </Container>
     )
-
 }
 
 export default FavoritesList
