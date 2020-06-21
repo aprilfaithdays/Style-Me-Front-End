@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 const ProductList = props => {
     const product = props.product
     const buttonStyle = "btn btn-outline-secondary btn-sm"
+    const remButton = "btn btn-outline-danger btn-sm"
 
 
     const removeFave = () => (
         <div className="favorite-btn">
-            <button className={buttonStyle} onClick={props.removeFavorite} value={product.id}> Remove Favorites </button>
+            <button className={remButton} onClick={props.removeFavorite} value={product.id}> Remove Favorites </button>
         </div>
     )
 

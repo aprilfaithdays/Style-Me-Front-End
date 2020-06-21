@@ -3,20 +3,31 @@ import {Switch, Route} from 'react-router-dom'
 import FavoritesList from '../Components/FavoritesList';
 import CreateOutfitForm from '../Components/CreateOutfitForm';
 import { useContext } from 'react';
-import { MyTopsContext } from '../Context/Favorites';
+import { MyTopsContext, MyBottomsContext, MyShoesContext } from '../Context/Favorites';
 import { useEffect } from 'react';
 import { CurrentUserContext } from '../Context/CurrentUser';
 import { FaveTopsContext } from '../Context/FaveTops';
+import { FaveBottomsContext } from '../Context/FaveBottoms';
+import { FaveShoesContext } from '../Context/FaveShoes';
 
 const CreateOutfit = () => {
     const [currentUser] = useContext(CurrentUserContext)
+
     const [faveTops] = useContext(FaveTopsContext)
     const [, setMyTops] = useContext(MyTopsContext)
 
+    const [faveBottoms] = useContext(FaveBottomsContext)
+    const [, setMyBottoms] = useContext(MyBottomsContext)
+
+    const [faveShoes] = useContext(FaveShoesContext)
+    const [,setMyShoes] = useContext(MyShoesContext)
+
     useEffect(() => {
-        getMyTops()
+        getMyTops();
+        getMyBottoms();
+        getMyShoes();
         // eslint-disable-next-line 
-    },[faveTops])
+    },[faveTops, faveBottoms, faveShoes])
 
     const myList = list => {
         return list.filter(object => object.user_id === currentUser.id)
@@ -27,6 +38,20 @@ const CreateOutfit = () => {
         const myTopList = myList(topList)
         const tops = myTopList.map(fave => fave.top)
         setMyTops(tops)
+    }
+
+    const getMyBottoms = () => {
+        const bottomList = [...faveBottoms]
+        const myBottomList = myList(bottomList)
+        const bottoms = myBottomList.map(fave => fave.bottom)
+        setMyBottoms(bottoms)
+    }
+
+    const getMyShoes = () => {
+        const shoeList = [...faveShoes]
+        const myShoeList = myList(shoeList)
+        const shoes = myShoeList.map(fave => fave.shoe)
+        setMyShoes(shoes)
     }
 
     const createOutfitPage = props => {
