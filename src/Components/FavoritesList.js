@@ -10,7 +10,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
-import { MyTopsContext } from '../Context/Favorites';
+import { MyTopsContext, MyBottomsContext } from '../Context/Favorites';
 
 const FavoritesList = () => {
     const [currentUser] = useContext(CurrentUserContext)
@@ -23,16 +23,10 @@ const FavoritesList = () => {
     const [key, setKey] = useContext(TabKeyContext)
 
     const [myTops] = useContext(MyTopsContext)
+    const [myBottoms] = useContext(MyBottomsContext)
     
     const myList = list => {
         return list.filter(object => object.user_id === currentUser.id)
-    }
-
-    
-    const filterMyFaveBottoms = () => {
-        const bottomList = [...faveBottoms]
-        const myBottomList = myList(bottomList)
-        return myBottomList.map(fave => fave.bottom)
     }
     
     const filterMyFaveShoes = () => {
@@ -41,7 +35,6 @@ const FavoritesList = () => {
         return myShoeList.map(fave => fave.shoe)
     }
 
-    const [myBottoms] = useState(filterMyFaveBottoms())
     const [myShoes] = useState(filterMyFaveShoes())
     
     const removeFavorite = (category, id) => {
@@ -95,7 +88,7 @@ const FavoritesList = () => {
                     product={product} 
                     removeFavorite={removeFavorite}
                     selectFavorite={selectFavorite}
-                    />
+                />
             })
         }
     }
@@ -116,7 +109,7 @@ const FavoritesList = () => {
                     {myTops.length !== 0 ? renderProducts(myTops) : emptyFaves('tops')}
                 </Tab>
                 <Tab eventKey="bottoms" title="Bottoms">
-                    {filterMyFaveBottoms().length !== 0 ? renderProducts(myBottoms) : emptyFaves('bottoms')}
+                    {myBottoms.length !== 0 ? renderProducts(myBottoms) : emptyFaves('bottoms')}
                 </Tab>
                 <Tab eventKey="shoes" title="Shoes">
                     {filterMyFaveShoes().length !== 0 ? renderProducts(myShoes) : emptyFaves('shoes')}
