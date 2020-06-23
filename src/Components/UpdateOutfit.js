@@ -13,9 +13,7 @@ const UpdateOutfit = props => {
         fetch(url, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ 
-                name
-            })
+            body: JSON.stringify({ name })
         })
         .then(res => res.json())
         .then(res => {

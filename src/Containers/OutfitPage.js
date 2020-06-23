@@ -31,7 +31,7 @@ const OutfitPage = props => {
         fetchOutfit();
         getComments();
         // eslint-disable-next-line
-    }, [])
+    }, [currentUser])
     
     const fetchOutfit = () => {
         fetch(outfitUrl)

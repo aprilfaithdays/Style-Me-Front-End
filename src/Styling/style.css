@@ -6,6 +6,10 @@ body {
     background-attachment: fixed;
 }
 
+code {
+    font-family: 'Catamaran', sans-serif;
+  }
+
 :any-link{
     color: rgb(11, 119, 146);
 }
@@ -70,10 +74,26 @@ h3{
 
 .nav-img{
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .navbar-text{
     margin-right: 25px;
+}
+
+.updateIcon-input{
+    width: 100%;
+    font-size: 16px;
+}
+
+.updateIcon-input[type=text] {
+    border: none;
+    border-bottom: 1px solid rgb(41, 42, 46);
+    background-color:white;
+}
+
+.updateIcon-input[type=text]:focus {
+    outline: none;
 }
 
 /* Create Outfit Page (Favorites List) , Product Index Pages */
@@ -137,15 +157,6 @@ h3{
     box-shadow:0 8px 20px 0px rgba(0, 4, 11, 0.577);
     cursor:pointer;
 }
-
-
-/* Product Card */
-
-/* .product-info{
-
-} */
-
-
 
 
 /* - - - - - - - - - - - - - - - - - -  */
