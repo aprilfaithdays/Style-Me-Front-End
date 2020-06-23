@@ -6,7 +6,6 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 
 const OutfitComments = props => {
     const [currentUser] = useContext(CurrentUserContext)
-    // const []
     
     const renderComments = () => {
         const list = props.comments
@@ -49,11 +48,18 @@ const OutfitComments = props => {
         )
     }
 
+    const firstComment = () => (
+        <div>
+            <em>
+               <small>(Be the first to comment!)</small>
+            </em> 
+        </div>
+    )
+
     return(
         <div>
-            {props.comments.length}
             <b>Comments</b>
-            {renderComments()}
+            {props.comments.length > 0 ? renderComments() : firstComment()}
         </div>
     )
 }

@@ -87,11 +87,10 @@
 
 .cmt-input{
     width: 100%;
-    height: 28px;
+    height: 40px;
     margin-top: 15px;
     margin-bottom: 15px;
     overflow-y: hidden;
-
 }
 
 .cmt-input[type=text] {

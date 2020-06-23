@@ -1,13 +1,31 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../Context/CurrentUser';
+import { useState } from 'react';
 
 const Navbar = props => {
-    const [currentUser] = useContext(CurrentUserContext)
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
+    const [newIcon, setNewIcon] = useState('')
+    const buttonStyle = "btn btn-outline-secondary btn-sm"
 
     const logOut = () => {
         localStorage.removeItem('id')
         props.history.push('/login')
+    }
+
+    const handleUpdate = e => {
+        e.preventDefault()
+        const id = currentUser.id
+        fetch(`http://localhost:3000/users/${id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ img_url: newIcon })
+        })
+        .then(res => res.json())
+        .then(res => {
+            setCurrentUser(res);
+            setNewIcon('')
+        })
     }
 
     return(
@@ -17,7 +35,6 @@ const Navbar = props => {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                     <li className="nav-item dropdown active">
@@ -37,9 +54,9 @@ const Navbar = props => {
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                            <Link to="/">
-                                <img src={currentUser.img_url} width="30" height="30" className="d-inline-block align-top nav-img" alt={currentUser.name} loading="lazy" />
-                            </Link>
+                        <span data-toggle="modal" data-target="#deleteWarning">
+                            <img src={currentUser.img_url} width="30" height="30" className="d-inline-block align-top nav-img" alt={currentUser.name}/>
+                        </span>
                         <span className="navbar-text"> Hi {currentUser.name} ♡ </span>
                         <div className="log-out-btn">
                             <button className="btn btn-outline-secondary btn-sm" onClick={logOut}>Log Out</button>
@@ -47,6 +64,28 @@ const Navbar = props => {
                     </form>
                 </div>
             </nav>
+            <div className="modal fade" id="deleteWarning" tabIndex="-1" role="dialog" aria-labelledby="deleteWarningTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Update Your Profile Photo</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            Please enter an image address:<br/>
+                            <input type="text" className="updateIcon-input" value={newIcon} onChange={e => setNewIcon(e.target.value)}/>
+                            <small>
+                                <em><strong>Note: </strong> The image must be a square!</em>
+                            </small> 
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className={buttonStyle} data-dismiss="modal" onClick={handleUpdate}>Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
