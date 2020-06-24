@@ -5,7 +5,7 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 import { FaveTopsContext } from '../Context/FaveTops';
 
 const TopContainer = props => {
-    const id = parseInt(props.match.params.id, 0)
+    const id = parseInt(props.match.params.id, 0);
     const faveTospUrl = 'http://localhost:3000/favorite_tops';
     const [currentUser] = useContext(CurrentUserContext);
     const [faveTops, setFaveTops] = useContext(FaveTopsContext);
@@ -56,14 +56,13 @@ const TopContainer = props => {
 
     const renderTop = () => {
         const faveTopsIdList = faveTopsId();
-
         return <ProductCard 
             category='tops' 
             id={id}
             favorite={faveTopsIdList.includes(id) ? true: false}
             addFavorite={addFavorite} 
             removeFavorite={removeFavorite}
-            />
+        />
     }
 
     return (
