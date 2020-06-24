@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import OutfitCard from './OutfitCard';
 import { useContext } from 'react';
 import { OutfitsContext } from '../Context/Outfits';
+import '../Styling/ProductPage.css'
 
 const ProductCard = props => {
     const [product, setProduct] = useState('')
@@ -43,19 +44,14 @@ const ProductCard = props => {
 
     return(
         <div>
-            <div className="product-info">
+            <div className="product-section">
                 <h3 className="title">{product.name}</h3>
-                <div className="row">
-                    <div className="col-sm-4">
-                        <img className="product-img" src={product.img_url} alt="product"/>
-                    </div>
-                    <div className="col-sm-8">
-                        $ {product.price} - {product.color}
-                    </div>
+                <div className="center-img">
+                    <img className="show-img" src={product.img_url} alt="product"/>
                 </div>
             </div>
-                <h4>Outfits Created with this Product:</h4>
-            <div className="outfit-list">
+                <h5 className="section-title">- Outfits Created with this Product -</h5>
+            <div className="outfits-section">
                 {renderOutfit()}
             </div>
         </div>
