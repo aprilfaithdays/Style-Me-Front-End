@@ -21,7 +21,7 @@ h5{
     border-bottom: 1px solid rgb(148, 146, 146);
 }
 
-.center-img{
+.center{
     display: flex;
     justify-content: center;
 }
