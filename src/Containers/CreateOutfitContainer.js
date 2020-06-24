@@ -56,7 +56,7 @@ const CreateOutfit = () => {
 
     const createOutfitPage = props => {
         return (
-            <div>
+            <div id="create-outfit-page">
                 <h3 className="title">Create an Outfit!</h3>
                     <div className='row'>
                         <div className='col-sm-4'>

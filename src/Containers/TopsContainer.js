@@ -70,20 +70,20 @@ const TopsContainer = () => {
         });
     }
 
-    const filterTops = () => (
-        <form>
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    )
+    // const filterTops = () => (
+    //     <form>
+    //           <div class="form-group form-check">
+    //             <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+    //             <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    //         </div>
+    //         <button type="submit" class="btn btn-primary">Submit</button>
+    //     </form>
+    // )
 
     return(
         <div>
             <h3 className="title">Tops</h3>
-            {filterTops()}
+            {/* {filterTops()} */}
             <div className="product-list">
                 {renderTops()}
             </div>
