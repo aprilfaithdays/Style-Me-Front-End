@@ -5,10 +5,12 @@ import { OutfitsContext } from '../Context/Outfits';
 import '../Styling/ProductPage.css'
 
 const ProductCard = props => {
-    const [product, setProduct] = useState('')
-    const [outfits] = useContext(OutfitsContext)
     const id = props.id
     const category = props.category
+    const [product, setProduct] = useState('')
+    const [outfits] = useContext(OutfitsContext)
+    const buttonStyle = "btn btn-outline-secondary btn-sm"
+    const remButton = "btn btn-outline-danger btn-sm"
 
     useEffect(() => {
         getProduct()
@@ -42,12 +44,27 @@ const ProductCard = props => {
         })
     }
 
+    const removeFave = () => (
+        <div className="favorite-btn">
+            <button className={remButton} onClick={props.removeFavorite} value={id}> Remove Favorites </button>
+        </div>
+    )
+
+    const addFave = () => (
+        <div className="favorite-btn">
+            <button className={buttonStyle} onClick={props.addFavorite} value={id}> Add Favorites </button>
+        </div>
+    )
+
     return(
         <div>
             <div className="product-section">
                 <h3 className="title">{product.name}</h3>
-                <div className="center-img">
+                <div className="center">
                     <img className="show-img" src={product.img_url} alt="product"/>
+                </div>
+                <div className="center">
+                    { props.favorite ?  removeFave() : addFave()}
                 </div>
             </div>
                 <h5 className="section-title">- Outfits Created with this Product -</h5>
