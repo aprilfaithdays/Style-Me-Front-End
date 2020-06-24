@@ -8,7 +8,7 @@ const BottomContainer = props => {
     const id = parseInt(props.match.params.id, 0);
     const faveBottomsUrl = 'http://localhost:3000/favorite_bottoms';
     const [currentUser] = useContext(CurrentUserContext);
-    const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext)
+    const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext);
 
     const filterMyFaveBottoms = () => {
         const list = [...faveBottoms];

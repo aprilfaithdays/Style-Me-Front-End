@@ -5,11 +5,10 @@ import { ShoesContext } from '../Context/Shoes';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 const ShoesContainer = () => {
-    const faveShoesUrl = 'http://localhost:3000/favorite_shoes'
-    const [currentUser] = useContext(CurrentUserContext)
-    const [faveShoes, setFaveShoes] = useContext(FaveShoesContext)
-    const [shoes] = useContext(ShoesContext)
-
+    const faveShoesUrl = 'http://localhost:3000/favorite_shoes';
+    const [currentUser] = useContext(CurrentUserContext);
+    const [faveShoes, setFaveShoes] = useContext(FaveShoesContext);
+    const [shoes] = useContext(ShoesContext);
 
     const filterMyFaveShoes = () => {
         const list = [...faveShoes]
