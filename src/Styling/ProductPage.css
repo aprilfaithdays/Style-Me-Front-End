@@ -10,8 +10,8 @@
     padding-bottom: 35px;
 }
 
-h5{
-    color: rgb(85, 95, 104);
+h2{
+    color: rgb(55, 61, 66);
     text-align: center;
 }
 
@@ -30,9 +30,15 @@ h5{
     justify-content: center;
 }
 
+.center-imgs{
+    display: flex;
+    justify-content: center;
+}
+
 .show-img{
     width: 20%;
     height: auto;
+    /* box-shadow: 0 15px 3px 0 rgba(0, 0, 0, 0.2); */
 }
 
 .no-outfits{

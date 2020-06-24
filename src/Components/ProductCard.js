@@ -79,10 +79,11 @@ const ProductCard = props => {
     return(
         <div>
             <div className="product-section">
-                <h3 className="title">{product.name}</h3>
-                <div className="center">
+                <h2 className="title">{product.name}</h2>
+                <div className="center-imgs">
+                    <img className="show-img" src={product.live_view} alt="product"/>
                     <img className="show-img" src={product.img_url} alt="product"/>
-                    {/* <img className="show-img" src={product.img_url} alt="product"/> <------ Live view of the sweater */}
+                    <img className="show-img" src={product.back_view} alt="product"/>
                 </div>
                 <div className="center">
                     { props.favorite ?  removeFave() : addFave()}
