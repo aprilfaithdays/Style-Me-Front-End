@@ -105,9 +105,9 @@ const OutfitPage = props => {
         edit ? creatorAccess() : <div><button className={buttonStyle} onClick={() => setEdit(true)}>Edit</button></div>
     )
 
-    const outfitPrice = () => (
-        top.price + bottom.price + shoe.price
-    )
+    // const outfitPrice = () => (
+    //     top.price + bottom.price + shoe.price
+    // )
 
     const productDetail = product => {
         return (
@@ -133,17 +133,16 @@ const OutfitPage = props => {
                         </div>
                         <div className="outfit-details">
                             <div className="outfit-page-name"> 
-                                {update ? <UpdateOutfit setInfo={setInfo} id={id} name={outfit.name}/> : <h4>{outfit.name} </h4> }
+                                {update ? <UpdateOutfit setInfo={setInfo} id={id} name={outfit.name}/> : <h3>{outfit.name} </h3> }
                                 <div className="edit-btn">
                                     {user.id === currentUser.id  && editButton()}
                                 </div>
                             </div>
-                            <img className="profile-img" src={user.img_url} height="45" width="45" alt={user.name}/>
-                            <b>{user.name}</b>
-                            <p>
-                            Total Price: ${outfitPrice()}<br/>
-                            Season(s):
-                            </p>
+                            <div>
+                                Created By:
+                                <img className="profile-img" src={user.img_url} height="45" width="45" alt={user.name}/>
+                                <b>{user.name}</b>
+                            </div>
                         </div>
                     </div>
                     <div className='cmt-side'>

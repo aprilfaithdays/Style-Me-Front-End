@@ -71,14 +71,17 @@ const CreateOutfitForm = props => {
     const instructions = () => (
         <div id="instructions"> 
             <div className="instructions">Instructions:</div>
+            <p><b> Step 1: </b>Choose from your favorite products on the right:</p>
+            <ol>
+                <li>Select a top</li>
+                <li>Select a bottom</li>
+                <li>Select a shoe</li>
+            </ol>
+            <p><b>Step 2:</b> Name your outfit.</p> 
             <p>
-                1. Create an outfit by selecting from your favorite products on the the right.
-            </p> 
-            <p>
-                2. Once the outfit is complete, you can then name the outfit and select a season(s).
-            </p> 
-            <p>
-                3. The submit button will only pop up once everything has been completed.
+            <small>
+                Note: The submit button will only appear once everything has been completed.
+            </small>
             </p>
         </div>
     )

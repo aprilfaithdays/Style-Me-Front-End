@@ -54,7 +54,7 @@ const Navbar = props => {
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <span data-toggle="modal" data-target="#deleteWarning">
+                        <span data-toggle="modal" data-target="#updateProfilePhoto">
                             <img src={currentUser.img_url} width="30" height="30" className="d-inline-block align-top nav-img" alt={currentUser.name}/>
                         </span>
                         <span className="navbar-text"> Hi {currentUser.name} ♡ </span>
@@ -64,7 +64,7 @@ const Navbar = props => {
                     </form>
                 </div>
             </nav>
-            <div className="modal fade" id="deleteWarning" tabIndex="-1" role="dialog" aria-labelledby="deleteWarningTitle" aria-hidden="true">
+            <div className="modal fade" id="updateProfilePhoto" tabIndex="-1" role="dialog" aria-labelledby="updateProfilePhotoTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">

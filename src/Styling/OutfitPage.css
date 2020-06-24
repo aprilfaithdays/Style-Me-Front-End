@@ -29,16 +29,21 @@
 }
 
 .center-card{
+    height: 60%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 70px;
 }
 
 .outfit-page-card{
-    height: 310px;
-    width: 700px;
+    height: 100%;
+    width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
     box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.767);
@@ -47,8 +52,8 @@
 }
 
 .outfit-index-img{
-    height: 250px;
-    width: 200px;
+    height: auto;
+    width: 250px;
 }
 
 .outfit-index-img:hover{
@@ -60,9 +65,16 @@
     cursor:pointer;
 }
 
+.outfit-details{
+    width: 800px;
+    padding-left: 50px;
+    /* background-color: rgba(151, 199, 199, 0.801); */
+}
+
 .outfit-page-name{
     display: flex;
     justify-content: left; 
+    margin-bottom: 5px;
 }
 
 .edit-btn{
@@ -70,7 +82,7 @@
 }
 
 .update-input{
-    width: 200px;
+    width: 300px;
     font-weight: 500;
     font-size: 24px;
 }
@@ -174,4 +186,6 @@ span{
 
 .profile-img{
     border-radius: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
