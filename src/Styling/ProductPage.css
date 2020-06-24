@@ -3,9 +3,10 @@
 }
 
 .outfits-section{
-    padding-top: 15px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 15px;
     padding-bottom: 35px;
 }
 
@@ -15,10 +16,13 @@ h5{
 }
 
 .section-title{
-    margin-top: 15px;
+    margin-top: 50px;
     padding-bottom: 5px;
     border: none;
     border-bottom: 1px solid rgb(148, 146, 146);
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .center{
@@ -29,4 +33,15 @@ h5{
 .show-img{
     width: 20%;
     height: auto;
+}
+
+.no-outfits{
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 380px;
+    text-align: center;
+    background-color: rgba(219, 219, 219, 0.39);
+    border-radius: 15px;
 }
