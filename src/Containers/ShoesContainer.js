@@ -56,6 +56,7 @@ const ShoesContainer = () => {
 
     const renderShoes = () => {
         const list = [...shoes]
+        list.sort((a, b) => b.id - a.id)
         const faveShoes = faveShoesId()
         return list.map(shoe => {
             return <ProductList 

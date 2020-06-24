@@ -56,21 +56,39 @@ const ProductCard = props => {
         </div>
     )
 
+    const renderOutfitList = () => (
+        <div>
+            <h5 className="section-title">- Outfits Created with this Product -</h5>
+            <div className="outfits-section">
+                {renderOutfit()}
+            </div>
+        </div>
+    )
+
+    const noOutfitsYet = () => (
+        <div className="no-outfits">
+            <em>
+            Be the first to create an outfit with this product!<br/>
+            <small>
+                (Start by adding this to your favorites!)
+            </small>
+            </em>
+        </div>
+    )
+
     return(
         <div>
             <div className="product-section">
                 <h3 className="title">{product.name}</h3>
                 <div className="center">
                     <img className="show-img" src={product.img_url} alt="product"/>
+                    {/* <img className="show-img" src={product.img_url} alt="product"/> <------ Live view of the sweater */}
                 </div>
                 <div className="center">
                     { props.favorite ?  removeFave() : addFave()}
                 </div>
             </div>
-                <h5 className="section-title">- Outfits Created with this Product -</h5>
-            <div className="outfits-section">
-                {renderOutfit()}
-            </div>
+                {productOutfits().length > 0 ? renderOutfitList() : noOutfitsYet()}
         </div>
     )
 }

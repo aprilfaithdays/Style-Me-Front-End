@@ -57,6 +57,7 @@ const BottomsContainer = () => {
 
     const renderBottoms = () => {
         const list = [...bottoms];
+        list.sort((a, b) => b.id - a.id)
         const faveBottoms = faveBottomsId();
         return list.map(bottom => {
             return <ProductList 
