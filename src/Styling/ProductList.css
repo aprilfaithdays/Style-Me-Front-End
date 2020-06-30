@@ -1,0 +1,13 @@
+.header-section{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: beige;
+}
+
+.title{
+  width: 35%;
+}
+
+.filter-products{
+  width: 65%;
+}
