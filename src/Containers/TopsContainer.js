@@ -1,13 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import '../Styling/ProductList.css'
 import ProductList from '../Components/ProductList';
+import FilterOptionsForm from '../Components/FilterOptionsForm';
 import { FaveTopsContext } from '../Context/FaveTops';
 import { TopsContext } from '../Context/Tops';
 import { CurrentUserContext } from '../Context/CurrentUser';
-import '../Styling/ProductList.css'
-import FilterOptionsForm from '../Components/FilterOptionsForm';
-import { useState } from 'react';
-import Form from 'react-bootstrap/Form'
-
 
 
 const TopsContainer = () => {
@@ -15,7 +12,13 @@ const TopsContainer = () => {
     const [currentUser] = useContext(CurrentUserContext);
     const [faveTops, setFaveTops] = useContext(FaveTopsContext);
     const [tops] = useContext(TopsContext);
+
     const [filterColor, setFilterColor] = useState('')
+    // const [colorList, setColorList] = useState('')
+    const [filterMenu, setFilterMenu] = useState(false)
+
+    const buttonStyle = "btn btn-outline-info btn-sm"
+
 
     const filterMyFaveTops = () => {
         const list = [...faveTops];
@@ -63,7 +66,6 @@ const TopsContainer = () => {
 
     const renderTops = () => {
         const list = filteredTops();
-        list.sort((a, b) => b.id - a.id);
         const faveTopsIdList = faveTopsId();
         return list.map(top => {
             return <ProductList 
@@ -77,20 +79,26 @@ const TopsContainer = () => {
     }
 
     const colorsObject = () => {
-        const list = [...tops];
-        let options = {};
+        let list = [...tops];
+        let options = [];
+        let optionsObject = {}
         for(let i = 0; i < list.length; i++){
             let top = (list[i].color).split(" ")
             for(let j = 0; j < top.length; j++){
                 let color = top[j]
-                if(options[color]) {
-                    options[color]++
-                } else {
-                    options[color] = 1
-                }
+                options.push(color)
             }
         }
-        return options
+
+        options.sort((a, b) => a.localeCompare(b));
+        for(let color of options){
+           if(optionsObject[color]){
+            optionsObject[color]++
+           } else {
+            optionsObject[color] = 1
+           }
+        } 
+        return optionsObject
     }
     
     const colorsOptions = () => {
@@ -98,10 +106,10 @@ const TopsContainer = () => {
         let list = [];
 
         for(const [color, amount] of Object.entries(colors)){
-            list.push({color, amount})
+            list.push({color, amount, checked: false})
         }
 
-        return list;
+        return list
     }
 
     const renderOptions = () => {
@@ -110,8 +118,7 @@ const TopsContainer = () => {
             return(
                 <div key={index}>
                     <FilterOptionsForm 
-                        color={option.color} 
-                        amount={option.amount}
+                        option={option}
                         checkFilter={checkFilter}
                     />
                 </div>
@@ -121,33 +128,14 @@ const TopsContainer = () => {
 
     const checkFilter = e => {
         let update 
-        if(filterColor.includes(e)){
-            update = filterColor.filter(color => color !== e)
+        if(filterColor.includes(e.color)){
+            update = filterColor.filter(color => color !== e.color)
         } else {
-            update = [...filterColor, e]
+            update = [...filterColor, e.color]
         }
         setFilterColor(update)
+        console.log(filterColor)
     }    
-    
-    const filterTops = () => {
-
-        return(
-            <div>
-                options
-                <Form>
-                    <div className="mb-3">
-                        <Form.Check 
-                            type='checkbox'
-                            // id={}
-                            label="Clear Filter"
-                            onChange={() => setFilterColor('')}
-                        />
-                    </div>
-                </Form>
-                {renderOptions()}
-            </div>
-        )
-    }
     
     const filteredTops = () => {
         const list = [...tops];
@@ -163,12 +151,25 @@ const TopsContainer = () => {
                         }
                     }
                 })
-                // updated = list.filter(top => top.color.includes(colors))
             }
-        } else {
+            updated.sort((a, b) => a.color.localeCompare(b.color));
+        } if(filterColor.length === 0) {
             updated = list
         }
         return updated
+    }
+
+    const filterTops = () => {
+        return(
+            <div>
+                <button className={buttonStyle} onClick={() => setFilterMenu(!filterMenu)}>Filter By Color</button>
+                {filterMenu && 
+                <div className="render-options">
+                    {renderOptions()}
+                </div>
+                }
+            </div>
+        )
     }
     
     return(

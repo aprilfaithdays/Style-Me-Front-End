@@ -3,16 +3,28 @@ import Form from 'react-bootstrap/Form'
 
 
 const FilterOptionsForm = (props) => {
+    const option = props.option
+
+    const handleChange = () => {
+        let updated = {
+            color: option.color, 
+            amount: option.amount, 
+            checked: !option.checked
+        };
+
+
+        props.checkFilter(updated)
+    }
+
     return(
         <div>
             <Form>
                 <div className="mb-3">
-                    <Form.Check 
+                    <Form.Check
                         type='checkbox'
-                        // id={}
-                        value={props.color}
-                        label={`${props.color}(${props.amount})`}
-                        onChange={e => props.checkFilter(e.target.value)}
+                        // checked={option.checked}
+                        label={`${option.color} (${option.amount})`}
+                        onChange={handleChange}
                     />
                 </div>
             </Form>
@@ -21,15 +33,3 @@ const FilterOptionsForm = (props) => {
 }
 
 export default FilterOptionsForm
-
-// <Form>
-// <div key={`default-${props.key}`} className="mb-3">
-//     {['checkbox'].map(() => (
-//         <Form.Check 
-//             type='checkbox'
-//             // id={}
-//             label={`${props.color}(${props.amount})`}
-//         />
-//     </div>
-// ))}
-// </Form> 

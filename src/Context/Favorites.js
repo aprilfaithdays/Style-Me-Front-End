@@ -12,11 +12,11 @@ const Favorites = ({children}) => {
     return (
         <div>
             <MyTopsContext.Provider value={[myTops, setMyTops]}>
-            <MyBottomsContext.Provider value={[myBottoms, setMyBottoms]}>
-            <MyShoesContext.Provider value={[myShoes, setMyShoes]}>
-                {children}
-            </MyShoesContext.Provider>
-            </MyBottomsContext.Provider>
+                <MyBottomsContext.Provider value={[myBottoms, setMyBottoms]}>
+                    <MyShoesContext.Provider value={[myShoes, setMyShoes]}>
+                        {children}
+                    </MyShoesContext.Provider>
+                </MyBottomsContext.Provider>
             </MyTopsContext.Provider>
         </div>
     )
