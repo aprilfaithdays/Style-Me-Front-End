@@ -1,7 +1,6 @@
 .header-section{
   display: flex;
   flex-wrap: wrap;
-  background-color: beige;
 }
 
 .title{
@@ -10,4 +9,13 @@
 
 .filter-products{
   width: 65%;
+}
+
+.render-options{
+  height: 150px;
+  width: 200px;
+  overflow-y: auto;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  background-color: rgba(226, 226, 226, 0.466);
 }
