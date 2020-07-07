@@ -114,16 +114,7 @@ const TopsContainer = () => {
 
     const renderOptions = () => {
         const list = colorsOptions()
-        return list.map((option, index) => {
-            return(
-                <div key={index}>
-                    <FilterOptionsForm 
-                        option={option}
-                        checkFilter={checkFilter}
-                    />
-                </div>
-            )
-        })
+        return list.map((option, index) => <div key={index}><FilterOptionsForm option={option} checkFilter={checkFilter}/></div>)
     }
 
     const checkFilter = e => {
@@ -169,11 +160,7 @@ const TopsContainer = () => {
             <div>
                 {filterMenu ? <button className={clearButton} onClick={resetFilter}>Clear Colors</button> 
                 : <button className={buttonStyle} onClick={() => setFilterMenu(true)}>Filter By Color</button>}
-                {filterMenu && 
-                <div className="render-options">
-                    {renderOptions()}
-                </div>
-                }
+                {filterMenu && <div className="render-options"> {renderOptions()} </div>}
             </div>
         )
     }
