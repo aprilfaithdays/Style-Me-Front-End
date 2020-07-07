@@ -14,10 +14,11 @@ const TopsContainer = () => {
     const [tops] = useContext(TopsContext);
 
     const [filterColor, setFilterColor] = useState('')
-    // const [colorList, setColorList] = useState('')
+
     const [filterMenu, setFilterMenu] = useState(false)
 
     const buttonStyle = "btn btn-outline-info btn-sm"
+    const clearButton = "btn btn-outline-secondary btn-sm"
 
 
     const filterMyFaveTops = () => {
@@ -144,6 +145,7 @@ const TopsContainer = () => {
 
         if(filterColor !== ''){
             for(let c of colors){
+                // eslint-disable-next-line
                 list.map(top => {
                     if(top.color.includes(c)){
                         if(!updated.includes(top)){
@@ -159,10 +161,16 @@ const TopsContainer = () => {
         return updated
     }
 
+    const resetFilter = () => {
+        setFilterMenu(false);
+        setFilterColor([])
+    }
+
     const filterTops = () => {
         return(
             <div>
-                <button className={buttonStyle} onClick={() => setFilterMenu(!filterMenu)}>Filter By Color</button>
+                {filterMenu ? <button className={clearButton} onClick={resetFilter}>Clear Colors</button> 
+                : <button className={buttonStyle} onClick={() => setFilterMenu(true)}>Filter By Color</button>}
                 {filterMenu && 
                 <div className="render-options">
                     {renderOptions()}
