@@ -1,5 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import '../Styling/ProductList.css'
 import ProductList from '../Components/ProductList';
+import FilterOptionsForm from '../Components/FilterOptionsForm';
 import { FaveBottomsContext } from '../Context/FaveBottoms';
 import { BottomsContext } from '../Context/Bottoms';
 import { CurrentUserContext } from '../Context/CurrentUser';
@@ -10,6 +12,12 @@ const BottomsContainer = () => {
     const [currentUser] = useContext(CurrentUserContext);
     const [faveBottoms, setFaveBottoms] = useContext(FaveBottomsContext);
     const [bottoms] = useContext(BottomsContext);
+
+    const [filterColor, setFilterColor] = useState('');
+    const [filterMenu, setFilterMenu] = useState(false);
+
+    const buttonStyle = "btn btn-outline-info btn-sm";
+    const clearButton = "btn btn-outline-secondary btn-sm";
 
     const filterMyFaveBottoms = () => {
         const list = [...faveBottoms];
@@ -56,8 +64,7 @@ const BottomsContainer = () => {
     }
 
     const renderBottoms = () => {
-        const list = [...bottoms];
-        list.sort((a, b) => b.id - a.id)
+        const list = filteredBottoms();
         const faveBottoms = faveBottomsId();
         return list.map(bottom => {
             return <ProductList 
@@ -70,10 +77,119 @@ const BottomsContainer = () => {
         });
     }
 
+    const colorsObject = () => {
+        let list = [...bottoms];
+        let options = [];
+        let optionsObject = {}
+
+        for(let i = 0; i < list.length; i++){
+            let bottom = (list[i].color).split(" ")
+            for(let j = 0; j < bottom.length; j++){
+                let color = bottom[j]
+                options.push(color)
+            }
+        }
+
+        options.sort((a, b) => a.localeCompare(b));
+        for(let color of options){
+           if(optionsObject[color]){
+            optionsObject[color]++
+           } else {
+            optionsObject[color] = 1
+           }
+        } 
+        return optionsObject
+    }
+    
+    const colorsOptions = () => {
+        const colors = colorsObject();
+        let list = [];
+
+        for(const [color, amount] of Object.entries(colors)){
+            list.push({color, amount})
+        }
+
+        return list
+    }
+
+    const renderOptions = () => {
+        const list = colorsOptions()
+        return list.map((option, index) => {
+            return(
+                <div key={index}>
+                    <FilterOptionsForm 
+                        option={option}
+                        checkFilter={checkFilter}
+                    />
+                </div>
+            )
+        })
+    }
+
+    const checkFilter = e => {
+        let update 
+        if(filterColor.includes(e.color)){
+            update = filterColor.filter(color => color !== e.color)
+        } else {
+            update = [...filterColor, e.color]
+        }
+        setFilterColor(update)
+    }    
+    
+    const filteredBottoms = () => {
+        const list = [...bottoms];
+        let colors = [...filterColor]
+        let updated = []
+
+        if(filterColor !== ''){
+            for(let c of colors){
+                // eslint-disable-next-line
+                list.map(bottom => {
+                    if(bottom.color.includes(c)){
+                        if(!updated.includes(bottom)){
+                            updated.push(bottom)
+                        }
+                    }
+                })
+            }
+            updated.sort((a, b) => a.color.localeCompare(b.color));
+        } if(filterColor.length === 0) {
+            updated = list
+        }
+        return updated
+    }
+
+    const resetFilter = () => {
+        setFilterMenu(false);
+        setFilterColor([])
+    }
+
+    const filterBottoms = () => {
+        return(
+            <div>
+                {filterMenu ? <button className={clearButton} onClick={resetFilter}>Clear Colors</button> 
+                : <button className={buttonStyle} onClick={() => setFilterMenu(true)}>Filter By Color</button>}
+                {filterMenu && 
+                <div className="render-options">
+                    {renderOptions()}
+                </div>
+                }
+            </div>
+        )
+    }
+    
+
     return(
         <div>
-            <h3 className="title">Bottoms</h3>
-            <div className='product-list'>
+            <div className="header-section">
+                <div className="title">
+                    <h3>Bottoms</h3>
+                </div>
+                <div className="filter-products">
+                    {filterBottoms()}
+                </div>
+            </div>
+            <div className="product-list">
                 {renderBottoms()}
             </div>
         </div>

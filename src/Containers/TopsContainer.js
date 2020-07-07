@@ -13,13 +13,11 @@ const TopsContainer = () => {
     const [faveTops, setFaveTops] = useContext(FaveTopsContext);
     const [tops] = useContext(TopsContext);
 
-    const [filterColor, setFilterColor] = useState('')
+    const [filterColor, setFilterColor] = useState('');
+    const [filterMenu, setFilterMenu] = useState(false);
 
-    const [filterMenu, setFilterMenu] = useState(false)
-
-    const buttonStyle = "btn btn-outline-info btn-sm"
-    const clearButton = "btn btn-outline-secondary btn-sm"
-
+    const buttonStyle = "btn btn-outline-info btn-sm";
+    const clearButton = "btn btn-outline-secondary btn-sm";
 
     const filterMyFaveTops = () => {
         const list = [...faveTops];
@@ -83,6 +81,7 @@ const TopsContainer = () => {
         let list = [...tops];
         let options = [];
         let optionsObject = {}
+
         for(let i = 0; i < list.length; i++){
             let top = (list[i].color).split(" ")
             for(let j = 0; j < top.length; j++){
@@ -107,7 +106,7 @@ const TopsContainer = () => {
         let list = [];
 
         for(const [color, amount] of Object.entries(colors)){
-            list.push({color, amount, checked: false})
+            list.push({color, amount})
         }
 
         return list
@@ -135,7 +134,6 @@ const TopsContainer = () => {
             update = [...filterColor, e.color]
         }
         setFilterColor(update)
-        console.log(filterColor)
     }    
     
     const filteredTops = () => {
@@ -182,7 +180,6 @@ const TopsContainer = () => {
     
     return(
         <div>
-        {/* {console.log(filterColor)} */}
             <div className="header-section">
                 <div className="title">
                     <h3>Tops</h3>
@@ -199,40 +196,3 @@ const TopsContainer = () => {
 }
 
 export default TopsContainer
-
-    // const seasonObject = () => {
-    //     const list = [...tops];
-    //     let options = {};
-    //     for(let i = 0; i < list.length; i++){
-    //         let top = (list[i].seasons).split(" ")
-    //         for(let j = 0; j < top.length; j++){
-    //             let seasons = top[j]
-    //             if(options[seasons]) {
-    //                 options[seasons]++
-    //             } else {
-    //                 options[seasons] = 1
-    //             }
-    //         }
-    //     }
-    //     return options
-    // }
-
-    // const sleeveObject = () => {
-    //     const list = [...tops];
-    //     let options = {};
-    //     for(let i = 0; i < list.length; i++){
-    //         let top = (list[i].sleeve_length).split(" ")
-    //         for(let j = 0; j < top.length; j++){
-    //             let sleeve_length = top[j]
-    //             if(options[sleeve_length]) {
-    //                 options[sleeve_length]++
-    //             } else {
-    //                 options[sleeve_length] = 1
-    //             }
-    //         }
-    //     }
-    //     return options
-    // }
-
-    // const seasons = seasonObject()
-    // const sleeves = sleeveObject()
