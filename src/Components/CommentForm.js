@@ -44,10 +44,6 @@ const CommentForm = props => {
         </div>
     )
 
-    const likeButton = () => {
-        liked_id ? removeLike() : addLike()
-    }
-
     const removeLike = () => {
         fetch(`http://localhost:3000/likes/${liked_id}`, {
             method: 'DELETE'
@@ -56,7 +52,23 @@ const CommentForm = props => {
     }
 
     const addLike = () => {
-        console.log("addLike")
+        fetch('http://localhost:3000/likes/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+                user_id: currentUser.id,
+                outfit_id
+            })
+        })
+        .then(res => res.json())
+        .then(res => props.addLike(res))
+    }
+
+    const likeButton = () => {
+        liked_id ? removeLike() : addLike()
     }
     
     const renderLikes = () => {
