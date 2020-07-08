@@ -47,6 +47,7 @@ const Navbar = props => {
                             <Link to='/shoes' className="dropdown-item">Shoes</Link> 
                             <div className="dropdown-divider"></div>
                             <Link to='/outfits' className="dropdown-item">Outfits</Link> 
+                            <Link to='/likes' className="dropdown-item">Liked <span>♥️</span></Link> 
                         </div>
                     </li>
                     <li className="nav-item">
