@@ -24,12 +24,14 @@ const OutfitPage = props => {
     const [edit, setEdit] = useState(false)
     const [update, setUpdate] = useState(false)
     const [comments, setComments] = useState([])
+    const [likes, setLikes] = useState([])
     
     const buttonStyle = "btn btn-outline-secondary btn-sm"
 
     useEffect(() => {
         fetchOutfit();
         getComments();
+        getLikes();
         // eslint-disable-next-line
     }, [currentUser])
     
@@ -45,9 +47,26 @@ const OutfitPage = props => {
         .then(res => filterComments(res))
     }
 
+    const getLikes = () => {
+        fetch('http://localhost:3000/likes')
+        .then(res => res.json())
+        .then(res => filterLikes(res))
+    }
+
     const filterComments = res => {
         const list = res.filter(comment => comment.outfit_id === id)
         setComments(list)
+    }
+
+    const filterLikes = res => {
+        const list = res.filter(like => like.outfit_id === id)
+        setLikes(list)
+    }
+
+    const userLiked = () => {
+        const list = [...likes]
+        let liked = list.find(like => like.user_id === currentUser.id)
+        return liked && liked.id
     }
 
     const setInfo = res => {
@@ -82,6 +101,12 @@ const OutfitPage = props => {
         const list = [...comments]
         const updated = list.filter(comment => comment.id !== id)
         setComments(updated)
+    }
+
+    const removeLike = id => {
+        const list = [...likes]
+        const updated = list.filter(like => like.id !== id)
+        setLikes(updated)
     }
 
     const creatorAccess = () => (
@@ -143,7 +168,7 @@ const OutfitPage = props => {
                     </div>
                     <div className='cmt-side'>
                         <div className="cmt-width">
-                            <CommentForm id={id}  likes={outfit.likes} postComment={postComment}/>
+                            <CommentForm id={id}  likes={likes} postComment={postComment} liked={userLiked()} removeLike={removeLike}/>
                             <div className="render-cmts">
                                 <OutfitComments comments={comments} removeComment={removeComment}/>
                             </div>

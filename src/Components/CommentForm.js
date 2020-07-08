@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 const CommentForm = props => {
     const outfit_id = props.id
+    let liked_id = props.liked
     const buttonStyle = "btn btn-outline-secondary btn-sm"
     const [currentUser] = useContext(CurrentUserContext)
     const [text, setText] = useState('')
@@ -43,18 +44,26 @@ const CommentForm = props => {
         </div>
     )
 
-    const heart = () => {
-        const list = currentUser.likes
-        let liked = list.filter(like => like.outfit_id === outfit_id)
-        
-        return <img className="heart" src={liked ? likedHeart : emptyHeart} alt="heart" onClick={() => console.log("click")}/>
+    const likeButton = () => {
+        liked_id ? removeLike() : addLike()
+    }
+
+    const removeLike = () => {
+        fetch(`http://localhost:3000/likes/${liked_id}`, {
+            method: 'DELETE'
+        })
+        props.removeLike(liked_id)
+    }
+
+    const addLike = () => {
+        console.log("addLike")
     }
     
     const renderLikes = () => {
         return (
             <div className="likes">
-            {heart()}
-                {props.likes.length} {props.likes.length > 1 ? "likes" : "like"}
+            <img className="heart" src={liked_id ? likedHeart : emptyHeart} alt="heart" onClick={likeButton}/>
+                {props.likes.length} {props.likes.length === 1 ? "like" : "likes"}
             </div>
         )
     }
