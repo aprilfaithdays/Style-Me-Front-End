@@ -10,6 +10,8 @@ const CommentForm = props => {
     const [currentUser] = useContext(CurrentUserContext)
     const [text, setText] = useState('')
     const [addCmt, setAddCmt] = useState(false)
+    const emptyHeart = require("../icons/empty-heart.png")
+    const likedHeart = require("../icons/liked.png")
 
     const addComment = e => {
         e.preventDefault()
@@ -41,19 +43,34 @@ const CommentForm = props => {
         </div>
     )
 
+    const heart = () => {
+        const list = currentUser.likes
+        let liked = list.filter(like => like.outfit_id === outfit_id)
+        
+        return <img className="heart" src={liked ? likedHeart : emptyHeart} alt="heart" onClick={() => console.log("click")}/>
+    }
+    
+    const renderLikes = () => {
+        return (
+            <div className="likes">
+            {heart()}
+                {props.likes.length} {props.likes.length > 1 ? "likes" : "like"}
+            </div>
+        )
+    }
+
     const cmtBtn = () => (
         <div className="add-comment">
+            {props.likes && renderLikes()}
             <button className={buttonStyle} onClick={() => setAddCmt(true)}>Add Comment</button>
         </div>
     )
 
     return(
-        <div>
+        <div >
             {addCmt ? comment() : cmtBtn() }
         </div>
     )
 }
 
 export default CommentForm
-
-//testing :)
