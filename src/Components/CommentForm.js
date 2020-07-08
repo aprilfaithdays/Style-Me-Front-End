@@ -13,6 +13,7 @@ const CommentForm = props => {
     const [addCmt, setAddCmt] = useState(false)
     const emptyHeart = require("../icons/empty-heart.png")
     const likedHeart = require("../icons/liked.png")
+    const exit = require("../icons/x.png")
 
     const addComment = e => {
         e.preventDefault()
@@ -35,6 +36,7 @@ const CommentForm = props => {
 
     const comment = () => (
         <div>
+            <img className="exit" src={exit} alt="x" onClick={() => setAddCmt(false)}/>
             <form onSubmit={e => addComment(e)}>
                 <textarea className="cmt-input" type="text" value={text} onChange={e => setText(e.target.value)}/>
                 <div className="post-btn">

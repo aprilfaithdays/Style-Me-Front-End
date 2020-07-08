@@ -203,3 +203,8 @@ span{
     margin-right: 10px;
     cursor: pointer;
 }
+
+.exit{
+    width: 20px;
+    cursor: pointer;
+}
