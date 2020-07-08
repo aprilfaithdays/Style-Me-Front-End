@@ -12,6 +12,7 @@ import OutfitsContainer from './OutfitsContainer';
 import OutfitPage from './OutfitPage';
 import CreateOutfitContainer from './CreateOutfitContainer';
 import Footer from '../Components/Footer';
+import LikesPage from './LikesPage';
 
 
 const AccessStyleMe = props => {
@@ -32,6 +33,7 @@ const AccessStyleMe = props => {
                     <Route path='/shoes/:id' component={ShoeContainer} />
                     <Route path='/outfits/new' component={CreateOutfitContainer} />
                     <Route path='/outfits/:id' component={OutfitPage} />
+                    <Route path='/likes' component={LikesPage} />
                 </Switch>
             </div>
             <div className="footer">
