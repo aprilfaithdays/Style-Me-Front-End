@@ -105,10 +105,6 @@ const OutfitPage = props => {
         edit ? creatorAccess() : <div><button className={buttonStyle} onClick={() => setEdit(true)}>Edit</button></div>
     )
 
-    // const outfitPrice = () => (
-    //     top.price + bottom.price + shoe.price
-    // )
-
     const productDetail = product => {
         return (
             <div>
@@ -147,7 +143,7 @@ const OutfitPage = props => {
                     </div>
                     <div className='cmt-side'>
                         <div className="cmt-width">
-                            <CommentForm id={id} postComment={postComment}/>
+                            <CommentForm id={id}  likes={outfit.likes} postComment={postComment}/>
                             <div className="render-cmts">
                                 <OutfitComments comments={comments} removeComment={removeComment}/>
                             </div>
