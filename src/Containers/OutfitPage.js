@@ -103,6 +103,10 @@ const OutfitPage = props => {
         setComments(updated)
     }
 
+    const addLike = res => {
+        setLikes([...likes, res])
+    }
+
     const removeLike = id => {
         const list = [...likes]
         const updated = list.filter(like => like.id !== id)
@@ -168,7 +172,13 @@ const OutfitPage = props => {
                     </div>
                     <div className='cmt-side'>
                         <div className="cmt-width">
-                            <CommentForm id={id}  likes={likes} postComment={postComment} liked={userLiked()} removeLike={removeLike}/>
+                            <CommentForm 
+                                id={id}  
+                                likes={likes} 
+                                liked={userLiked()} 
+                                postComment={postComment} 
+                                addLike={addLike}
+                                removeLike={removeLike}/>
                             <div className="render-cmts">
                                 <OutfitComments comments={comments} removeComment={removeComment}/>
                             </div>
