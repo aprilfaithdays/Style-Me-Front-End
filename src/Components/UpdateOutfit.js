@@ -3,10 +3,14 @@ import { OutfitsContext } from '../Context/Outfits';
 import '../Styling/OutfitPage.css';
 
 const UpdateOutfit = props => {
+    const abortController = new AbortController();
+
     const id = props.id;
     const url = `http://localhost:3000/outfits/${id}`;
     const [outfits, setOutfits] = useContext(OutfitsContext);
     const [name, setName] = useState(props.name);
+
+    const cleanUp = () => abortController.abort();
 
     const handleSave = e => {
         e.preventDefault();
@@ -20,6 +24,7 @@ const UpdateOutfit = props => {
             props.setInfo(res);
             updateList(res);
         })
+        return cleanUp();
     }
 
     const updateList = res => {

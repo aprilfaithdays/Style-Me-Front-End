@@ -4,14 +4,22 @@ import { LikedContext } from './Liked';
 export const MyLikesContext = React.createContext([]);
 
 const MyLikes = ({children}) => {
+    const abortController = new AbortController();
     const [liked] = useContext(LikedContext);
     const [myLikes, setMyLikes] = useState([]);
+
+    const cleanUp = () => abortController.abort();
 
     useEffect(() => {
         myLiked();
         // eslint-disable-next-line 
     }, [liked]);
 
+    useEffect(() => {
+        return cleanUp();
+        // eslint-disable-next-line 
+    },[])
+    
     const myLiked = () => {
         const userId = parseInt(localStorage.id, 0);
         const list = [...liked];

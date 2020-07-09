@@ -5,6 +5,8 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 import { FaveTopsContext } from '../Context/FaveTops';
 
 const TopContainer = props => {
+    const abortController = new AbortController();
+
     const id = parseInt(props.match.params.id, 0);
     const faveTospUrl = 'http://localhost:3000/favorite_tops';
     const [currentUser] = useContext(CurrentUserContext);
@@ -19,6 +21,8 @@ const TopContainer = props => {
         const myList = filterMyFaveTops();
         return myList.map(fave => fave.top_id);
     }
+
+    const cleanUp = () => abortController.abort();
 
     const addFavorite = e => {
         const id = parseInt(e.target.value, 0);
@@ -35,6 +39,7 @@ const TopContainer = props => {
         })
         .then(res => res.json())
         .then(res => setFaveTops([...faveTops, res]));
+        return cleanUp();
     }
 
     const removeFavorite = e =>{
@@ -46,6 +51,7 @@ const TopContainer = props => {
             method: 'DELETE'
         })
         removedFave(fave.id);
+        return cleanUp();
     }
 
     const removedFave = id => {

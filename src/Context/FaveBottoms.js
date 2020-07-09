@@ -5,26 +5,27 @@ export const FaveBottomsContext = React.createContext('');
 const FaveBottoms = ({children}) => {
     const abortController = new AbortController();
     const [faveBottoms, setFaveBottoms] = useState([]);
+    
+    const cleanUp = () => abortController.abort();
 
     useEffect(() => {
         getFaveBottoms();
+        return cleanUp();
         // eslint-disable-next-line 
     },[])
 
-    const getFaveBottoms = async () => {
-        await fetch('http://localhost:3000/favorite_bottoms')
+    const getFaveBottoms = () => {
+        fetch('http://localhost:3000/favorite_bottoms')
         .then(res => res.json())
         .then(res => setFaveBottoms(res));
+        return cleanUp();
     }
-
-    const cleanUp = () => abortController.abort();
 
     return (
         <div>
             <FaveBottomsContext.Provider value={[faveBottoms, setFaveBottoms]}>
                 {children}
             </FaveBottomsContext.Provider>
-            {cleanUp()}
         </div>
     )
 }

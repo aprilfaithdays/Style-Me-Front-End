@@ -6,25 +6,26 @@ const Bottoms = ({children}) => {
     const abortController = new AbortController();
     const [bottoms, setBottoms] = useState([]);
 
+    const cleanUp = () => abortController.abort();
+
     useEffect(() => {
         getBottoms();
+        return cleanUp();
         // eslint-disable-next-line 
     },[])
 
-    const getBottoms = async () => {
-        await fetch('http://localhost:3000/bottoms')
+    const getBottoms = () => {
+        fetch('http://localhost:3000/bottoms')
         .then(res => res.json())
         .then(res => setBottoms(res))
+        return cleanUp();
     }
-
-    const cleanUp = () => abortController.abort();
 
     return (
         <div>
             <BottomsContext.Provider value={[bottoms, setBottoms]}>
                 {children}
             </BottomsContext.Provider>
-            {cleanUp()}
         </div>
     )
 }

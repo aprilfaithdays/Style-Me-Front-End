@@ -11,6 +11,8 @@ import { FaveBottomsContext } from '../Context/FaveBottoms';
 import { FaveShoesContext } from '../Context/FaveShoes';
 
 const CreateOutfit = () => {
+    const abortController = new AbortController();
+
     const [currentUser] = useContext(CurrentUserContext);
 
     const [faveTops] = useContext(FaveTopsContext);
@@ -22,12 +24,19 @@ const CreateOutfit = () => {
     const [faveShoes] = useContext(FaveShoesContext);
     const [,setMyShoes] = useContext(MyShoesContext);
 
+    const cleanUp = () => abortController.abort();
+
     useEffect(() => {
         getMyTops();
         getMyBottoms();
         getMyShoes();
         // eslint-disable-next-line 
     },[faveTops, faveBottoms, faveShoes]);
+
+    useEffect(()=> {
+        return cleanUp();
+        // eslint-disable-next-line
+    },[]);
 
     const myList = list => list.filter(object => object.user_id === currentUser.id);
 

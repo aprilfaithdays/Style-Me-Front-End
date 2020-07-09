@@ -5,6 +5,8 @@ import { OutfitsContext } from '../Context/Outfits';
 import '../Styling/ProductPage.css';
 
 const ProductCard = props => {
+    const abortController = new AbortController();
+
     const id = props.id;
     const category = props.category;
     const [product, setProduct] = useState('');
@@ -12,15 +14,19 @@ const ProductCard = props => {
     const buttonStyle = "btn btn-outline-secondary btn-sm";
     const remButton = "btn btn-outline-danger btn-sm";
 
+    const cleanUp = () => abortController.abort();
+
     useEffect(() => {
-        getProduct()
+        getProduct();
+        return cleanUp();
         // eslint-disable-next-line 
     }, []);
 
     const getProduct = () => {
         fetch(`http://localhost:3000/${category}/${id}`)
         .then(res => res.json())
-        .then(res => setProduct(res))
+        .then(res => setProduct(res));
+        return cleanUp();
     }
 
     const productOutfits = () => {

@@ -5,6 +5,8 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 import { FaveShoesContext } from '../Context/FaveShoes';
 
 const ShoeContainer = props => {
+    const abortController = new AbortController();
+
     const id = parseInt(props.match.params.id, 0);
     const faveShoesUrl = 'http://localhost:3000/favorite_shoes';
     const [currentUser] = useContext(CurrentUserContext);
@@ -19,6 +21,8 @@ const ShoeContainer = props => {
         const myList = filterMyFaveShoes();
         return myList.map(fave => fave.shoe_id);
     }
+
+    const cleanUp = () => abortController.abort();
 
     const addFavorite = e => {
         const id = e.target.value
@@ -35,6 +39,7 @@ const ShoeContainer = props => {
         })
         .then(res => res.json())
         .then(res => setFaveShoes([...faveShoes, res]));
+        return cleanUp();
     }
 
     const removeFavorite = e => {
@@ -46,6 +51,7 @@ const ShoeContainer = props => {
             method: 'DELETE'
         });
         removedFave(fave.id);
+        return cleanUp();
     }
 
     const removedFave = id => {

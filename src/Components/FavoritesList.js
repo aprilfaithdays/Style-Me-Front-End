@@ -13,6 +13,8 @@ import Col from 'react-bootstrap/Col';
 import { MyTopsContext, MyBottomsContext, MyShoesContext } from '../Context/Favorites';
 
 const FavoritesList = () => {
+    const abortController = new AbortController();
+
     const [currentUser] = useContext(CurrentUserContext);
 
     const [faveTops, setFaveTops] = useContext(FaveTopsContext);
@@ -50,10 +52,13 @@ const FavoritesList = () => {
         };
     }
 
+    const cleanUp = () => abortController.abort();
+
     const deleteFave = (category, id) => {
         fetch(`http://localhost:3000/favorite_${category}/${id}`, {
             method: 'DELETE'
         });
+        return cleanUp();
     }
 
     const updateList = (list, id) => {

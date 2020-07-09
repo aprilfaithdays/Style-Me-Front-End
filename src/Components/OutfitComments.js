@@ -5,6 +5,8 @@ import { useContext } from 'react';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 const OutfitComments = props => {
+    const abortController = new AbortController();
+
     const [currentUser] = useContext(CurrentUserContext);
     
     const renderComments = () => {
@@ -13,11 +15,14 @@ const OutfitComments = props => {
         return list.map(comment => renderComment(comment));
     }
 
+    const cleanUp = () => abortController.abort();
+
     const deleteComment = id => {
         fetch(`http://localhost:3000/comments/${id}`, {
             method: 'DELETE'
         })
         props.removeComment(id);
+        return cleanUp();
     }
 
     const renderComment = comment =>{
