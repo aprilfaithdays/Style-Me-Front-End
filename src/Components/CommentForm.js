@@ -72,7 +72,13 @@ const CommentForm = props => {
         fetch(`http://localhost:3000/likes/${thisLike.id}`, {
             method: 'DELETE'
         })
-        .then()
+        .then(deleteLike(thisLike.id))
+    }
+
+    const deleteLike = id => {
+        const list = [...liked]
+        const updated = list.filter(like => like.id !== id)
+        setLiked(updated)
     }
 
     const addLike = () => {
@@ -113,7 +119,6 @@ const CommentForm = props => {
 
     return(
         <div >
-        {console.log(thisLike)}
             {addCmt ? comment() : cmtBtn() }
         </div>
     )
