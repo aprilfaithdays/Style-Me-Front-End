@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import '../Styling/ProductList.css'
+import '../Styling/ProductList.css';
 import ProductList from '../Components/ProductList';
 import FilterOptionsForm from '../Components/FilterOptionsForm';
 import { FaveBottomsContext } from '../Context/FaveBottoms';
@@ -43,7 +43,7 @@ const BottomsContainer = () => {
             })
         })
         .then(res => res.json())
-        .then(res => setFaveBottoms([...faveBottoms, res]))
+        .then(res => setFaveBottoms([...faveBottoms, res]));
     }
 
     const removeFavorite  = e => {
@@ -80,13 +80,13 @@ const BottomsContainer = () => {
     const colorsObject = () => {
         let list = [...bottoms];
         let options = [];
-        let optionsObject = {}
+        let optionsObject = {};
 
         for(let i = 0; i < list.length; i++){
             let bottom = (list[i].color).split(" ")
             for(let j = 0; j < bottom.length; j++){
-                let color = bottom[j]
-                options.push(color)
+                let color = bottom[j];
+                options.push(color);
             }
         }
 
@@ -96,7 +96,7 @@ const BottomsContainer = () => {
             optionsObject[color]++
            } else {
             optionsObject[color] = 1
-           }
+           };
         } 
         return optionsObject
     }
@@ -113,24 +113,24 @@ const BottomsContainer = () => {
     }
 
     const renderOptions = () => {
-        const list = colorsOptions()
-        return list.map((option, index) => <div key={index}><FilterOptionsForm option={option} checkFilter={checkFilter}/></div>)
+        const list = colorsOptions();
+        return list.map((option, index) => <div key={index}><FilterOptionsForm option={option} checkFilter={checkFilter}/></div>);
     }
 
     const checkFilter = e => {
-        let update 
+        let update;
         if(filterColor.includes(e.color)){
-            update = filterColor.filter(color => color !== e.color)
+            update = filterColor.filter(color => color !== e.color);
         } else {
-            update = [...filterColor, e.color]
+            update = [...filterColor, e.color];
         }
-        setFilterColor(update)
+        setFilterColor(update);
     }    
     
     const filteredBottoms = () => {
         const list = [...bottoms];
-        let colors = [...filterColor]
-        let updated = []
+        let colors = [...filterColor];
+        let updated = [];
 
         if(filterColor !== ''){
             for(let c of colors){
@@ -139,20 +139,20 @@ const BottomsContainer = () => {
                     if(bottom.color.includes(c)){
                         if(!updated.includes(bottom)){
                             updated.push(bottom)
-                        }
-                    }
-                })
-            }
+                        };
+                    };
+                });
+            };
             updated.sort((a, b) => a.color.localeCompare(b.color));
         } if(filterColor.length === 0) {
-            updated = list
+            updated = list;
         }
-        return updated
+        return updated;
     }
 
     const resetFilter = () => {
         setFilterMenu(false);
-        setFilterColor([])
+        setFilterColor([]);
     }
 
     const filterBottoms = () => {

@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-export const CurrentUserContext = React.createContext('')
+export const CurrentUserContext = React.createContext('');
 
 const CurrentUser = ({children}) => {
-    const [currentUser, setCurrentUser] = useState({})
+    const [currentUser, setCurrentUser] = useState({});
     
-    const userId = () => localStorage.id ? parseInt(localStorage.id, 0) : ''
+    const userId = () => localStorage.id ? parseInt(localStorage.id, 0) : '';
 
     useEffect(() => {
-        localStorage.id && getUser()
+        localStorage.id && getUser();
         // eslint-disable-next-line 
     },[])
 
     const getUser = () => {
-        const id = userId()
+        const id = userId();
         fetch(`http://localhost:3000/users/${id}`)
         .then(res => res.json())
-        .then(res => setCurrentUser(res))
+        .then(res => setCurrentUser(res));
     }
 
     return(

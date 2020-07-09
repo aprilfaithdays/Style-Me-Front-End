@@ -4,13 +4,13 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 import { useState } from 'react';
 
 const Navbar = props => {
-    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
-    const [newIcon, setNewIcon] = useState('')
-    const buttonStyle = "btn btn-outline-secondary btn-sm"
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+    const [newIcon, setNewIcon] = useState('');
+    const buttonStyle = "btn btn-outline-secondary btn-sm";
 
     const logOut = () => {
-        localStorage.removeItem('id')
-        props.history.push('/login')
+        localStorage.removeItem('id');
+        props.history.push('/login');
     }
 
     const handleUpdate = e => {
@@ -24,7 +24,7 @@ const Navbar = props => {
         .then(res => res.json())
         .then(res => {
             setCurrentUser(res);
-            setNewIcon('')
+            setNewIcon('');
         })
     }
 
@@ -47,7 +47,7 @@ const Navbar = props => {
                             <Link to='/shoes' className="dropdown-item">Shoes</Link> 
                             <div className="dropdown-divider"></div>
                             <Link to='/outfits' className="dropdown-item">Outfits</Link> 
-                            <Link to='/likes' className="dropdown-item">Liked <span>♥️</span></Link> 
+                            <Link to='/likes' className="dropdown-item">Liked <span role="img" aria-label="heart">♥️</span></Link> 
                         </div>
                     </li>
                     <li className="nav-item">
@@ -58,7 +58,7 @@ const Navbar = props => {
                         <span data-toggle="modal" data-target="#updateProfilePhoto">
                             <img src={currentUser.img_url} width="30" height="30" className="d-inline-block align-top nav-img" alt={currentUser.name}/>
                         </span>
-                        <span className="navbar-text"> Hi {currentUser.name} ♡ </span>
+                        <span className="navbar-text"> Hi {currentUser.name} <span role="img" aria-label="heart">♡</span> </span>
                         <div className="log-out-btn">
                             <button className="btn btn-outline-secondary btn-sm" onClick={logOut}>Log Out</button>
                         </div>
@@ -92,6 +92,3 @@ const Navbar = props => {
 }
 
 export default Navbar
-
-
-

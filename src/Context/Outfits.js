@@ -3,7 +3,7 @@ import React,  { useState, useEffect } from 'react';
 export const OutfitsContext = React.createContext('');
 
 const Outfits = ({children}) => {
-    const abortController = new AbortController()
+    const abortController = new AbortController();
     const [outfits, setOutfits] = useState('');
 
     useEffect(() => {
@@ -14,10 +14,10 @@ const Outfits = ({children}) => {
     const getOutfits = async () => {
         await fetch('http://localhost:3000/outfits')
         .then(res => res.json())
-        .then(res => setOutfits(res))
+        .then(res => setOutfits(res));
     }
 
-    const cleanUp = () => abortController.abort()
+    const cleanUp = () => abortController.abort();
 
     return (
         <div>

@@ -5,12 +5,12 @@ import { useContext } from 'react';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 const OutfitComments = props => {
-    const [currentUser] = useContext(CurrentUserContext)
+    const [currentUser] = useContext(CurrentUserContext);
     
     const renderComments = () => {
-        const list = props.comments
-        list.sort((a,b) => b.id - a.id)
-        return list.map(comment => renderComment(comment))
+        const list = props.comments;
+        list.sort((a,b) => b.id - a.id);
+        return list.map(comment => renderComment(comment));
     }
 
     const deleteComment = id => {

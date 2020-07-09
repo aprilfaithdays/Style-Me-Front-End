@@ -3,7 +3,7 @@ import React,  { useState, useEffect } from 'react';
 export const BottomsContext = React.createContext('');
 
 const Bottoms = ({children}) => {
-    const abortController = new AbortController()
+    const abortController = new AbortController();
     const [bottoms, setBottoms] = useState([]);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const Bottoms = ({children}) => {
         .then(res => setBottoms(res))
     }
 
-    const cleanUp = () => abortController.abort()
+    const cleanUp = () => abortController.abort();
 
     return (
         <div>

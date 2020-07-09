@@ -6,40 +6,41 @@ import { useState } from 'react';
 import { LikedContext } from '../Context/Liked';
 
 const CommentForm = props => {
-    const outfit_id = props.id
-    const [currentUser] = useContext(CurrentUserContext)
-    const [liked, setLiked] = useContext(LikedContext)
+    const outfit_id = props.id;
+    const [currentUser] = useContext(CurrentUserContext);
+    const [liked, setLiked] = useContext(LikedContext);
 
-    const [text, setText] = useState('')
-    const [addCmt, setAddCmt] = useState(false)
-    const [thisLike, setThisLike] = useState('')
-    const [num, setNum] = useState('')
+    const [text, setText] = useState('');
+    const [addCmt, setAddCmt] = useState(false);
+    const [thisLike, setThisLike] = useState('');
+    const [num, setNum] = useState('');
     
-    const buttonStyle = "btn btn-outline-secondary btn-sm"
-    const emptyHeart = require("../icons/empty-heart.png")
-    const likedHeart = require("../icons/liked.png")
-    const exit = require("../icons/x.png")
+    const buttonStyle = "btn btn-outline-secondary btn-sm";
+    const likeUrl = 'http://localhost:3000/likes';
+    const emptyHeart = require("../icons/empty-heart.png");
+    const likedHeart = require("../icons/liked.png");
+    const exit = require("../icons/x.png");
 
     useEffect(() => {
         findLikes();
         // eslint-disable-next-line 
-    }, [liked])
+    }, [liked]);
     
-    const filterLikes = list => list.filter(liked => liked.outfit_id === outfit_id)
+    const filterLikes = list => list.filter(liked => liked.outfit_id === outfit_id);
 
-    const filterLike = list => list.filter(liked => liked.user_id === currentUser.id)
+    const filterLike = list => list.filter(liked => liked.user_id === currentUser.id);
 
     const findLikes = () => {
-        const list = [...liked]
-        const outfitLikes = filterLikes(list)
-        setNum(outfitLikes.length)
-        const userLikes = filterLike(outfitLikes)
-        setThisLike(userLikes[0])
+        const list = [...liked];
+        const outfitLikes = filterLikes(list);
+        setNum(outfitLikes.length);
+        const userLikes = filterLike(outfitLikes);
+        setThisLike(userLikes[0]);
     }
 
     const addComment = e => {
-        e.preventDefault()
-        const user_id = parseInt(currentUser.id, 0)
+        e.preventDefault();
+        const user_id = parseInt(currentUser.id, 0);
         fetch('http://localhost:3000/comments', {
             method: 'POST',
             headers: {
@@ -53,7 +54,47 @@ const CommentForm = props => {
             props.postComment(res);
             setText('');
             setAddCmt(false)
+        });
+    }
+
+    const removeLike = () => {
+        fetch(`${likeUrl}/${thisLike.id}`, {
+            method: 'DELETE'
         })
+        .then(deleteLike(thisLike.id));
+    }
+
+    const deleteLike = id => {
+        const list = [...liked];
+        const updated = list.filter(like => like.id !== id);
+        setLiked(updated);
+    }
+
+    const addLike = () => {
+        fetch(likeUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+                user_id: currentUser.id,
+                outfit_id
+            })
+        })
+        .then(res => res.json())
+        .then(res => setLiked([...liked, res]));
+    }
+
+    const likeButton = () => thisLike ? removeLike() : addLike()
+    
+    const renderLikes = () => {
+        return (
+            <div className="likes">
+                <img className="heart" src={thisLike ? likedHeart : emptyHeart} alt="heart" onClick={likeButton}/>
+                {num} {num === 1 ? "like" : "likes"}
+            </div>
+        )
     }
 
     const comment = () => (
@@ -68,48 +109,6 @@ const CommentForm = props => {
         </div>
     )
 
-    const removeLike = () => {
-        fetch(`http://localhost:3000/likes/${thisLike.id}`, {
-            method: 'DELETE'
-        })
-        .then(deleteLike(thisLike.id))
-    }
-
-    const deleteLike = id => {
-        const list = [...liked]
-        const updated = list.filter(like => like.id !== id)
-        setLiked(updated)
-    }
-
-    const addLike = () => {
-        fetch('http://localhost:3000/likes/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ 
-                user_id: currentUser.id,
-                outfit_id
-            })
-        })
-        .then(res => res.json())
-        .then(res => setLiked([...liked, res]))
-    }
-
-    const likeButton = () => {
-        thisLike ? removeLike() : addLike()
-    }
-    
-    const renderLikes = () => {
-        return (
-            <div className="likes">
-                <img className="heart" src={thisLike ? likedHeart : emptyHeart} alt="heart" onClick={likeButton}/>
-                {num} {num === 1 ? "like" : "likes"}
-            </div>
-        )
-    }
-
     const cmtBtn = () => (
         <div className="add-comment">
             {renderLikes()}
@@ -119,7 +118,7 @@ const CommentForm = props => {
 
     return(
         <div >
-            {addCmt ? comment() : cmtBtn() }
+            {addCmt ? comment() : cmtBtn()}
         </div>
     )
 }

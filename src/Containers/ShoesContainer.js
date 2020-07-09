@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import '../Styling/ProductList.css'
+import '../Styling/ProductList.css';
 import ProductList from '../Components/ProductList';
 import FilterOptionsForm from '../Components/FilterOptionsForm';
 import { FaveShoesContext } from '../Context/FaveShoes';
@@ -20,17 +20,17 @@ const ShoesContainer = () => {
     const clearButton = "btn btn-outline-secondary btn-sm";
 
     const filterMyFaveShoes = () => {
-        const list = [...faveShoes]
-        return list.filter(fave => fave.user_id === currentUser.id)
+        const list = [...faveShoes];
+        return list.filter(fave => fave.user_id === currentUser.id);
     }
 
     const faveShoesId = () => {
-        const myList = filterMyFaveShoes()
-        return myList.map(fave => fave.shoe_id)
+        const myList = filterMyFaveShoes();
+        return myList.map(fave => fave.shoe_id);
     }
 
     const addFavorite = e => {
-        const id = e.target.value
+        const id = e.target.value;
         fetch(faveShoesUrl, {
             method: 'POST',
             headers: {
@@ -43,24 +43,24 @@ const ShoesContainer = () => {
             })
         })
         .then(res => res.json())
-        .then(res => setFaveShoes([...faveShoes, res]))
+        .then(res => setFaveShoes([...faveShoes, res]));
     }
 
     const removeFavorite = e => {
-        const id = parseInt(e.target.value, 0)
-        const myList = filterMyFaveShoes()
-        const fave = myList.find(fave => (fave.user_id === currentUser.id && fave.shoe_id === id))
+        const id = parseInt(e.target.value, 0);
+        const myList = filterMyFaveShoes();
+        const fave = myList.find(fave => (fave.user_id === currentUser.id && fave.shoe_id === id));
 
         fetch(`${faveShoesUrl}/${fave.id}`, {
             method: 'DELETE'
-        })
-        removedFave(fave.id)
+        });
+        removedFave(fave.id);
     }
 
     const removedFave = id => {
-        const faveShoesList = [...faveShoes]
-        const updated = faveShoesList.filter(fave => fave.id !== id)
-        setFaveShoes(updated)
+        const faveShoesList = [...faveShoes];
+        const updated = faveShoesList.filter(fave => fave.id !== id);
+        setFaveShoes(updated);
     }
 
     const renderShoes = () => {
@@ -74,31 +74,31 @@ const ShoesContainer = () => {
                 addFavorite={addFavorite} 
                 removeFavorite={removeFavorite}
             />
-        }) 
+        });
     }
 
     const colorsObject = () => {
         let list = [...shoes];
         let options = [];
-        let optionsObject = {}
+        let optionsObject = {};
 
         for(let i = 0; i < list.length; i++){
             let shoe = (list[i].color).split(" ")
             for(let j = 0; j < shoe.length; j++){
-                let color = shoe[j]
-                options.push(color)
+                let color = shoe[j];
+                options.push(color);
             }
         }
 
         options.sort((a, b) => a.localeCompare(b));
         for(let color of options){
            if(optionsObject[color]){
-            optionsObject[color]++
+            optionsObject[color]++;
            } else {
-            optionsObject[color] = 1
+            optionsObject[color] = 1;
            }
         } 
-        return optionsObject
+        return optionsObject;
     }
     
     const colorsOptions = () => {
@@ -106,31 +106,31 @@ const ShoesContainer = () => {
         let list = [];
 
         for(const [color, amount] of Object.entries(colors)){
-            list.push({color, amount})
+            list.push({color, amount});
         }
 
-        return list
+        return list;
     }
 
     const renderOptions = () => {
-        const list = colorsOptions()
-        return list.map((option, index) => <div key={index}><FilterOptionsForm option={option} checkFilter={checkFilter}/></div>)
+        const list = colorsOptions();
+        return list.map((option, index) => <div key={index}><FilterOptionsForm option={option} checkFilter={checkFilter}/></div>);
     }
 
     const checkFilter = e => {
-        let update 
+        let update ;
         if(filterColor.includes(e.color)){
-            update = filterColor.filter(color => color !== e.color)
+            update = filterColor.filter(color => color !== e.color);
         } else {
-            update = [...filterColor, e.color]
+            update = [...filterColor, e.color];
         }
-        setFilterColor(update)
+        setFilterColor(update);
     }    
     
     const filteredShoes = () => {
         const list = [...shoes];
-        let colors = [...filterColor]
-        let updated = []
+        let colors = [...filterColor];
+        let updated = [];
 
         if(filterColor !== ''){
             for(let c of colors){
@@ -138,21 +138,21 @@ const ShoesContainer = () => {
                 list.map(shoe => {
                     if(shoe.color.includes(c)){
                         if(!updated.includes(shoe)){
-                            updated.push(shoe)
-                        }
-                    }
-                })
+                            updated.push(shoe);
+                        };
+                    };
+                });
             }
             updated.sort((a, b) => a.color.localeCompare(b.color));
         } if(filterColor.length === 0) {
-            updated = list
-        }
-        return updated
+            updated = list;
+        };
+        return updated;
     }
 
     const resetFilter = () => {
         setFilterMenu(false);
-        setFilterColor([])
+        setFilterColor([]);
     }
 
     const filterShoes = () => {

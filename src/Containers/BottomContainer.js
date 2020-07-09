@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import ProductCard from '../Components/ProductCard';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../Context/CurrentUser';
@@ -62,7 +62,7 @@ const BottomContainer = props => {
             favorite={faveBottomsIdList.includes(id) ? true: false}
             addFavorite={addFavorite} 
             removeFavorite={removeFavorite}
-        />
+        />;
     }
 
     return (

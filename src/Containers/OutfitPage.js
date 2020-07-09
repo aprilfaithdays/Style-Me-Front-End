@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { OutfitsContext } from '../Context/Outfits';
 import { CurrentUserContext } from '../Context/CurrentUser';
 import UpdateOutfit from '../Components/UpdateOutfit';
-import '../Styling/OutfitPage.css'
+import '../Styling/OutfitPage.css';
 import DeleteForm from '../Components/DeleteForm';
 import OutfitComments from '../Components/OutfitComments';
 import CommentForm from '../Components/CommentForm';
@@ -31,18 +31,18 @@ const OutfitPage = props => {
         fetchOutfit();
         getComments();
         // eslint-disable-next-line
-    }, [currentUser])
+    }, [currentUser]);
     
     const fetchOutfit = () => {
         fetch(outfitUrl)
         .then(res => res.json())
-        .then(res => setInfo(res))
+        .then(res => setInfo(res));
     }
 
     const getComments = () => {
         fetch('http://localhost:3000/comments')
         .then(res => res.json())
-        .then(res => filterComments(res))
+        .then(res => filterComments(res));
     }
 
     const filterComments = res => {
@@ -65,7 +65,7 @@ const OutfitPage = props => {
             method: 'DELETE'
         })
         removeOutfit(id);
-        props.history.push('/')
+        props.history.push('/');
     }
 
     const removeOutfit = id => {
@@ -77,9 +77,9 @@ const OutfitPage = props => {
     const postComment = res => setComments([...comments, res]);
 
     const removeComment = id => {
-        const list = [...comments]
-        const updated = list.filter(comment => comment.id !== id)
-        setComments(updated)
+        const list = [...comments];
+        const updated = list.filter(comment => comment.id !== id);
+        setComments(updated);
     }
 
     const creatorAccess = () => (
@@ -99,10 +99,8 @@ const OutfitPage = props => {
         </div>
     )
 
-    const editButton = () => (
-        edit ? creatorAccess() : <div><button className={buttonStyle} onClick={() => setEdit(true)}>Edit</button></div>
-    )
-
+    const editButton = () => edit ? creatorAccess() : <div><button className={buttonStyle} onClick={() => setEdit(true)}>Edit</button></div>
+    
     const productDetail = product => {
         return (
             <div>

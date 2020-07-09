@@ -3,7 +3,7 @@ import React,  { useState, useEffect } from 'react';
 export const LikedContext = React.createContext('');
 
 const Liked = ({children}) => {
-    const abortController = new AbortController()
+    const abortController = new AbortController();
     const [liked, setLiked] = useState([]);
 
     useEffect(() => {
@@ -14,10 +14,10 @@ const Liked = ({children}) => {
     const getLiked = async () => {
         await fetch('http://localhost:3000/likes')
         .then(res => res.json())
-        .then(res => setLiked(res))
+        .then(res => setLiked(res));
     }
 
-    const cleanUp = () => abortController.abort()
+    const cleanUp = () => abortController.abort();
 
     return (
         <div>
