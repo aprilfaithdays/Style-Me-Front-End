@@ -7,27 +7,25 @@ import '../Styling/OutfitPage.css'
 import DeleteForm from '../Components/DeleteForm';
 import OutfitComments from '../Components/OutfitComments';
 import CommentForm from '../Components/CommentForm';
-import { LikedContext } from '../Context/Liked';
 
 const OutfitPage = props => {
-    const id = parseInt(props.match.params.id,0)
-    const outfitUrl = `http://localhost:3000/outfits/${id}`
+    const id = parseInt(props.match.params.id,0);
+    const outfitUrl = `http://localhost:3000/outfits/${id}`;
 
-    const [currentUser] = useContext(CurrentUserContext)
-    const [outfits, setOutfits] = useContext(OutfitsContext)
+    const [currentUser] = useContext(CurrentUserContext);
+    const [outfits, setOutfits] = useContext(OutfitsContext);
 
-    const [outfit, setOutfit] = useState('')
-    const [user, setUser] = useState('')
-    const [top, setTop] = useState('')
-    const [bottom, setBottom] = useState('')
-    const [shoe, setShoe] = useState('')
+    const [outfit, setOutfit] = useState('');
+    const [user, setUser] = useState('');
+    const [top, setTop] = useState('');
+    const [bottom, setBottom] = useState('');
+    const [shoe, setShoe] = useState('');
     
-    const [edit, setEdit] = useState(false)
-    const [update, setUpdate] = useState(false)
-    const [comments, setComments] = useState([])
-    const [liked, setLiked] = useContext(LikedContext)
+    const [edit, setEdit] = useState(false);
+    const [update, setUpdate] = useState(false);
+    const [comments, setComments] = useState([]);
     
-    const buttonStyle = "btn btn-outline-secondary btn-sm"
+    const buttonStyle = "btn btn-outline-secondary btn-sm";
 
     useEffect(() => {
         fetchOutfit();
@@ -48,8 +46,8 @@ const OutfitPage = props => {
     }
 
     const filterComments = res => {
-        const list = res.filter(comment => comment.outfit_id === id)
-        setComments(list)
+        const list = res.filter(comment => comment.outfit_id === id);
+        setComments(list);
     }
 
     const setInfo = res => {
@@ -71,25 +69,17 @@ const OutfitPage = props => {
     }
 
     const removeOutfit = id => {
-        const list = [...outfits]
-        const updated = list.filter(outfit => outfit.id !== id)
-        setOutfits(updated)
+        const list = [...outfits];
+        const updated = list.filter(outfit => outfit.id !== id);
+        setOutfits(updated);
     }
     
-    const postComment = res => {
-        setComments([...comments, res])
-    }
+    const postComment = res => setComments([...comments, res]);
 
     const removeComment = id => {
         const list = [...comments]
         const updated = list.filter(comment => comment.id !== id)
         setComments(updated)
-    }
-
-    const removeLike = id => {
-        const list = [...liked]
-        const updated = list.filter(like => like.id !== id)
-        setLiked(updated)
     }
 
     const creatorAccess = () => (
