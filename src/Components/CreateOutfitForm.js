@@ -1,30 +1,30 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import { NewTopContext, NewBottomContext, NewShoeContext } from '../Context/CreateOutfit';
 import { OutfitsContext } from '../Context/Outfits';
 import { CurrentUserContext } from '../Context/CurrentUser';
-import '../Styling/CreateOutfitForm.css'
+import '../Styling/CreateOutfitForm.css';
 
 const CreateOutfitForm = props => {
-    const abortController = new AbortController()
+    const abortController = new AbortController();
 
-    const [currentUser] = useContext(CurrentUserContext)
-    const [outfits, setOutfits] = useContext(OutfitsContext)
-    const [newName, setNewName] = useState('')
-    const [newTop, setNewTop] = useContext(NewTopContext)
-    const [newBottom, setNewBottom] = useContext(NewBottomContext)
-    const [newShoe, setNewShoe] = useContext(NewShoeContext)
+    const [currentUser] = useContext(CurrentUserContext);
+    const [outfits, setOutfits] = useContext(OutfitsContext);
+    const [newName, setNewName] = useState('');
+    const [newTop, setNewTop] = useContext(NewTopContext);
+    const [newBottom, setNewBottom] = useContext(NewBottomContext);
+    const [newShoe, setNewShoe] = useContext(NewShoeContext);
 
-    const [outfitName, setOutfitName] = useState(true)
-    const [outfitTop, setOutfitTop] = useState(true)
-    const [outfitBottom, setOutfitBottom] = useState(true)
-    const [outfitShoe, setOutfitShoe] = useState(true)
+    const [outfitName, setOutfitName] = useState(true);
+    const [outfitTop, setOutfitTop] = useState(true);
+    const [outfitBottom, setOutfitBottom] = useState(true);
+    const [outfitShoe, setOutfitShoe] = useState(true);
     
-    const user_id = currentUser.id
-    const name = newName
-    const top_id = parseInt(newTop[1], 0)
-    const bottom_id = parseInt(newBottom[1], 0)
-    const shoe_id = parseInt(newShoe[1], 0)
-    const likes = 0
+    const user_id = currentUser.id;
+    const name = newName;
+    const top_id = parseInt(newTop[1], 0);
+    const bottom_id = parseInt(newBottom[1], 0);
+    const shoe_id = parseInt(newShoe[1], 0);
+    const likes = 0;
 
     const handleCreateOutfit = e => {
         e.preventDefault()
@@ -51,21 +51,13 @@ const CreateOutfitForm = props => {
         })
     }
 
-    const cleanUp = () => abortController.abort()
+    const cleanUp = () => abortController.abort();
 
     const checkValidation = () => {
-        if (name === ''){
-            setOutfitName(false)
-        }
-        if (newTop === ''){
-            setOutfitTop(false)
-        }
-        if (newBottom === ''){
-            setOutfitBottom(false)
-        }
-        if (newShoe === ''){
-            setOutfitShoe(false)
-        }
+        if (name === ''){ setOutfitName(false) };
+        if (newTop === ''){ setOutfitTop(false) };
+        if (newBottom === ''){ setOutfitBottom(false) };
+        if (newShoe === ''){ setOutfitShoe(false) };
     }
 
     const instructions = () => (
@@ -86,13 +78,9 @@ const CreateOutfitForm = props => {
         </div>
     )
 
-    const renderOption = (product, category) => (
-        <img className="select-product" src={product[0]} alt={category}/>
-    )
+    const renderOption = (product, category) => <img className="select-product" src={product[0]} alt={category}/>
 
-    const selectMessage = category => (
-        <small className="error form-text">*Please select a {category}.</small>
-    )
+    const selectMessage = category => <small className="error form-text">*Please select a {category}.</small>
 
     const nameOutfit = () => (
         <div className="outfit-name">
@@ -106,9 +94,7 @@ const CreateOutfitForm = props => {
         </div>
     )
 
-    const outfitComplete = () => (
-        newTop[0] && newBottom[0] && newShoe[0]
-    )
+    const outfitComplete = () => newTop[0] && newBottom[0] && newShoe[0]
 
     return (
         <div>

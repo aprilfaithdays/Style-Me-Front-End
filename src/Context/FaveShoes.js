@@ -3,7 +3,7 @@ import React,  { useState, useEffect } from 'react';
 export const FaveShoesContext = React.createContext('');
 
 const FaveShoes = ({children}) => {
-    const abortController = new AbortController()
+    const abortController = new AbortController();
     const [faveShoes, setFaveShoes] = useState([]);
 
     useEffect(() => {
@@ -14,10 +14,10 @@ const FaveShoes = ({children}) => {
     const getFaveShoes = async () => {
         await fetch('http://localhost:3000/favorite_shoes')
         .then(res => res.json())
-        .then(res => setFaveShoes(res))
+        .then(res => setFaveShoes(res));
     }
 
-    const cleanUp = () => abortController.abort()
+    const cleanUp = () => abortController.abort();
 
     return (
         <div>

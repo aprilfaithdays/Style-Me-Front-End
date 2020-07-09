@@ -4,11 +4,11 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 import Welcome from './Welcome';
 
 const Login = props => {
-    const abortController = new AbortController()
-    const [, setCurrentUser] = useContext(CurrentUserContext)
-    const [users, setUsers] = useState([])
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const abortController = new AbortController();
+    const [, setCurrentUser] = useContext(CurrentUserContext);
+    const [users, setUsers] = useState([]);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(()=> {
         getUsers();
@@ -18,26 +18,26 @@ const Login = props => {
     const getUsers = async () => {
         await fetch('http://localhost:3000/users')
         .then(res => res.json())
-        .then(res => setUsers(res))
+        .then(res => setUsers(res));
     }
 
     const handleSubmit = e => {
-        e.preventDefault()
-        const user = users.find(user => user.username === username)
+        e.preventDefault();
+        const user = users.find(user => user.username === username);
         if (user) {
             if(user.password === password){
                 localStorage.id = user.id;
                 setCurrentUser(user)
                 props.history.push('/')
             } else {
-                alert("Can't find username/password combo")
+                alert("Can't find username/password combo");
             }
         } else {
-            alert("Can't find username/password combo")
+            alert("Can't find username/password combo");
         }
     }
 
-    const cleanUp = () => abortController.abort() 
+    const cleanUp = () => abortController.abort() ;
 
     const returningUser = () => {
         return(

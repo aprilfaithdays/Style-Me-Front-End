@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import ProductCard from '../Components/ProductCard';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../Context/CurrentUser';
@@ -34,7 +34,7 @@ const TopContainer = props => {
             })
         })
         .then(res => res.json())
-        .then(res => setFaveTops([...faveTops, res]))
+        .then(res => setFaveTops([...faveTops, res]));
     }
 
     const removeFavorite = e =>{
@@ -62,7 +62,7 @@ const TopContainer = props => {
             favorite={faveTopsIdList.includes(id) ? true: false}
             addFavorite={addFavorite} 
             removeFavorite={removeFavorite}
-        />
+        />;
     }
 
     return (

@@ -3,7 +3,7 @@ import React,  { useState, useEffect } from 'react';
 export const FaveBottomsContext = React.createContext('');
 
 const FaveBottoms = ({children}) => {
-    const abortController = new AbortController()
+    const abortController = new AbortController();
     const [faveBottoms, setFaveBottoms] = useState([]);
 
     useEffect(() => {
@@ -14,10 +14,10 @@ const FaveBottoms = ({children}) => {
     const getFaveBottoms = async () => {
         await fetch('http://localhost:3000/favorite_bottoms')
         .then(res => res.json())
-        .then(res => setFaveBottoms(res))
+        .then(res => setFaveBottoms(res));
     }
 
-    const cleanUp = () => abortController.abort()
+    const cleanUp = () => abortController.abort();
 
     return (
         <div>

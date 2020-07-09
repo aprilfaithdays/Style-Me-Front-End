@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Welcome from './Welcome';
 
 const SignUp = props => {
-    const [name, setName] = useState('')
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [match, setMatch] = useState(true)
+    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [match, setMatch] = useState(true);
 
     const handleSignUp = e => {
-        e.preventDefault()
-        if (password === confirmPassword){
-            addUser()
-        } else {
-            setMatch(false)
-        }
+        e.preventDefault();
+        if (password === confirmPassword){ addUser() }
+        else { setMatch(false) };
     }
 
     const addUser = () => {
@@ -29,7 +26,7 @@ const SignUp = props => {
             body: JSON.stringify({ name, username, password, img_url })       
         })
         .then(res => res.json())
-        .then(res => props.history.push('/login') )
+        .then(() => props.history.push('/login') );
     }
 
     const newUser = () => (

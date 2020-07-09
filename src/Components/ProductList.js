@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductList = props => {
-    const product = props.product
-    const buttonStyle = "btn btn-outline-secondary btn-sm"
-    const remButton = "btn btn-outline-danger btn-sm"
+    const product = props.product;
+    const buttonStyle = "btn btn-outline-secondary btn-sm";
+    const remButton = "btn btn-outline-danger btn-sm";
 
 
     const removeFave = () => (

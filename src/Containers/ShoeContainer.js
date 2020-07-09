@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import ProductCard from '../Components/ProductCard';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../Context/CurrentUser';
@@ -11,13 +11,13 @@ const ShoeContainer = props => {
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext);
 
     const filterMyFaveShoes = () => {
-        const list = [...faveShoes]
-        return list.filter(fave => fave.user_id === currentUser.id)
+        const list = [...faveShoes];
+        return list.filter(fave => fave.user_id === currentUser.id);
     }
 
     const faveShoesId = () => {
-        const myList = filterMyFaveShoes()
-        return myList.map(fave => fave.shoe_id)
+        const myList = filterMyFaveShoes();
+        return myList.map(fave => fave.shoe_id);
     }
 
     const addFavorite = e => {
@@ -34,35 +34,35 @@ const ShoeContainer = props => {
             })
         })
         .then(res => res.json())
-        .then(res => setFaveShoes([...faveShoes, res]))
+        .then(res => setFaveShoes([...faveShoes, res]));
     }
 
     const removeFavorite = e => {
-        const id = parseInt(e.target.value, 0)
-        const myList = filterMyFaveShoes()
-        const fave = myList.find(fave => (fave.user_id === currentUser.id && fave.shoe_id === id))
+        const id = parseInt(e.target.value, 0);
+        const myList = filterMyFaveShoes();
+        const fave = myList.find(fave => (fave.user_id === currentUser.id && fave.shoe_id === id));
 
         fetch(`${faveShoesUrl}/${fave.id}`, {
             method: 'DELETE'
-        })
-        removedFave(fave.id)
+        });
+        removedFave(fave.id);
     }
 
     const removedFave = id => {
-        const faveShoesList = [...faveShoes]
-        const updated = faveShoesList.filter(fave => fave.id !== id)
-        setFaveShoes(updated)
+        const faveShoesList = [...faveShoes];
+        const updated = faveShoesList.filter(fave => fave.id !== id);
+        setFaveShoes(updated);
     }
 
     const renderShoe = () => {
-        const faveShoesIdList = faveShoesId();
+        const faveShoesIdList = faveShoesId();;
         return <ProductCard 
             category='shoes' 
             id={id}
             favorite={faveShoesIdList.includes(id) ? true: false}
             addFavorite={addFavorite} 
             removeFavorite={removeFavorite}
-        />
+        />;
     }
 
     return (

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import '../Styling/NewHomePage.css'
-import { Link } from 'react-router-dom'
+import '../Styling/NewHomePage.css';
+import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../Context/CurrentUser';
 
 const NewHomePage = () => {
-    const [currentUser] = useContext(CurrentUserContext)
+    const [currentUser] = useContext(CurrentUserContext);
 
     return(
         <div className="welcome">

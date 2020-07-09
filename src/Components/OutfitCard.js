@@ -1,12 +1,12 @@
-import React from 'react'
-import{ Link } from 'react-router-dom'
+import React from 'react';
+import{ Link } from 'react-router-dom';
 
 const OutfitCard = props => {
-    const outfit = props.outfit
-    const top = outfit.top 
-    const bottom = outfit.bottom
-    const shoe = outfit.shoe
-    const user = outfit.user
+    const outfit = props.outfit;
+    const top = outfit.top ;
+    const bottom = outfit.bottom;
+    const shoe = outfit.shoe;
+    const user = outfit.user;
     return(
         <div className="outfit-card">
             <strong> {outfit.name} <br/></strong>

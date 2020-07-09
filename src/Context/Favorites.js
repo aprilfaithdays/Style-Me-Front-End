@@ -5,9 +5,9 @@ export const MyBottomsContext = React.createContext([]);
 export const MyShoesContext = React.createContext([]);
 
 const Favorites = ({children}) => {
-    const [myTops, setMyTops] = useState([])
-    const [myBottoms, setMyBottoms] = useState([])
-    const [myShoes, setMyShoes] = useState([])
+    const [myTops, setMyTops] = useState([]);
+    const [myBottoms, setMyBottoms] = useState([]);
+    const [myShoes, setMyShoes] = useState([]);
 
     return (
         <div>

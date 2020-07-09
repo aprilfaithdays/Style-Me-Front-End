@@ -1,15 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const FavoriteCard = props => {
-    const product = props.product
+    const product = props.product;
 
-    const handleRemove = () => {
-        props.removeFavorite(product.category, product.id)
-    }
+    const handleRemove = () => props.removeFavorite(product.category, product.id);
 
-    const handleSelect = () => {
-        props.selectFavorite(product.category, product.id, product.img_url)
-    }
+    const handleSelect = () => props.selectFavorite(product.category, product.id, product.img_url);
 
     return(
         <div className="product-card">
