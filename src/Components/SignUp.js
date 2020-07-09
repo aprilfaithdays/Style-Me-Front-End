@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Welcome from './Welcome';
 
 const SignUp = props => {
+    const abortController = new AbortController();
+
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -14,6 +16,8 @@ const SignUp = props => {
         if (password === confirmPassword){ addUser() }
         else { setMatch(false) };
     }
+
+    const cleanUp = () => abortController.abort();
 
     const addUser = () => {
         const img_url = 'https://s3.amazonaws.com/pure_charity/uploads/production/avatar/image/179257/large_blank-profile-picture-973460_1280.png'
@@ -27,6 +31,7 @@ const SignUp = props => {
         })
         .then(res => res.json())
         .then(() => props.history.push('/login') );
+        return cleanUp();
     }
 
     const newUser = () => (

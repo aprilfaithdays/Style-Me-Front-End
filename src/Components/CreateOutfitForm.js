@@ -49,6 +49,7 @@ const CreateOutfitForm = props => {
                 props.history.push(`/outfits/${newOutfit.id}`);
             }
         })
+        return cleanUp();
     }
 
     const cleanUp = () => abortController.abort();
@@ -117,7 +118,6 @@ const CreateOutfitForm = props => {
                     {newShoe[0] && renderOption(newShoe, 'shoe')}
                     {outfitShoe === false && selectMessage('shoe')}<br/>
             </form>
-            {cleanUp()}
         </div>
     )
 }

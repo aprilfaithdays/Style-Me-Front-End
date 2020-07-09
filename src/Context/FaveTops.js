@@ -6,25 +6,26 @@ const FaveTops = ({children}) => {
     const abortController = new AbortController();
     const [faveTops, setFaveTops] = useState([]);
 
+    const cleanUp = () => abortController.abort();
+
     useEffect(() => {
         getFaveTops();
+        return cleanUp();
         // eslint-disable-next-line 
     },[])
 
-    const getFaveTops = async () => {
-        await fetch('http://localhost:3000/favorite_tops')
+    const getFaveTops = () => {
+        fetch('http://localhost:3000/favorite_tops')
         .then(res => res.json())
         .then(res => setFaveTops(res));
+        return cleanUp();
     }
-
-    const cleanUp = () => abortController.abort();
 
     return (
         <div>
             <FaveTopsContext.Provider value={[faveTops, setFaveTops]}>
                 {children}
             </FaveTopsContext.Provider>
-            {cleanUp()}
         </div>
     )
 }

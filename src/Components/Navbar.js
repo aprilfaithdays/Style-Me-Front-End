@@ -4,6 +4,8 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 import { useState } from 'react';
 
 const Navbar = props => {
+    const abortController = new AbortController();
+
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
     const [newIcon, setNewIcon] = useState('');
     const buttonStyle = "btn btn-outline-secondary btn-sm";
@@ -12,6 +14,8 @@ const Navbar = props => {
         localStorage.removeItem('id');
         props.history.push('/login');
     }
+
+    const cleanUp = () => abortController.abort();
 
     const handleUpdate = e => {
         e.preventDefault()
@@ -26,6 +30,7 @@ const Navbar = props => {
             setCurrentUser(res);
             setNewIcon('');
         })
+        return cleanUp();
     }
 
     return(

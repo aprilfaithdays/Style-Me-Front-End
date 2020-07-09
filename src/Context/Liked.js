@@ -6,25 +6,27 @@ const Liked = ({children}) => {
     const abortController = new AbortController();
     const [liked, setLiked] = useState([]);
 
+    const cleanUp = () => abortController.abort();
+
     useEffect(() => {
         getLiked();
+        return cleanUp();
         // eslint-disable-next-line 
     },[])
 
-    const getLiked = async () => {
-        await fetch('http://localhost:3000/likes')
+    const getLiked = () => {
+        fetch('http://localhost:3000/likes')
         .then(res => res.json())
         .then(res => setLiked(res));
+        return cleanUp();
     }
 
-    const cleanUp = () => abortController.abort();
 
     return (
         <div>
             <LikedContext.Provider value={[liked, setLiked]}>
                 {children}
             </LikedContext.Provider>
-            {cleanUp()}
         </div>
     )
 }

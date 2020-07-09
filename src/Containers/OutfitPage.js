@@ -9,6 +9,8 @@ import OutfitComments from '../Components/OutfitComments';
 import CommentForm from '../Components/CommentForm';
 
 const OutfitPage = props => {
+    const abortController = new AbortController();
+
     const id = parseInt(props.match.params.id,0);
     const outfitUrl = `http://localhost:3000/outfits/${id}`;
 
@@ -27,22 +29,31 @@ const OutfitPage = props => {
     
     const buttonStyle = "btn btn-outline-secondary btn-sm";
 
+    const cleanUp = () => abortController.abort();
+
     useEffect(() => {
         fetchOutfit();
         getComments();
         // eslint-disable-next-line
     }, [currentUser]);
+
+    useEffect(()=> {
+        return cleanUp();
+        // eslint-disable-next-line
+    },[]);
     
     const fetchOutfit = () => {
         fetch(outfitUrl)
         .then(res => res.json())
         .then(res => setInfo(res));
+        return cleanUp();
     }
 
     const getComments = () => {
         fetch('http://localhost:3000/comments')
         .then(res => res.json())
         .then(res => filterComments(res));
+        return cleanUp();
     }
 
     const filterComments = res => {
@@ -66,6 +77,7 @@ const OutfitPage = props => {
         })
         removeOutfit(id);
         props.history.push('/');
+        return cleanUp();
     }
 
     const removeOutfit = id => {

@@ -10,15 +10,19 @@ const Login = props => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const cleanUp = () => abortController.abort();
+
     useEffect(()=> {
         getUsers();
+        return cleanUp();
         // eslint-disable-next-line
     },[])
 
-    const getUsers = async () => {
-        await fetch('http://localhost:3000/users')
+    const getUsers = () => {
+        fetch('http://localhost:3000/users')
         .then(res => res.json())
         .then(res => setUsers(res));
+        return cleanUp();
     }
 
     const handleSubmit = e => {
@@ -36,8 +40,6 @@ const Login = props => {
             alert("Can't find username/password combo");
         }
     }
-
-    const cleanUp = () => abortController.abort() ;
 
     const returningUser = () => {
         return(
@@ -62,7 +64,6 @@ const Login = props => {
     return(
         <div>
             <Welcome form={returningUser()} />
-            {cleanUp()}
         </div>
     )
 }

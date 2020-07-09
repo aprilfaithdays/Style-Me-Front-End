@@ -8,6 +8,8 @@ import { CurrentUserContext } from '../Context/CurrentUser';
 
 
 const ShoesContainer = () => {
+    const abortController = new AbortController();
+
     const faveShoesUrl = 'http://localhost:3000/favorite_shoes';
     const [currentUser] = useContext(CurrentUserContext);
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext);
@@ -29,6 +31,8 @@ const ShoesContainer = () => {
         return myList.map(fave => fave.shoe_id);
     }
 
+    const cleanUp = () => abortController.abort();
+
     const addFavorite = e => {
         const id = e.target.value;
         fetch(faveShoesUrl, {
@@ -44,6 +48,7 @@ const ShoesContainer = () => {
         })
         .then(res => res.json())
         .then(res => setFaveShoes([...faveShoes, res]));
+        return cleanUp();
     }
 
     const removeFavorite = e => {
@@ -55,6 +60,7 @@ const ShoesContainer = () => {
             method: 'DELETE'
         });
         removedFave(fave.id);
+        return cleanUp();
     }
 
     const removedFave = id => {

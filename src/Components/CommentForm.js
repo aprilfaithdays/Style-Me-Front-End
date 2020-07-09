@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { LikedContext } from '../Context/Liked';
 
 const CommentForm = props => {
+    const abortController = new AbortController();
+
     const outfit_id = props.id;
     const [currentUser] = useContext(CurrentUserContext);
     const [liked, setLiked] = useContext(LikedContext);
@@ -21,10 +23,17 @@ const CommentForm = props => {
     const likedHeart = require("../icons/liked.png");
     const exit = require("../icons/x.png");
 
+    const cleanUp = () => abortController.abort();
+
     useEffect(() => {
         findLikes();
         // eslint-disable-next-line 
     }, [liked]);
+
+    useEffect(()=> {
+        return cleanUp();
+        // eslint-disable-next-line
+    },[])
     
     const filterLikes = list => list.filter(liked => liked.outfit_id === outfit_id);
 
@@ -55,6 +64,7 @@ const CommentForm = props => {
             setText('');
             setAddCmt(false)
         });
+        return cleanUp();
     }
 
     const removeLike = () => {
