@@ -29,9 +29,7 @@ const CreateOutfit = () => {
         // eslint-disable-next-line 
     },[faveTops, faveBottoms, faveShoes])
 
-    const myList = list => {
-        return list.filter(object => object.user_id === currentUser.id)
-    }
+    const myList = list => list.filter(object => object.user_id === currentUser.id)
 
     const getMyTops = () => {
         const topList = [...faveTops]
