@@ -2,11 +2,13 @@ import React from 'react';
 import Footer from './Footer';
 
 const Welcome = props =>{
+    const logo = require("../icons/StyleMe-Logo.png");
+
     return(
         <div id="auth-page">
             <div className="header">
                 <div className="header-text">
-                    Style Me
+                <img className="welcome-logo" src={logo} alt="StyleMe"/>
                 </div>
             </div> 
             <div className="content"> 
