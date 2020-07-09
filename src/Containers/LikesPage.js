@@ -1,16 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { OutfitsContext } from '../Context/Outfits';
-import { CurrentUserContext } from '../Context/CurrentUser';
 import OutfitCard from '../Components/OutfitCard';
+import { MyLikesContext } from '../Context/MyLikes';
 
 const LikesPage = () => {
-    const [currentUser] = useContext(CurrentUserContext)
     const [outfits] = useContext(OutfitsContext)
-    const [likes, setLikes] = useState([])
-
+    const [myLikes] = useContext(MyLikesContext)
 
     const likesList = () => {
-        const likedList = [...currentUser.likes];
+        const likedList = [...myLikes];
         let likedId = [];
         for(let i = 0; i < likedList.length; i++){
             likedId.push(likedList[i].outfit_id)
