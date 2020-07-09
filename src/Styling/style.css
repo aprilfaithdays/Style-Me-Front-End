@@ -96,6 +96,15 @@ h3{
     outline: none;
 }
 
+.logo{
+    height: 60px;
+}
+
+.welcome-logo{
+    margin-left: 73%;
+    height: 150px;
+}
+
 /* Create Outfit Page (Favorites List) , Product Index Pages */
 
 .product-list{
