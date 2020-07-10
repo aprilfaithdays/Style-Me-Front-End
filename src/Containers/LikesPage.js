@@ -2,10 +2,15 @@ import React, { useContext } from 'react';
 import { OutfitsContext } from '../Context/Outfits';
 import OutfitCard from '../Components/OutfitCard';
 import { MyLikesContext } from '../Context/MyLikes';
+import { Link } from 'react-router-dom';
+
 
 const LikesPage = () => {
     const [outfits] = useContext(OutfitsContext);
     const [myLikes] = useContext(MyLikesContext);
+    const likeBanner = require("../icons/likeBanner.png");
+    const likeGif = require("../icons/likeOutfit.gif");
+
 
     const likesList = () => {
         const likedList = [...myLikes];
@@ -37,9 +42,17 @@ const LikesPage = () => {
         </div>
     )
 
+    const renderEmptyLikes = () => (
+        <div className="emptyLiked">
+            <img className="banner" src={likeBanner} alt="empty"/>
+            Why don't you <b><Link to='/outfits'>browse</Link></b> around and see if you like anything? <br/>
+            <img className="likedGif" src={likeGif} alt="go like some outfits"/>
+        </div>
+    )
+
     return(
         <div>
-            {filterMyOutfits().length > 0 && renderMyOutfits()} 
+            {filterMyOutfits().length > 0 ? renderMyOutfits() : renderEmptyLikes()} 
         </div>
     )
 }

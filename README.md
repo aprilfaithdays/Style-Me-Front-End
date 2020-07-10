@@ -7,15 +7,14 @@
 
 ## Description
 
-StyleMe is all about having a library of outfit options. It gives you the ability to breathe easier 
-by creating outfits without trying any of the clothes on. On days when you don't know what to wear,
-you can simply log into your StyleMe account and look through the outfit options you've already created!
+StyleMe is all about having a library of outfit options. On days when you don't know what to wear,
+you can simply log into your StyleMe account, browse through your outfits library, and wear the look you're going for!
 
-You have the ability to browse other outfits created by other users. You can then like and comment any of the 
+For added inspiration, you have the ability to browse other outfits created by other users. You can then like and comment any of the 
 outfits you see! Once you like an outfit, it's saved in your liked library for you to reference later on!
 
-As we all know, clothes are reusable! And with that in mind, you can also view other outfits created with that product
-when you click on the product itself on the product pages. <em>(By products, we mean the tops, bottoms, and shoes)</em>
+As we all know, clothes are reusable! And with that in mind, you can also view other outfits created with a product. 
+<em>(By product, we mean the tops, bottoms, and shoes)</em>
 
 #### Quick Demo of Creating an Outfit:
 <div align="center">
