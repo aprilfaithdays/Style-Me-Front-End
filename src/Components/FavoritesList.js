@@ -30,6 +30,11 @@ const FavoritesList = () => {
     const [myTops] = useContext(MyTopsContext);
     const [myBottoms] = useContext(MyBottomsContext);
     const [myShoes] = useContext(MyShoesContext);
+
+    const faveTopGif = require("../icons/faveTop.gif");
+    const faveBottomGif = require("../icons/faveBottom.gif");
+    const faveShoeGif = require("../icons/faveShoe.gif");
+
     
     const removeFavorite = (category, id) => {
         if (category === 'tops'){
@@ -85,9 +90,23 @@ const FavoritesList = () => {
         };
     }
 
+    const faveGif = (category) => {
+        if(category === 'tops'){ return faveTopGif}
+        if(category === 'bottoms'){ return faveBottomGif}
+        if(category === 'shoes'){ return faveShoeGif}
+    }
+
     const renderProducts = list => <div className="product-list">{renderMyFavorites(list)}</div>
 
-    const emptyFaves = category => <p>You don't have any favorite <Link to={`/${category}`}>{category}</Link> in your wardrobe!</p>
+    const emptyFaves = category => (
+        <div className="faveList">
+            <div className="faveList-text">
+                <p>You don't have any favorite {category} in your wardrobe!</p>
+                <p>Browse through the <b><Link to={`/${category}`}>{category}</Link></b> page and add them like this:</p>
+                <img className="faveGif" src={faveGif(category)} alt={`add ${category}`}/>
+            </div>
+        </div>
+    )
     
     return(
         <Container fluid>

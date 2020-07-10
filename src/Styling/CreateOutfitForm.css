@@ -53,3 +53,7 @@
 .create-input[type=text]:focus {
     outline: none;
 }
+
+.createOutfitGif{
+    width: 100%;
+}

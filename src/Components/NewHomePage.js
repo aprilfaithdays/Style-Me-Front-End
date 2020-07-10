@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import '../Styling/NewHomePage.css';
 import { Link } from 'react-router-dom';
-import { CurrentUserContext } from '../Context/CurrentUser';
 
 const NewHomePage = () => {
-    const [currentUser] = useContext(CurrentUserContext);
+    const banner = require("../icons/welcome-banner.png");
 
     return(
-        <div className="welcome">
-            <h4> Hi {currentUser.name}! </h4>
-            It looks like you don't have any outfits yet! <br/>
-            Why don't we <Link to='/outfits/new'>create</Link> some? <br/>
-            Feel free to also <Link to='/outfits'>browse</Link> outfits others have created too!
+        <div>
+            <img className="banner" src={banner} alt="welcome"/>
+            <div className="welcome">
+                It looks like you don't have any outfits yet! <br/>
+                Feel free to <b><Link to='/outfits/new'>create</Link></b> some or <b><Link to='/outfits'>browse</Link></b> around!
+            </div>
         </div>
     )
 }
