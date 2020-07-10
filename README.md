@@ -11,12 +11,13 @@ StyleMe is all about having a library of outfit options. It gives you the abilit
 by creating outfits without trying any of the clothes on. On days when you don't know what to wear,
 you can simply log into your StyleMe account and look through the outfit options you've already created!
 
-You have the abilty to browse other outfits created by other users. You can then like and comment any of the 
+You have the ability to browse other outfits created by other users. You can then like and comment any of the 
 outfits you see! Once you like an outfit, it's saved in your liked library for you to reference later on!
 
 As we all know, clothes are reusable! And with that in mind, you can also view other outfits created with that product
-when you click on the product itself on the product pages. (By products, we mean the tops, bottoms, and shoes)
+when you click on the product itself on the product pages. <em>(By products, we mean the tops, bottoms, and shoes)</em>
 
+#### Quick Demo of Creating an Outfit:
 <div align="center">
 <img
     src="https://github.com/aprilfaithdays/Style-Me-Front-End/blob/master/src/icons/createOutfit.gif"
@@ -33,5 +34,6 @@ when you click on the product itself on the product pages. (By products, we mean
 #### Let's Connect!
 [LinkedIn](https://www.linkedin.com/in/april-escobar/)
 
-
-<em><small>Disclaimer: We do not own the rights to any of the images used for this project.</small></em>
+<div align="center">
+    <em><b>Disclaimer:</b> We do not own the rights to any of the images used for this project.</em>
+</div>
