@@ -25,13 +25,13 @@ when you click on the product itself on the product pages. <em>(By products, we 
   />
 </div>
 
-#### Live Demo:
+### Live Demo:
 <em>Coming soon!</em>
 
-#### Video Demo:
+### Video Demo:
 <em>Coming soon!</em> 
 
-#### Let's Connect!
+### Let's Connect!
 [LinkedIn](https://www.linkedin.com/in/april-escobar/)
 
 <div align="center">
