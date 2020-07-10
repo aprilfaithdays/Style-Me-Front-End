@@ -173,8 +173,6 @@ h3{
 
 /* - - - - - - - - - - - - - - - - - -  */
 
-
-
 .submit-button{
     margin-top: 15px;
     margin-bottom: 20px;
@@ -185,3 +183,16 @@ h3{
     color: rgb(228, 59, 59);
 }
 
+.faveGif{
+    width: 60%;
+}
+
+.faveList{
+    background-color: rgba(255, 255, 255, 0.747);
+}
+
+.faveList-text{
+    padding-left: 45px;
+    padding-top: 25px;
+    min-height: 77vh;
+}

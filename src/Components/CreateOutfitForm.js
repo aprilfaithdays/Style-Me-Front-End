@@ -26,6 +26,10 @@ const CreateOutfitForm = props => {
     const shoe_id = parseInt(newShoe[1], 0);
     const likes = 0;
 
+    const [showGif, setShowGif] = useState(false);
+    const createOutfitGif = require("../icons/createOutfit.gif");
+    const buttonStyle = 'btn btn-outline-secondary btn-sm'
+
     const handleCreateOutfit = e => {
         e.preventDefault()
         fetch('http://localhost:3000/outfits', {
@@ -76,6 +80,10 @@ const CreateOutfitForm = props => {
                 Note: The submit button will only appear once everything has been completed.
             </small>
             </p>
+            <div className="submit-button">
+                <button className={buttonStyle} onClick={() => setShowGif(!showGif)}>Demo</button>
+            </div>
+            {showGif &&  <img className="createOutfitGif" src={createOutfitGif} alt="demo"/>}
         </div>
     )
 
@@ -91,7 +99,7 @@ const CreateOutfitForm = props => {
 
     const createOutfit = () => (
         <div className="submit-button">
-            <button className="btn btn-outline-secondary btn-sm" type="submit">Create Outfit</button>
+            <button className={buttonStyle} type="submit">Create Outfit</button>
         </div>
     )
 
