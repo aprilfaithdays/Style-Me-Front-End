@@ -25,14 +25,13 @@ when you click on the product itself on the product pages. (By products, we mean
 </div>
 
 #### Live Demo:
-<em>TBD</em>
+<em>Coming soon!</em>
 
 #### Video Demo:
-<em>TBD</em>
+<em>Coming soon!</em> 
 
-#### Disclaimer:
-We do not own the rights to any of the images used for this project. 
+#### Let's Connect!
+[LinkedIn](https://www.linkedin.com/in/april-escobar/)
 
 
-#### Contact:
-[LinkedIn](www.linkedin.com/in/april-escobar)
+<em><small>Disclaimer: We do not own the rights to any of the images used for this project.</small></em>
