@@ -32,7 +32,7 @@ const CreateOutfitForm = props => {
 
     const handleCreateOutfit = e => {
         e.preventDefault()
-        fetch('http://localhost:3000/outfits', {
+        fetch('https://boiling-reaches-37131.herokuapp.com/outfits', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

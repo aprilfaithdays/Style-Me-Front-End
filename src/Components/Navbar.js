@@ -21,7 +21,7 @@ const Navbar = props => {
     const handleUpdate = e => {
         e.preventDefault()
         const id = currentUser.id
-        fetch(`http://localhost:3000/users/${id}`, {
+        fetch(`https://boiling-reaches-37131.herokuapp.com/users/${id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ img_url: newIcon })

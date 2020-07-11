@@ -12,7 +12,7 @@ const OutfitPage = props => {
     const abortController = new AbortController();
 
     const id = parseInt(props.match.params.id,0);
-    const outfitUrl = `http://localhost:3000/outfits/${id}`;
+    const outfitUrl = `https://boiling-reaches-37131.herokuapp.com/outfits/${id}`;
 
     const [currentUser] = useContext(CurrentUserContext);
     const [outfits, setOutfits] = useContext(OutfitsContext);
@@ -50,7 +50,7 @@ const OutfitPage = props => {
     }
 
     const getComments = () => {
-        fetch('http://localhost:3000/comments')
+        fetch('https://boiling-reaches-37131.herokuapp.com/comments')
         .then(res => res.json())
         .then(res => filterComments(res));
         return cleanUp();

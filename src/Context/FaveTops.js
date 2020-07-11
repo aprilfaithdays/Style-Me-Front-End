@@ -15,7 +15,7 @@ const FaveTops = ({children}) => {
     },[])
 
     const getFaveTops = () => {
-        fetch('http://localhost:3000/favorite_tops')
+        fetch('https://boiling-reaches-37131.herokuapp.com/favorite_tops')
         .then(res => res.json())
         .then(res => setFaveTops(res));
         return cleanUp();

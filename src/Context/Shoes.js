@@ -15,7 +15,7 @@ const Shoes = ({children}) => {
     },[]);
 
     const getShoes = () => {
-        fetch('http://localhost:3000/shoes')
+        fetch('https://boiling-reaches-37131.herokuapp.com/shoes')
         .then(res => res.json())
         .then(res => setShoes(res));
         return cleanUp();

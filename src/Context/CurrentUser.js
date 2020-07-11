@@ -18,7 +18,7 @@ const CurrentUser = ({children}) => {
 
     const getUser = () => {
         const id = userId();
-        fetch(`http://localhost:3000/users/${id}`)
+        fetch(`https://boiling-reaches-37131.herokuapp.com/users/${id}`)
         .then(res => res.json())
         .then(res => setCurrentUser(res));
         return cleanUp();

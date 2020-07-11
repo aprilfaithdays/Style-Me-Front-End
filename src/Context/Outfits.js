@@ -15,7 +15,7 @@ const Outfits = ({children}) => {
     },[])
 
     const getOutfits = () => {
-        fetch('http://localhost:3000/outfits')
+        fetch('https://boiling-reaches-37131.herokuapp.com/outfits')
         .then(res => res.json())
         .then(res => setOutfits(res));
         return cleanUp();

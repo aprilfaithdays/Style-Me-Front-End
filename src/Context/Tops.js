@@ -15,7 +15,7 @@ const Tops = ({children}) => {
     },[]);
 
     const getTops = () => {
-        fetch('http://localhost:3000/tops')
+        fetch('https://boiling-reaches-37131.herokuapp.com/tops')
         .then(res => res.json())
         .then(res => setTops(res));
         return cleanUp();
