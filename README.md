@@ -1,3 +1,5 @@
+# Style Me (Front-End)
+
 <div align="center">
 <img
     src="https://github.com/aprilfaithdays/Style-Me-Front-End/blob/master/src/icons/welcome-banner.png"
@@ -16,7 +18,7 @@ user decided to delete that outfit... then it'll disappear from your liked libra
 
 Feel free to explore and experience StyleMe in the live demo link below!
 
-<em>Please note that the products are limited to women's wear</em>
+<em><b>Please note:</b> The products are limited to women's wear.</em>
 
 #### Quick Demo of Creating an Outfit:
 <div align="center">
