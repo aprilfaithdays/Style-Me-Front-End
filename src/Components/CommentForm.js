@@ -18,7 +18,7 @@ const CommentForm = props => {
     const [num, setNum] = useState('');
     
     const buttonStyle = "btn btn-outline-secondary btn-sm";
-    const likeUrl = 'http://localhost:3000/likes';
+    const likeUrl = 'https://boiling-reaches-37131.herokuapp.com/likes';
     const emptyHeart = require("../icons/empty-heart.png");
     const likedHeart = require("../icons/liked.png");
     const exit = require("../icons/x.png");
@@ -50,7 +50,7 @@ const CommentForm = props => {
     const addComment = e => {
         e.preventDefault();
         const user_id = parseInt(currentUser.id, 0);
-        fetch('http://localhost:3000/comments', {
+        fetch('https://boiling-reaches-37131.herokuapp.com/comments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

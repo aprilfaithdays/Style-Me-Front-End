@@ -8,7 +8,7 @@ const ShoeContainer = props => {
     const abortController = new AbortController();
 
     const id = parseInt(props.match.params.id, 0);
-    const faveShoesUrl = 'http://localhost:3000/favorite_shoes';
+    const faveShoesUrl = 'https://boiling-reaches-37131.herokuapp.com/favorite_shoes';
     const [currentUser] = useContext(CurrentUserContext);
     const [faveShoes, setFaveShoes] = useContext(FaveShoesContext);
 

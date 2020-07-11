@@ -15,7 +15,7 @@ const Bottoms = ({children}) => {
     },[])
 
     const getBottoms = () => {
-        fetch('http://localhost:3000/bottoms')
+        fetch('https://boiling-reaches-37131.herokuapp.com/bottoms')
         .then(res => res.json())
         .then(res => setBottoms(res))
         return cleanUp();
